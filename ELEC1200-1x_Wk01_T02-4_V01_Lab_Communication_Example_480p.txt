@@ -1,0 +1,51 @@
+Hello everybody.
+In this lab demo, Bert and I will try to show you
+how to transmit a text message from one computer to the other computer.
+The text message we'll try to transmit is a English word 'hello'.
+So first, we define the text message here.
+message = 'hello'.
+Unfortunately, this board cannot directly transmit the text message,
+because it can only transmit binary information.
+So for the first step, we need to translate the text message
+to bit sequence.
+For that purpose, we use the function text2bitseq().
+Now let's see what the bit sequence looks like.
+ 
+So you can see here because the English word
+hello has five characters, and each of the characters
+will be translated to a binary sequence of eight bits.
+So in total we have 40 bits here.
+In order to achieve a better performance, we
+want the LED to hold for a fixed amount of time, and the time we use here
+is 50 microseconds.
+Because the sampling frequency we use is one megahertz, the number of samples
+we use for each bit is 50.
+So we define the parameter samples per bit as SPB=50.
+After that, we can now generate the waveform which we indeed
+use to drive the board by using the function bitseq2waveform().
+Now let's see what the waveform looks like.
+OK.
+So we can see here after generating the waveform,
+now we have 50 samples to represent each binary bit.
+Now I'm going to transmit this waveform to Bert's computer
+and see what happens.
+So are you ready, Bert?
+Yup.
+For that purpose, we need to align the board
+so that the transmitters and the receivers
+will face each other directly.
+OK.
+one, two, three.
+ 
+Oh.
+Hello.
+Hello.
+So what we can see on my screen is a received waveform
+from the transmission.
+You can see that it's comparable to figure two in Song's, but we
+can see on figure one there's a lot more noise
+and the figure looks slightly different.
+Nonetheless from this waveform we can recover the original bit sequence.
+So if we compare figure two with figure one on Song's, we
+can see the bit sequences are identical, and so the received message
+is indeed hello.

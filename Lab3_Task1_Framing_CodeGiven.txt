@@ -1,0 +1,27 @@
+﻿bitseqs = bit_seq_gen();             % create three random bit sequences
+frameseqs = cell(1,length(bitseqs)); % initialize holder for output
+
+% this for loop runs the code for each of the three bit sequences
+for c = 1:length(bitseqs),  
+    bs = bitseqs{c};
+    
+    % start of code for frame_bs.m
+    frame = bs;
+    % end of code for frame_bs.m
+    
+    frameseqs{c} = frame; 
+end    
+
+% generate plots
+figure(1);
+for c = 1:length(bitseqs),
+    frame = frameseqs{c};
+    lbs = length(bitseqs{c});
+    % plot frame
+    subplot(3,1,c);
+    stem(frame);
+    title(['Frame generated for bit sequence of length ' num2str(lbs)]);
+end
+xlabel('bit index');
+        
+check_framing(bitseqs,frameseqs);

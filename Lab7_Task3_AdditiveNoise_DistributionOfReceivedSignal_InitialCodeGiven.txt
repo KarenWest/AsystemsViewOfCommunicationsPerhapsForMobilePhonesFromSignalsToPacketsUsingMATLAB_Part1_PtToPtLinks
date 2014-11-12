@@ -1,0 +1,40 @@
+﻿SPB = 50;               % bit time in samples
+distance = 8;           % transmission distance
+tx_bs = [1:1280] > 640; % generate bit sequence of 640 0's and 640 1's
+tx_wave = format_bitseq(tx_bs,SPB);   % create waveform following protocol
+
+% transmit and receive over noisy channel
+[rx_wave,start_ind,rx_min,rx_max,sigma] = txrx_lab07(tx_wave,distance);
+sample_ind = start_ind + 2*SPB-1 + SPB*[0:1279];  % choose subsampling points
+signal_samples = rx_wave(sample_ind);             % extract samples
+
+xhist = 0.1:0.01:0.7;   % centers of histogram bins
+% Do not modify code above this line
+
+subplot(2,1,1)
+% Place your code below that plots the empirical histogram of the 
+% received signal samples when IN=0
+
+
+% Do not modify next six lines
+hold on;                        % all plots on the same figure
+plot_ghist(xhist,rx_min,sigma); % plot histogram predicted by Gaussian
+title(['Histogram of received signals when IN=0']);  % add title
+xlabel('Received signal');
+ylabel('Frequency (%)');
+hold off;
+        
+
+subplot(2,1,2)
+% Place your code below that 
+% 1. Plots the empirical histogram of the received signal samples when IN=1
+% 2. Plots the theoretically predicted histogram
+% Plot the empirical and theoretically predicted histogram versus xhist defined above.
+
+% do not modify code below this line
+title(['Histogram of received signals when IN=1']);  % add title
+xlabel('Received signal');
+ylabel('Frequency (%)');
+
+
+      

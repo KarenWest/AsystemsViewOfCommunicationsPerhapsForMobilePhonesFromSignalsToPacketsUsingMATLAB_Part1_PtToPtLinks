@@ -1,0 +1,23 @@
+﻿tx_msg = 'Hello';  % message to transmit
+SPB = 10;        % bit time in samples per bit
+
+% transmitter %
+%------tx_bs=text2bitseq(tx_msg)-------
+tx_bs = [];
+for c = 1:length(tx_msg)
+    character = tx_msg(c);        % get the next character from the msg
+    byte = char2byte(character);  % find the 8-bit ASCII
+    tx_bs = [byte];
+end
+%------tx_bs=text2bitseq(tx_msg)-------
+tx_wave = bitseq2waveform(tx_bs,SPB);  % change bit sequence to a waveform
+
+% channel %
+rx_wave = txrx_lab01(tx_wave,SPB);  % transmit waveform through channel
+
+% receiver %
+rx_bs = waveform2bitseq(rx_wave,SPB);  % change waveform to bit sequence
+rx_msg = bitseq2text(rx_bs);           % change bit sequence to text message
+
+diagram_lab01(tx_bs,tx_wave,rx_wave,rx_bs,SPB);  % generate plots
+display_lab01(tx_msg,rx_msg);                    % display text messages

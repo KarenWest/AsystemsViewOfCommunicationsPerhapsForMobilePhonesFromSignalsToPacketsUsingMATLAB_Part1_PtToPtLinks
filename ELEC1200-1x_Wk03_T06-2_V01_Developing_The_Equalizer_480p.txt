@@ -1,0 +1,112 @@
+ 
+So given that we know why we want the equalizer, let's talk about the steps
+that we need to do in order to derive the equalizer.
+So remember, what the equalizer is trying to do
+is it's trying to somehow apply some kind of process to the channel output
+to try to open the eye.
+And how are we going to do that?
+The way that we're going to do that is, well, given the fact
+that we know a model already that allows us to take the actual channel input
+and then predict what the channel output is, the idea then is, well, given
+the actual channel output, can we actually go backwards through this
+and then predict what the channel input is
+or make an estimate of what that will be?
+And so let's start talking about, then, well,
+how did we develop this channel model?
+And what would it take to go backwards through that process?
+And so if you remember, the way that we developed that channel model
+was based on this idea of the step response.
+So we assume that the communication channel was linear and time invariant
+and that it had a known step response.
+Remember, the step response is the response
+of the channel to the unit step.
+And that's a property of the physical characteristics of the channel.
+And so, then, how do we use these two things in order
+to get a model for the channel?
+Remember what we do is, well, we have the input here, x of n.
+It goes through the channel, results in this output y of n.
+And we'd like to be able to predict, given
+this, what does this thing look like.
+And so the way that we do that is that, the first step,
+is that we take this input here and we express it
+as the sum of a bunch of unit steps.
+And this was a fairly easy process, because this
+is a very nice up-and-down kind of structure.
+What we were able to do is at every upward transition,
+we were able to put a unit step.
+So for example, at this transition here at zero, we have a unit step u of n.
+And then at every downward transition, we subtracted a unit step.
+So after five steps here, we stepped down by subtracting u of n minus five.
+Then we step back up at this point 10, and so on.
+And so we can write this equation very easily by inspection of the input here.
+Then what we did is we exploited those two characteristics of linearity
+and time invariance. So we used time invariance
+to say that we can predict the output to each one of these individual unit
+steps individually.
+So the response to the unit step here is by definition the stop response.
+And then by time invariance, if I just delay that unit step
+by five samples, what will happen is that the response will just
+be the same unit step just delayed by five samples and similarly for 10 samples,
+and so on.
+And then what we are able to do is say, well, by linearity,
+we know that the output of the channel is just obtained
+by taking these individual step responses
+and adding them together in the same way that we added the inputs here
+to model the input.
+We use exactly the same operations plus, minus, plus down here to get the model
+for the output.
+Now, the question then is, can we, then, go on and reverse this.
+And unfortunately, it is not easy to go back and reverse this process,
+because what will we have to do in order to reverse this process?
+In order to reverse this process, we'd have to,
+then, take this waveform over here and try
+to decompose this waveform into a bunch of these step responses.
+But the problem, though, is that these step responses
+don't have this nice zero-one structure that we have over here.
+And so you can imagine looking at a bunch of numbers over here
+and trying to decompose that into a bunch of step responses
+that have an exponential characteristic is generally going to be a hard thing
+to do, especially if I have a more complicated waveform.
+And so then it seems like, well, maybe we could do that,
+but it seems like it's going to be a very, very hard process.
+And so maybe we're stuck.
+And so at this point, what we want to do is we want to say, well, maybe
+for this particular model, this is a difficult process.
+But is it possible for us to find another,
+what we call, equivalent model for the channel and try to reverse that?
+So I'd like to talk a little bit about what we mean by an equivalent model.
+So a model, remember, is a way of predicting
+the channel output given the channel input.
+And we saw one way of doing that just now.
+So if I have two models and I say that they're equivalent,
+what does that mean?
+It just means that given the exact same input that I gave to, let's say,
+this model over here, I would get exactly
+the same output prediction for the equivalent model.
+And so then you can ask, well, why do I need that?
+If I have one model already, why would I need another model,
+because I already have one way of modeling the channel.
+Well, the reason we do that is, number one, the more models we have,
+the better we can understand the system.
+For example, if I am explaining something to you,
+and you don't quite understand it, maybe it doesn't make sense for me
+to keep on saying the same thing over and over again to you,
+because you didn't understand in the first place.
+So maybe what I should do is try to take a different approach,
+explain it in a different way.
+And essentially, what an equivalent model
+is, is just a different way of explaining something.
+And so maybe, if I understand one of those,
+I understand the system better than if I just looked at the other model.
+And in fact, if I understand both of them,
+then I really have a very, very kind of more advanced or subtle
+understanding of the channel that I'm trying to model.
+And the other aspect is that, well, maybe if I come up with another model,
+it will be easier for us to develop that equalizer
+to back up through that model.
+And so that brings up the idea that maybe different models are better
+suited for different kinds of applications.
+And so now, moving forward, what we're going to do
+is we're going to try to look at and see whether we can develop an equivalent
+model for the channel that predicts exactly the same output,
+but is expressed in a slightly different way.

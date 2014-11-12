@@ -1,0 +1,178 @@
+ 
+Now that we know what the discrete time channel is,
+we'd like to start describing that channel.
+And in order to do that, we need to know, well,
+what are the kinds of things that might happen to the signal
+as it goes over the channel?
+So here are some possible effects of the channel.
+So I show you here the input on this side and one possible output
+of the channel over on the other side, just graphically.
+And so some of the things that you might see, for example,
+would be that there's an attenuation.
+So you can see here the change between the high level
+and the low level over here is a very large change.
+But you can see that the change here between high and low
+is a little bit smaller.
+So that's a decrease in let's say the amplitude of the signal.
+And that might be caused by various different effects.
+The other thing you can see is a delay.
+For example, here, you can see that the channel starts out here
+with a high value right away, but over here it doesn't show up on the channel
+until this point over here and then the signal starts changing.
+The other thing is that there's an offset.
+So you can see here the channel here is at zero,
+but now there is a level here which is not
+zero, which is the lowest level of the channel over here.
+And then the other thing you can see is that there
+is a blurring of the transitions.
+And so what we mean by that is that this waveform over here
+makes transitions at regular intervals between one and zero.
+Those are determined by the bit rate or the number of samples per bit.
+In this case, it's five.
+So every five samples, it has the possibility of making a change,
+but that change is instantaneous.
+But we see over here that that change is not instantaneous over here.
+It takes some time to do that over here.
+And then the final thing that we can see is
+that here we have a very, very straight waveform, either constant one
+or constant zero.
+And here we see that even when it's staying at zero,
+there's some small fluctuations over here.
+And so what cause these kinds of effects are really the nature of the channel.
+And so we can understand this from an electronic point of view,
+but there are many other kind of analogies that we can use.
+For example, if I'm trying to transmit information,
+I might transmit information physically using my hand.
+And what I can do is for a zero bit, I can hold my hand here.
+And for a one bit, I can hold my hand here.
+And so what might cause the attenuation?
+Well, depending on where I am, for example, if I move farther back,
+even though I'm moving my hand up and down by the same amount, what you're
+seeing actually is a smaller change in the motion of my hand.
+Because you can imagine, if I went out about a mile away,
+the change in my hand would almost be imperceptible.
+Actually, it would be imperceptible.
+So the properties of the channel, for example, the distance,
+might cause that attenuation in amplitude.
+But let's just take a look at the other thing.
+There's a delay.
+For example, the delay might be caused by the fact
+that I'm recording this now, but you're not
+getting the signal until much later in time.
+The other thing that would happen is that there's an offset.
+So for example, if I'm holding my hand here, I'm not holding my hand at zero.
+There's some offset or distance from my hand, let's say to the floor,
+if I was going to call the floor zero, or from the sea,
+depending on what floor I'm on.
+There might be some offset there.
+So that would cause an offset.
+And finally, the fact that I cannot move my hand instantaneously,
+takes me some time for me to move my hand up and down causes this kind
+of blurring of transitions.
+And the fact that I can't really hold my hand completely steady
+might add some additional fluctuations in the level over there
+that will cause the noise.
+And so what we'd like to be able to do is given
+these properties of the channel, we'd like to model these mathematically.
+And so what we'd like to be able to do then
+is come up with a way of describing, if I know x of n, a formula for x of n,
+can I get a formula for y of n?
+And it turns out that modeling three of these effects, attenuation, delay,
+and offset is relatively easy to do.
+And so we're going to define k to be attenuation.
+Instead of transitioning from zero to one, I'm
+going to transition from some low value up to some high value.
+And the difference between these two values is not one, but some value k.
+And typically, like I said, the value k might be less than one,
+because what you're going to get is slightly smaller than what I sent.
+The delay here is going to be this wait
+before the signal transitions from zero to one.
+Instead of occurring at zero, it occurs at some time, d.
+And the offset will then just be this constant value here, c.
+And so it turns out that if I know x of n,
+I can immediately write an equation for y of n, if I know k, d, and c.
+And that equation is shown down here.
+And this is based on some of the things that we've seen before,
+adding and subtracting of different waveforms.
+And so c here is just a constant value.
+So for any value of n, the value of c is constant.
+So that's always going to give you a constant value
+of c that's shown over here.
+But the waveform itself is not actually constant,
+it actually changes up and down, depending on x whether it's zero or one.
+But now what I can do is, I can say well, if I take x, I know what x is,
+then it's going to start changing after some delay.
+And I already know from our work with the unit step,
+how to delay a function.
+I can delay it by simply replacing n by n minus d.
+And that will give me a delay, in this case, of four.
+Now what I can do is I can put in a multiplication here by k,
+and that's going to give me a scaling.
+So instead of going from zero to one, I'm going from zero to k.
+And when added to this, I'm going to get a value here, which is c plus k.
+So that's three of the effects of the channel.
+But the one that's going to be more difficult to model
+is the blurring of the transitions.
+And so this is really caused by the physical properties of the channel,
+for example, whatever is causing the physical waveform.
+So for example, if I'm moving my hand from here up to here.
+Then system that's doing that is the transducer.
+It's converting, let's say, signals from my brain
+into signals that are going to my muscles.
+And those muscles have a certain limitation,
+I can't move infinitely fast with my muscles.
+And that's going to cause that delay or that blurring of the transition
+from zero to one.
+From an electronics point of view, there might
+be limitations in the electronics.
+The physical medium itself might cause some kind of blurring itself.
+For example, if I'm in a room and there's a lot of echo in the room,
+there might be echoes because of that.
+And also on the receiver side, there might be some limitations over there.
+So these are really physical properties of the channel
+that we need to describe.
+We call a channel where the output cannot change instantaneously,
+a bandlimited channel.
+What I'd like to do now is show you visually
+what the effect of the bandlimited channel is
+and give you some intuition about how that
+affects the rate at which we can transmit information.
+So here, I show you an input here which is zero and one,
+and I'm only looking at the effect of the changes in transition.
+So there's no offset or attenuation.
+You can see here that instead of going immediately from zero up to one,
+it takes some time to get up there, but eventually gets there, or at least
+close to there, when we wait long enough.
+But if we try to then transmit information faster,
+we're not going to be able to wait this long to transmit a zero,
+and this long to transmit a one.
+Maybe we can only wait half as long.
+So for example, here, instead of waiting, let's say,
+40 time seconds to transmit zero then one, we're
+going to do the whole thing in 20.
+And then do the same thing again.
+And so what you can see here is that I'm still going to get close to the top,
+but I don't have as much time.
+And if I try increasing the rate at which I'm transmitting information,
+you can see here that I'm going to start moving,
+and I'm not going to get to the limits.
+And so for the physical model that we talked about, what you can imagine
+is that I'm going to try to transmit information
+by moving my hand up and down.
+And as I try to change my rate at which I'm transmitting information,
+I'm going to try to move my hand up and down faster and faster and faster.
+But if I try to move my hand really fast,
+you can imagine that because of the fact that I'm limited by my muscles
+I'm going to get stuck here somewhere in the middle.
+And that's exactly what we're seeing with this kind of compression
+of the output here.
+So that it doesn't cover the same range as we had in the previous ones
+where I was transmitting the information relatively slowly.
+And so if I have more complicated waveform, and this is the type of waveform
+that you might expect to see from this bandlimited channel.
+And so moving forward, what we'd like to be able to do
+is given that we can describe this input here--
+we know how to do that in terms of unit steps--
+can we somehow come up with an equation for this waveform down here?
+And it turns out we can do that if we assume
+that the channel is linear and time invariant.

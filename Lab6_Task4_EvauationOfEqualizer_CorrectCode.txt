@@ -1,0 +1,42 @@
+﻿tx_bs=rand(1,1280)>0.5;     % generate a random bit sequence
+
+SPBlist = 1:20;             % list of bit times to test
+num_SPB = length(SPBlist);  % number of bit times to test
+BER = zeros(1,num_SPB);     % initialize bit error rate array
+BER_eq = zeros(1,num_SPB);     % initialize bit error rate array
+
+for i = 1:num_SPB,
+    SPB = SPBlist(i);
+    tx_wave = format_bitseq(tx_bs,SPB);    % create waveform
+    rx_wave = txrx_lab06(tx_wave);         % simulate channel 
+    start_ind = find_start_lab06(rx_wave); % find start bit
+
+    % get bits from unequalized waveform
+    threshold = get_threshold(rx_wave);
+    rx_bs = get_bits(rx_wave,SPB,threshold,start_ind,1280,2*SPB-1);
+    BER(i) = compute_BER(tx_bs,rx_bs);  % compute the BER
+
+    % Replace the line below with code that
+    % 1. Equalizes the received waveform
+    % 2. Estimates the input bit sequence from the equalized waveform
+    % 3. Computes the bit error rate and stores it in BER_eq
+    a = 0.92;
+    eq_wave = equalizer(rx_wave,a);      % equalize the received waveform
+    threshold_eq = get_threshold(eq_wave);
+    rx_bs_eq = get_bits(eq_wave,SPB,threshold_eq,start_ind,1280,2*SPB-1);
+    BER_eq(i) = compute_BER(tx_bs,rx_bs_eq);  % compute the BER_eq
+
+    % Donot modify code below  
+end
+
+% code to plot and label results
+plot(SPBlist,BER_eq,'r','LineWidth',2);
+hold on;
+plot(SPBlist,BER,'b','LineWidth',2);
+title('Bit Error Rate vs SPB');
+xlabel('Bit Time (samples)')
+ylabel('BER');
+axis([0 20 0 0.5]);
+grid;
+legend('with equalizer','without equalizer');
+      

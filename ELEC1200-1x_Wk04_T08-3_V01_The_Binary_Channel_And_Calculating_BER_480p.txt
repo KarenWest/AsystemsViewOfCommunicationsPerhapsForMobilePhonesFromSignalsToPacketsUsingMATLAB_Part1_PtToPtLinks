@@ -1,0 +1,167 @@
+So in order to calculate the BER, what we're going to do
+is we're going to split the process into a two-step process
+where, first, I'm going to take that additive noise model
+and further simplify it into something which is called the binary channel
+model.
+That binary channel model is going to enable
+us to identify the key parameters that are
+important in determining what the bit error rate is.
+And then we're going to then go back and then
+look at how the additive channel model allows
+us to predict those key parameters.
+So let's first take a look at this simplified binary channel model.
+So what I show you here on the bottom is the original additive noise channel
+model that we talked about.
+The input comes in.
+It determines a value of output of the channel, which
+is either high or low, two values.
+The noise gets added.
+That might move it above or below the threshold.
+And we're going to get an output of zero or one,
+depending on whether we're above or below the threshold.
+Now, what I'm going to do is I'm going to draw a box around this whole thing,
+and I'm going to call this the binary channel.
+And so in this case, what I'm doing is I'm
+just going to say that I have an input to this channel which
+is either zero or one, one of two possible values.
+And the output also assumes one of two possible values, zero or one.
+And so that's why we call it the binary channel, where "bi" means two.
+And so by doing this, what we've been able to do is kind of ignore or kind
+of encapsulate all of the effects of the value of r, the different levels,
+and the amount of noise into this block.
+And we're just going to look at what happens to zeros and ones as they
+go through this channel.
+And so, ideally, what we'd like to have is
+we'd like to have a situation that looks like this, that whenever
+I have an input that comes in, if it's zero, it comes out as a zero.
+Or if it comes in as a one, it goes out as a one.
+And so intuitively you can kind of think about this as kind two
+entrance doors and two output doors.
+So if I come in through this door, the zero door,
+I should go out through the zero door.
+If I come in through the one door, I should go out through the one door.
+Now, what happens when an error occurs?
+Well, an error occurs when I come in through the zero door
+and instead of coming out through the zero door, I actually take the wrong path,
+and I come out through the one door.
+Or if I come in through the one door, I come through this red path over here,
+and I come out the wrong door or the zero door.
+And so reason that that might happen is due to noise.
+And we'll see more specifically how that happens a little bit later on.
+But let's just assume that that occasionally happens.
+So whenever I do this, I go this way or this way, I'm going to get an error.
+And so, obviously, the amount of error that I get
+is going to depend on how often I go down either through this path
+or through this path.
+And so to assign numbers to that, what we're going to have to do
+is we're going to have to use something which
+is called probability or probabilistic analysis.
+So like I just said, the bit error rate then
+depends on how often I take these red paths, which
+are how often the input is zero but the output is one or the input is one
+and the output is zero.
+But it also depends on other factors, for example,
+how often do I go in through the zero door?
+Or how often do I go in through the one door?
+How often do those two inputs occur?
+And so we quantify in engineering this idea of how often that
+occurs using probability theory.
+And we call that idea of how often a probability.
+So intuitively, the probability of something happening
+is the percentage of time that that thing actually happens.
+So, for example, if I say the probability that input is equal to zero
+is 0.5, it means that about 50% or half of the time the input is zero.
+And the other half of the time, it will be one.
+So I could assign different probabilities to that.
+For example, maybe 20% of the time I go in through zero.
+80% of the time I go out through here.
+And so since there were only two possibilities,
+once I know the probability here, this one is, let's say, 20%.
+Then since I must go through either of these two doors,
+the total probability must be 100%.
+And so then the sum of these two probabilities must be 100% or one.
+And so that would then imply, this case here was 0.5.
+I will get 0.5 for output.
+So given this idea of probability or how often something happens,
+we can then apply labels to each one of those paths that we might take.
+That's what I show you here.
+So here we show two possible input doors that we
+might take, labeled with the probability that I might take them.
+So for example here because there's only two possibilities
+these two must sum to one.
+And so a convenient number might be 50% of the time I'm here.
+50% of the time I'm over here.
+Now, if I'm on this pathway, the input equals zero pathway,
+then there's two possible paths I might take down here.
+I might take this red path here, which is what I would not want to do
+but occasionally might happen, that would lead me
+to the wrong output door one.
+And so I'm going to label this one with a probability Pe0, where
+the e0 indicates that I make an error when the input is zero.
+So Pe0 indicates error when the input is zero.
+And if that was, let's say, 20% since there's
+only two possibilities, either making an error or taking the correct path
+and not making an error, then this probability
+here must be one minus that or 80% if this is 20%.
+Similarly, what I have is that I have two possible paths if the input is one.
+This the one that's going to lead me to an error if there's a one.
+So I'm going to call that Pe1.
+And again, they must sum to one.
+So if this was, let's say, 30%, this one down here must be 70%.
+Now, using that, what I'm going to do is I'm
+going to then calculate what the probability of the bit error rate is
+or the actual value of the bit error rate.
+And so I've assigned probabilities to this path and this path here.
+And those two things might be different, right?
+This might be 20% over here.
+This might be 30% over here.
+But there's only one bit error rate.
+And so the bit error rate is the total probability of any kind of error.
+And so in order to calculate that, what I'm going to have to do
+is kind of combine those two possible sources of error.
+And so the way I do that is I take this, and I find out the probability
+that I actually take this path overall.
+So Pe0 is really, if I'm on this path already,
+what's the probability I'm going to take this?
+And so that I said might be 20%, right?
+But suppose I'm never on this path.
+Oppose the input is zero or the probability of input equals zero is actually zero.
+So I'm never on this path.
+Then I'll never go down here.
+So, in fact, even though 20% of the time I'll
+go down here, because I'm never on here, I'll
+actually go down this path 0% of the time.
+So in order to calculate the percentage of the time I'm actually on here,
+I have to take this probably of error, Pe0,
+and then multiply it by the percentage of time that I'm actually on this path.
+So for example, suppose I'm here 50% of the time, 20% of the time
+I make an error, then in that case, what I can do is I can say,
+well, 20% of the times I'm only on there half of the time.
+So I'm going to make this error 10% of the time.
+I multiply those two things together.
+And this product then gives me the actual probability
+of taking this path overall.
+Similarly, I can do the same thing for this path
+over here, where I look at this probability, let's say 30%,
+multiply it by this one, let's say 50%.
+And then in that case, I would get 15% over there.
+So 10% of the time I'm over on this path.
+15% of the time I'm on that path.
+Those things both lead me to errors.
+And I want to count both of those.
+And so the way I take that into account is
+I've added those two things together.
+And so now, in that case, 10% plus 15%, I
+would get 25% error for the bit error rate.
+And so what we've been able to do with the binary channel model
+is then identify the key parameters that are
+important in determining how many errors we get.
+And those are how often we're here how often we're here.
+And given that we're here, how often do I go up here and here?
+Or given that I'm here, how often do I go down here or here?
+And so what we're going to do moving forward
+is actually try to figure out what happens
+and what determines these actual numbers and how
+they depend on the noise and the signal levels.
+But before we do that, let's just take a look
+at some examples of calculations using this bit error rate calculation.

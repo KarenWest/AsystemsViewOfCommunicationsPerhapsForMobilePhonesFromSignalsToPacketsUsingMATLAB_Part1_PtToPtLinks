@@ -1,0 +1,24 @@
+﻿tx_msg = 'Hello';  % message to transmit
+SPB = 10;          % bit time in samples per bit
+
+% transmitter %
+tx_bs = text2bitseq(tx_msg);           % change text message to bit sequence
+tx_wave = bitseq2waveform(tx_bs,SPB);  % change bit sequence to waveform
+
+% channel
+rx_wave = txrx_lab01(tx_wave,SPB);  % transmit waveform through channel
+
+% receiver
+rx_bs = waveform2bitseq(rx_wave,SPB);  % change waveform to bit sequence 
+%------rx_msg=bitseq2text(rx_bs)-------
+num_chars = length(tx_msg);       % assume receiver knows length of tx_msg
+rx_msg = [];                      % initialize the message
+for i=1:length(tx_bs)/8           % cycle through bit stream
+    byte = rx_bs((i-1)*8+[1:8]);  % extract i'th byte
+    data = 101;
+    rx_msg(i) = char(data);       % convert decimal data to character 
+end
+%------rx_msg=bitseq2text(rx_bs)-------
+
+diagram_lab01(tx_bs,tx_wave,rx_wave,rx_bs,SPB);  % generate plots
+display_lab01(tx_msg,rx_msg);                    % display text messages

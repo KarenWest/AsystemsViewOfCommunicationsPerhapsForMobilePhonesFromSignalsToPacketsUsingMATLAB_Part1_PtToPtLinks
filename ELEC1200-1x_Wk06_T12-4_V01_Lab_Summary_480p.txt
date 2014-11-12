@@ -1,0 +1,77 @@
+ 
+Hello, everyone.
+It is time to summarize the lab session of this course.
+The objective of the lab session is to help
+you understand the key concept of communication theory
+through building a real communication system.
+What is communication?
+Communication is the process where information
+is transmitted from one position to another position.
+What is a communication system?
+A communication system is a system we build to achieve certain communication
+purposes, which normally cannot be obtained by ourselves.
+There are three key components in a communication system, the transmitter,
+the channel, and the receiver.
+Out of the three components, we have the freedom
+to design the transmitter and the receiver.
+However, the channel normally is out of our control.
+So the major task for building a communication system
+is to design the transmitter and the receiver
+so that they can work together to handle the bad effect caused by the channel.
+In this course, we handled two enemies for communication systems.
+The first one is the distorted channel response.
+The second one is the additive noise.
+There are four channel effects, the time offset, the offset signal, the range
+or the amplitude of the received signal, and the exponential channel response.
+Then what are the problems caused by those effects?
+Basically, the time offset will cause synchronization issues
+for communication systems.
+On the other hand, the offset signal and the range of the received signal
+will make it difficult to set the decision threshold at the receiver
+side.
+Also the exponential channel response will cause intersample interference.
+Then what are those solutions we proposed to solve those problems?
+Firstly, we use the start and end bit to synchronize
+the transmitter and the receiver so time offset is not an issue.
+Secondly, we added training sequence to estimate the channel,
+so the offset signal and the range of the received signal
+are known to the receiver when citing the decision threshold.
+Basically, we use the frame structure to handle the first three channel effects.
+On the other hand, we use an eye diagram to measure the quality of the received
+signal, and we proposed to use an equalizer
+to handle the intersample interference.
+The second enemy of our communication system
+is the additive noise, which will cause bit error.
+In this cause, we first observed the distribution of the additive noise,
+and it was shown that Gaussian distribution is
+a good fit for the distribution of the received signal.
+Then, we used channel codes, including the repetition code and the parity
+check code, to improve the performance of our communication system.
+After implementing all those communication protocols or techniques,
+we want to know how good they are, or, in other words,
+how significant the performance improvement is.
+For that purpose, we did performance evaluation
+where we used bit error rate as the performance metric
+to evaluate the performance of our communication system.
+Now let's identify the position of each lab in our communication system.
+Basically, in Lab 1, we introduced a simple communication example
+where a text message is transmitted from one computer to another.
+In Lab 2, we observed the four-channel effect of our IR channel.
+Lab 3 handled the first three channel effects
+by using some communication protocols.
+Lab 4 evaluated the performance of our communication system
+after implementing those communication protocols.
+In Lab 5, we measured the quality of the received signal
+by using an eye diagram.
+In Lab 6, we proposed to use an equalizer
+to handle the intersample interference.
+Then Lab 7 considered the distribution of the received noise.
+And Lab 8 evaluates the performance of our communication system
+after adding the additive noise.
+Finally, in Labs 9 and 10, we introduced the channel cods,
+including the repetition code and the parity check code
+to improve the performance of our communication system.
+So basically, by now, you should be able to build up your own communication
+system by using all those codes you have written in this course.
+So does your communication system work well?
+ 

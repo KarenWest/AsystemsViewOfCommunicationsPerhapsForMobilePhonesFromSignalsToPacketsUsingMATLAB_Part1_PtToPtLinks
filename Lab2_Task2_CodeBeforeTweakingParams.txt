@@ -1,0 +1,26 @@
+﻿tx_wave = [zeros(1,150) ones(1,250)];  % define step-like waveform
+distance_list = [10 20 30];            % list of distances to simulate
+num_dist = length(distance_list);
+mse_list = zeros(1,num_dist);
+
+% parameters of best fits for each distance
+% modify these to find the best fit at each distance
+c_list = [0.4 0.4 0.4];
+d_list = [200 200 200];
+k_list = [0.2 0.2 0.2];
+a_list = [0.8 0.8 0.8];
+
+% the for loop below simulates the channel at each distance
+% we run through the distance list backwards so figures appear in correct
+% order on the edX platform
+for i = num_dist:-1:1,  
+    figure(i)
+    distance = distance_list(i);           % set distance
+    rx_wave=txrx_lab02(tx_wave,distance);  % simulate channel
+    mse_list(i) = fit_rcv(rx_wave, c_list(i), d_list(i), k_list(i), a_list(i));
+end
+
+for i = 1:num_dist,
+    display(['MSE at distance ' num2str(distance_list(i)) ...
+        ' = ' num2str(mse_list(i))]);
+end

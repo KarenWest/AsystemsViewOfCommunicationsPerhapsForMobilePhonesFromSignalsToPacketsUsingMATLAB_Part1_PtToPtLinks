@@ -1,0 +1,82 @@
+Now that we know about discrete time waveforms,
+we can use this to start describing the bit waveforms
+that we're going to use in our communication system.
+So if you remember, when we introduced the idea of the bit waveform
+we did that in continuous time.
+And we said that we were going to hold the physical variable constant.
+I show you two levels here, zero and one, for a certain period
+of time, which is known as the bit time.
+Now when we go to discrete time, we have to do this sampling process,
+and what that corresponds to is that we get
+a certain number of discrete samples per bit,
+which we're going to abbreviate by SPB.
+And so in this case here, I show you that we're holding the discrete time
+waveform constant for four samples per bit.
+And so of course there should be a relationship
+between four samples per bit and the actual bit time,
+and that's what's shown on this next slide here.
+Remember the bit time is the actual amount of time
+that it takes to send one bit.
+So this is time in seconds or some other measure of time.
+And because we're going to send information or describe our waveforms
+using discrete time, we're going to specify things
+in terms of a certain number of samples per bit.
+And so here I show you an example where we have a certain bit time,
+and we're having four samples per bit, and the question
+is how long is this bit time?
+Well, in order to know that we have to know the actual sample period Ts.
+And so here we notice that the actual bit time is then four times Ts,
+or in general the bit time is SPB times Ts,
+and we know that the sample frequency and the bit time
+are inversely related to each other.
+And so in that case we can substitute that inverse relationship in here
+to get the bit time in terms of the sample frequency.
+Now the other quantity that we'll be interested in
+is really an equivalent quantity, but it tells us
+how quickly we're transmitting information,
+and that quantity is known as the bit rate.
+And so that's the number of bits that we can send in a given unit of time.
+And those two things are equivalent.
+There's an inverse relationship between them as shown over here.
+So the bit rate is one over the bit time, and what
+that tells us is that the faster we want to transmit information--
+in other words, the larger the bit rate-- the less time
+that we can spend on each bit-- i.e. the smaller the bit time.
+Now we can use the equations that we derived up here
+and substitute them in here to get the bit
+rate in terms of the samples per bit and either the sample period or the sample
+frequency.
+And in general what we'd like to be able to do
+is transmit information as quickly as possible.
+In other words, what we'd like is the bit rate to be large or equivalently,
+the bit time to be small.
+So let's take a look at a numerical example
+to try to make things a little bit more concrete.
+The key thing here is that we need to fix the sample rate first.
+The sample rate is going to be something that
+is going to determine how quickly our system is operating.
+And for this class generally what we'll do is we're
+just going to fix that arbitrarily to be one million samples per second.
+It's a nice round number, and this is what
+we're going to use for the remainder of the class.
+But of course this could change depending
+on your own particular application, but we're just
+going to use this so that you can think just in terms of this
+and there's not that much confusion.
+What we can do is we can say, well, let's
+take a look at this example of the four samples per bit,
+and figure out what the bit time is and the actual bit rate.
+And so the first thing, of course, we need to know is the sample period Ts,
+and of course that is inversely related to the sample frequency.
+And so if we have one million samples per second, then what we have is one
+microsecond for the sample period, so just ten to the six versus ten
+to the minus six.
+Now in order to calculate the bit time, we
+know that we're going to hold that bit for four samples,
+and each of those samples takes one microsecond.
+So therefore the bit time is four microseconds.
+And then the bit rate is proportional to the sample frequency,
+but it's divided by the number of samples per bit.
+And so if our sample frequency is one megahertz or one million samples
+per second, then dividing by four means that the bit rate is 250 kilohertz.
+In other words, we're going to be transmitting 250,000 bits per second.

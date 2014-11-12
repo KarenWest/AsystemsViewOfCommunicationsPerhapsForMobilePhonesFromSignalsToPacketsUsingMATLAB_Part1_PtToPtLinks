@@ -1,0 +1,196 @@
+Today, what we'll be talking about is continuous
+versus discrete time waveforms, and this is an important aspect
+when we start talking about the way that we're
+going to model the waveforms that we're sending through our communication
+channel.
+So let's take a short review.
+In the last lecture, we looked at representing bit sequences
+as waveforms.
+And so what you saw is that the way that we represent a bit sequence
+is by holding the value of a physical variable
+constant for a certain amount of time, and that's known as the bit time.
+And as the bit sequence changes, the waveform
+changes because the physical variable changes from,
+let's say, the light being on versus being off,
+and so this might be light intensity on this axis in time.
+And then we saw that, by changing the bit time, what we can do
+is we can change the rate at which we send information.
+And so in this case over here, what we've done is we've taken the bit time,
+and we've divided by a factor of two.
+And so in this case here, we can send twice as much information
+over the same time period as we did before.
+Now, when we start talking about describing these waveforms,
+we'd like to start developing mathematical expressions
+for these waveforms, and most of the expressions
+that we're going to be developing in this class
+are going to be based on a discrete time representation.
+And so I'd like to start talking about discrete time and continuous time,
+so let's start out with an example that's taken from the weather.
+And here in Hong Kong, we have the Hong Kong Observatory,
+and they take regular measurements of the temperature.
+But this is the actual temperature that we have,
+and this is what's called a continuous time waveform.
+And the reason it's called a continuous time waveform
+is because, at any point in time, we can make a measurement,
+and it doesn't really matter what time we do it.
+So in this case here, at any point in time, we have a measurement
+or we can make a measurement of the temperature.
+But the problem is that the Hong Kong Observatory can't be continuously
+recording the temperature all the time, and so what it does is,
+instead, it takes regular measurements at certain periods of time.
+And so in this case here, I show you those measurements
+that were taken from here, and in this case,
+we're assuming that maybe the Hong Kong Observatory takes the measurements once
+every two hours, so eight o'clock, ten o'clock, midnight, two o'clock, and so on.
+And so this is called a discrete time waveform
+because the temperature value is only known
+at discrete, or discontinuous, points in time,
+and the process that we go from a continuous time to a discrete time
+is known as sampling.
+I illustrate the sampling process here.
+The first thing we need to know in the sampling process
+is something which is called the sample period, which I denote by Ts,
+and so in the previous example, the sample period
+that we used for the Hong Kong Observatory was two hours.
+It takes a measurement once every two hours.
+And so once we know the sample period, then we also
+know the times at which the samples were taken.
+So for example, if we start by sampling at time zero,
+then the first sample will be time Ts, 2Ts, 3Ts, 4Ts, and so on.
+Now, in many cases when we're analyzing the waveform mathematically,
+we don't really need to worry about the sample
+period of the exact value of Ts, and so in that case, what we'll do
+is we'll simplify the problem a little bit by using an index notation, which
+I'll denote here by x(n).
+And so in this case here, the n denotes the index or the sample number
+that we're talking about.
+And so this assumes only integer values, and at index zero,
+it corresponds to the sample at time zero.
+Index one corresponds to one times Ts, two times Ts, three times Ts, and so on.
+Of course, we'd also like to go backwards from discrete back
+to continuous time, and I'll talk about that next.
+So when we go from discrete to continuous time, what
+we'd like to be able to do is take the measurements that we have,
+which are shown by these circles here, and get a continuous time waveform
+that's, hopefully, close to the original waveform that we had.
+So the original waveform that we had is shown by this red waveform over here,
+and of course, we can't get that back exactly because what we have is
+we've lost information.
+And so I'll show you one way that we can get a continuous time waveform that
+is hopefully close to the original continuous time waveform,
+and that's called a zero-order hold.
+And what we'll do is we'll start out at time zero, and at time zero,
+we actually know the value of the waveform.
+So we'll say, OK, that's the value at time zero.
+And now, we don't know what the value of the waveform is,
+but we can imagine that if the waveform's changing slowly,
+then it should be close to that.
+And so one thing we could do is just hold that value for this time
+until the time Ts, and then we can update it
+and hold it for this point in time here and hold it for this point in time
+here.
+And we get this blue waveform that's defined for all points in time,
+but the disadvantage is it's not that close to the red waveform anymore.
+Of course, it will never be because we've lost information.
+Now, you can think of there's other ways that you
+might be able to do this process.
+For example, you might try to connect the dot from here
+to here with a straight line, and you can imagine that,
+if I did that, then I would get a continuous time waveform that's
+much closer to the red waveform.
+Of course, the disadvantage of that is that,
+in order to do that, I have to know not only the value here but also the value
+here.
+So I have to know two values in order to compute that line,
+and so that's going to be a little bit more complicated.
+And so in many cases, we don't really do that.
+We just do the simple zero-order hold.
+But there's another way that we can actually go and make
+this waveform closer to this one, and that
+would be by increasing the amount of samples that we have
+or by decreasing the sample period.
+And so in that case, what we can do is we can say, for example, take this Ts
+and divide it by two, so we get a sample here, here, here, here.
+So we get one sample in between every of the existing samples,
+and if we did that, we would have half the sample period,
+but we would have more information.
+And so if we try to reconstruct the waveform from that,
+you can imagine that we would go and, halfway along here,
+we'd have new information.
+And so we could then update that and go to here and update that and then
+go to here, and now if we do that, you can
+see that the waveform that we get when the sample period is
+half of what's shown here, would be a closer value.
+So when we start talking about sampling, we have to start talking about then
+how often are we sampling, and there's two ways that we can do that.
+One is in terms of what I talked about before, the sample period.
+The sample period, remember, is the time in between two samples,
+and so in the temperature example I gave you before,
+that sample period was two hours.
+The other way you can talk about the sampling process
+is through the sample frequency, and the sample frequency
+tells us how many samples we take in a fixed period of time.
+So for example, for the Hong Kong Observatory example,
+if we have one day, which is 24 hours, and we sample every two hours,
+you can easily calculate that corresponds to 12 samples per day.
+And so the sample frequency then is measured in a different kind of unit.
+Instead of a unit of time, something like seconds or hours,
+we measure it in terms of Hertz, where Hertz
+is the number of samples per second.
+Because these are two equivalent ways of measuring how often we sample,
+there's a relationship between those two, which is given by this one.
+It's just an inverse relationship, and to give you an example of that,
+let's take the example here where we're dealing in seconds.
+And so when we're dealing in seconds, I'm
+going to take an example of the sample period of 0.2 seconds,
+and then we can say, well, how many samples
+do we get in the period of one second?
+And we can just simply count that, one, two, three, four, five.
+We get five samples inside there.
+We can also use this formula here, where we take one sample over 0.2 seconds,
+and we find that we get five samples per second, or five Hertz.
+The next thing I'd like to talk about is how many
+samples does it take in order for us to measure
+a waveform over a particular period of time.
+So when we take a particular period of time, let's say Tw,
+we'd like to know, well, if we're sampling, let's say,
+at a sample period of Ts, how many samples does it take?
+And so for example, when we said before Tw is 24 hours
+and the sample period was two hours, we knew that I could just take 24 hours,
+divide it by two, and I got 12 samples in one day.
+And I could do that, and I could say, well, suppose my sample length here
+was one year, 365 days, then I would have 365 times 24 on the top here.
+One sample per two hours-- or two hours per sample, and I
+would get 12 times 365.
+Another way I can do that calculation is in terms of the sample frequency
+because, remember, the two are equivalent,
+and I can simply replace the one over Ts here by the sample frequency.
+I can get this equation right here.
+And so what this tells us, then, is that the number of samples
+that we require to store for a particular length of time
+is proportional to the sample frequency, and that, then,
+brings up this idea of a tradeoff.
+I talked about before, when we were looking
+at the difference between the reconstructed waveform
+and the original waveform, that we'd like to take more samples per unit
+time, so we'd like to have a larger sample frequency.
+So the larger sample frequency then gives us a closer reconstruction
+because less information is lost because we've had less time between samples.
+So for example, you could imagine that a better set of records for the Hong Kong
+Observatory would be to take one sample every hour,
+or maybe even one sample every half hour or one sample every minute
+or something like that.
+What's the disadvantage of doing that?
+Well, if you increase the sample frequency,
+or how quickly you're sampling, you're increasing the amount of data
+that you need to store.
+And so for example, for those of you who are dealing with music on a daily basis
+through your smartphone, you know that the storage on your smartphone
+is limited, and so you'd like to be able to store as much music as possible
+on your smartphone, and you'd also like to get
+the best sound quality as possible.
+So that somewhat suggests that you should have as high a sample
+frequency as possible to get the best sound quality, but at the same time,
+this increase in the number of samples you need to store on your phone
+would mean that you could store less songs.
+So that's the tradeoff-- better sound quality versus fewer songs.

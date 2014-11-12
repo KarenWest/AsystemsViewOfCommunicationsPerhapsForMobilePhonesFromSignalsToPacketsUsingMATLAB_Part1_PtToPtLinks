@@ -1,0 +1,202 @@
+Let's talk about different ways that we can represent or describe
+a bit waveform.
+In this table, I show you four equivalent ways
+of describing exactly the same bit waveform.
+In this first one, the verbal representation,
+it's very good for human to human communication.
+It gives us a very compact representation of the bit sequence
+and one that's semantically meaningful to us.
+So here I say, let's encode the bit sequence 1010001
+at four samples per bit.
+Another way that's very good for human communication
+is this graphical or visual representation of that exact same waveform.
+And here you can see that I'm encoding this waveform 1010001.
+And I'm encoding it with four samples per bit.
+So each one of these bits here is encoded with four samples.
+Now when we're dealing with computers, a computer
+prefers some kind of numerical representation.
+And so in that case, what we can do is, we
+can use a list, or table, or vector of values.
+This is going to be especially useful when
+we start dealing with the MATLAB exercises in this class.
+And so here I can show you two vectors and the vector of sample indices
+and x of n, which is the vector of actual values of the bit waveform.
+So n is just going from zero to 17 indexing the values of the index at each point.
+And then the x of n is giving you the value at the corresponding sample
+index.
+So here at sample index zero, you can see I get one,
+and I get four ones until sample index four, in which case
+I get a zero and then sample index eight, I get a one and so on.
+And so these three representations are all exactly equivalent,
+but they all have different uses or they have different places where
+one is more suitable for use than the other.
+But then the final one is the one where we really
+like to get to in this lecture and that's
+where we are going to be actually able to do
+some kind of mathematical analysis with the waveforms that we have.
+And what I'd like to show you here is that this
+is a representation of this waveform exactly in the same way
+that these other ones are.
+And so as we start talking about that, we
+decided to talk about mathematical functions
+and what it means to use a function to specify a waveform.
+So here I show you the graph from the previous page that we talked about.
+And a function is really something that is
+going to take an input, in this case the sample index n, and give us an output.
+And so for the function, we just need some way of specifying for any input n
+what's the value of x.
+So I can say here, let's say what's the value at, let's say n is equal to six,
+in that case we're talking about this one here.
+six falls between four and eight, and so then we know the value is zero.
+So this is one way that we can represent the function mathematically.
+Right, but if we deal with this one here,
+it's not really a very convenient way to deal with it.
+We'd like a much more compact way that we
+can do some kind of mathematical analysis.
+And so that's really what we're going to try to work out,
+how can we do that in this lecture.
+The fundamental basis of the representation that we're going to use
+is based on a special function.
+It's called the unit step function.
+And so the unit step function has a relatively simple definition.
+It's equal to zero for all values of n less than zero and equal to one for all values
+greater than or equal to zero.
+And so this is called the unit step because it
+looks kind of like the profile of a step and the height of the step
+is unity or one.
+So this waveform here looks kind of like the kinds of waveforms
+that we saw on the previous slide.
+But you can see that this one changes a lot more than this unit step,
+but we're going to see how we can deal with that.
+And so the first step in trying to deal with that
+is to try to show that you can take this waveform
+and actually represent other kinds of waveforms by building upon this.
+And the first thing that you might want to do
+is to delay where this step actually occurs.
+So you might want instead of the step occurring at time zero,
+you might want this step to occur at time d.
+And in order to do that, what we can do is
+we can simply replace n in this equation here by n minus d.
+And then you can verify this by substituting n minus d into here
+or n less than d and n minus d over here, or d less
+Than or equal to n.
+Then what we can get is this waveform here.
+So if we check that, we stick in some value, let's say somewhere less than d.
+And for all values n less than d, then I'm going to get a zero.
+And then if I have some other value, let's say d plus one,
+then d plus one is obviously bigger than d, I'm going to get a one over here.
+And so just by choosing this value of d inside here,
+I can shift the location where this step occurs to the left or the right.
+Now once we can do that, we can step at any point
+in time, that then allows us to describe a more complex waveform by linearly
+combining unit steps.
+So here I show you down at the bottom, one possible waveform
+that looks more like the kinds of waveforms that we're interested in.
+This perhaps might correspond to a bit sequence of 1000
+and so on, where I'm encoding the one-bit with five samples per bit,
+so you can see there's five things over here.
+But it turns out I can describe this as the sum
+and differences of a bunch of different unit steps.
+So the unit steps that I can add and subtract to get this one,
+are shown up here.
+The first one I'm going to use is u of n,
+which remember is just this unit step that starts at time zero up to one
+and stays at one forever for all time greater than that.
+And then I also have this unit step here, which is u of n minus five,
+so it doesn't start until five times steps later.
+And I've also put a minus one here, so that just
+multiplies everything by minus one.
+So when it's zero that doesn't do anything, but when it's one
+It converts everything to minus one.
+Now if I take this u of n and this u of n
+and I subtract two of them or add them together actually, then what I'm going to do
+is at every point in time n, I'm going to get these two values
+and I'm going to combine them.
+So at this point in time I have two zeros so I get a zero, I get a zero over here.
+And so for all these values over here, I get a zero.
+And then once I get to here, I get a one and a zero.
+So when I add those two together I get one.
+And so that's going to have it happen for all of these values over here.
+And then once I get to this point in time here, I get a one over here
+and a minus one over here.
+And when I combine those two together I get a zero.
+So I'm going to combine these things point wise for every n
+and so you can see for all these values past this point,
+I'm going to get a plus one canceling with a minus one
+and that's going to bring me back down to zero.
+So that's what's going to give me this unit step up.
+And then you can kind of think of this as a step down at time five,
+it's going to give me this pulse that's kind of like 1000,
+that kind of bit waveform that we're trying to encode.
+And now you can imagine that what I can do
+is I can perhaps change the number of samples per bit.
+So instead of using five samples per bit, I might use 10 samples per bit over here.
+And so what we can see over here is, I have 10 samples that are one over here,
+and the way I've gotten that is very simply just by taking the same unit
+step over here, which is giving me this change up over here.
+And then taking instead u of n minus five taking u of n minus 10.
+Now all that's done is delay the transition back down to minus one
+from five over to 10.
+And so now for all these samples from zero up to nine, I have a one.
+And then at example 10, I have the one canceling with a minus one
+just like I had before and I get this waveform over here.
+So we've seen then that for this very simple bit-like waveform,
+we can use the sum and difference of a unit step and a delayed unit step
+to represent that waveform.
+And in fact, this can occur for much, much more complicated waveforms.
+And so here I show you a more complicated bit waveform.
+In fact, this is exactly the bit waveform
+that we looked at when we started this particular lecture segment, that
+encoding of 1010001 with four samples per bit.
+And there's a very simple formulaic way that we can understand this.
+Every time we have a transition up from zero to one, what we're going to do
+is, we're going to want to add a unit step.
+That's going to give us this transition up.
+But if we just had that single unit step then that transition up would stay here
+and we'd stay at one forever.
+And so instead what we like to be able to do
+is actually change from one back to zero.
+And so every time we're going to change down to zero what we're going to do
+is we're going to subtract a unit step at the time the transition occurs.
+So you can see we stepped up to one at this point here, that gave us a u of n
+and we're going to transition back down to zero at time four.
+That gives us a u of n minus four over here then transition back up to one at eight.
+So plus u of n minus eight and then down at 12 and then up again at 24,
+and then down again at 28.
+And so now you can see here that what we've been able to do
+is write a simple, a relatively simple formula for this waveform.
+At least it's a nice single line formula,
+in terms of just the unit step, this one function,
+and delayed versions of that unit step.
+In fact this kind of methodology can be applied
+for a much wider variety of waveforms.
+And I show you one example to conclude this lecture part over here.
+This is a waveform, doesn't really look like the bit waveforms
+that we've seen before, but we can still describe this in terms of unit steps.
+And there's going to be a slight change over here because instead of things
+which are just zero and one over here, we have waveforms here
+that are changing over much wider ranges over here.
+So we can see here how we make a transition up to three over here.
+And we can handle that simply by taking that unit step,
+that same unit step we had before, and now just multiplying it by three.
+So now instead of transitioning from zero, we
+transition from three times zero, which is still zero up to three times one,
+So that will give us a transition up to three.
+And then now what we can do is we need to make a transition up to five at time two.
+And so the way we can do that is we can add another unit step delayed by two,
+and we multiply it by the size of the jump.
+So if we want to go from three to five, we have to jump by two units over here.
+So we multiply this unit step at time two by two.
+Then at this point in time, let's say at 11, we'd like to drop down by two
+and so we just multiply this thing by minus two.
+We drop down by one here at 14, so minus one u of n minus 14,
+drop down again by one at time 20, minus u of n minus 20,
+and then jump up from one up to four, a jump of three, at time 27.
+And you can see that even this more complicated waveform,
+we can express as the sum and differences of the unit steps or unit
+steps, where we've added this additional flexibility, where
+we can add a scaling factor to each unit step.
+So you can see then that this unit step formulation
+is a very powerful way of us trying to take a relatively complicated waveform
+and at least writing a formula in terms of simple formulas,
+or simple functions that we can understand.

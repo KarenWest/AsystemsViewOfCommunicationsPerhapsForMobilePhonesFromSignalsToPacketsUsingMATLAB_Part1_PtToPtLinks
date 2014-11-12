@@ -1,0 +1,64 @@
+﻿tx_bs=rand(1,1280)>0.5;      % generate a random bit sequence
+SPB=20;                      % bit time in samples
+
+% transmitter %
+tx_wave = format_bitseq(tx_bs,SPB);  % create waveform following protocol
+% channel %
+rx_wave=txrx_lab05(tx_wave);         % simulate channel
+% receiver %
+start_ind=find_start(rx_wave);       % find start bit
+%display(start_ind);
+sample_ind = start_ind+2*SPB*[0:639];
+lenrxwave = length(rx_wave);
+%display(lenrxwave);
+%rx_bs = rx_wave(start_ind:lenrxwave);
+%leninfoseq = length(rx_bs);
+%display(leninfoseq);
+%display(length(sample_ind));
+%figure(1);
+% Place your code below that
+%   1. Creates the eye diagram of rx_wave, plotting "2*SPB+1" samples in each trace.  
+%      Hint: use for loop.
+%   2. To superimpose all the traces on the same plot. 
+%      Hint: use command hold on.  
+index = start_ind;
+SPBlist = 1:(2*SPB);             % list of bit times to test
+num_SPB = length(SPBlist);  % number of bit times to test
+
+%sample_ind = start_ind+2*SPB*[0:639];
+%threshold = (max(rx_wave)+min(rx_wave))/2;
+    %sample_ind = start_ind+2*SPB-1+SPB*[0:1279];
+%rx_bs = rx_wave(sample_ind) > threshold;
+%lenrxbs = length(rx_bs);
+%display(lenrxbs);
+    %bitrate = 0.5./SPBlist;
+    %plot(SPBlist,BER,'r');
+    %hold on;
+    %plot(SPBlist,bitrate,'b');
+figure(1);
+%rx_bs = rx_wave(start_ind:lenrxwave);
+rxvec = rx_wave(index:(index+(2*SPB)));
+%display(length(rxvec));
+%display(2*SPB+1);
+for i = 1:640
+    %display(rx_wave(index));
+    %display(index);
+    %display(sample_ind(i));
+    %eye_diagram(rx_wave, sample_ind(i), 2*SPB+1);
+    %index = index + 2*SPB;
+    plot(SPBlist,rxvec);
+    rxvec = rx_wave(index:(index+(2*SPB)));
+    index = index + 2*SPB;
+    %display(length(index:(index+(2*SPB))));
+    %display(rx_wave(index:(index+(2*SPB))));
+    %display(length(rxvec));
+    hold on;
+end
+
+        
+% code to label plot -- do not modify
+title('Eye Diagram, SPB = 20');
+xlabel('Sample index')
+ylabel('Amplitude');
+grid on;
+      

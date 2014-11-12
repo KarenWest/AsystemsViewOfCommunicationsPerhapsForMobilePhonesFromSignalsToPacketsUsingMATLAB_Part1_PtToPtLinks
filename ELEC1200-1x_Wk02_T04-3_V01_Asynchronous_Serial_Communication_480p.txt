@@ -1,0 +1,261 @@
+ 
+So let's continue talking about how we're
+going to do this decoding from the waveform back to the original bit sequence.
+So recall, we send a bit sequence using a waveform.
+We receive another waveform.
+And then we do this thresholding operation,
+which gives us this green waveform over here.
+And as I said, this green waveform is going
+to be similar to the blue waveform, but not quite the same.
+You can see there's that small shift that I talked about in the last part.
+But there's another key issue here, and that is the fact
+that in this case here, this entire region here, which
+consists of many samples or could consist of many samples,
+actually corresponds to only one bit.
+So we have many samples here, or in particular,
+SPB, which corresponds to the bit time in samples or samples per bit.
+But we only have one bit.
+And so how do we figure out that one bit?
+Well we do a process, which is called sub-sampling.
+And so sub-sampling means that we just take a subset of the samples.
+In this particular case, for this entire region here,
+which consists of SPB samples, we're only going to take one of them.
+So one out of SPB.
+And so in order to do that, we just take this point in time,
+and then this point in time, and this point in time, and this point in time.
+So we're just going to do the comparison at one point in time for each bit.
+And the points in time are going to be separated in samples by this time
+interval SPB.
+Now, we also need to determine not just what's
+the difference between these time sampling points,
+but when the actual sampling process starts.
+And that brings up a small problem.
+Suppose that we receive this particular waveform that we see over here.
+Now, if we receive this, then we can say, well, what does this correspond to?
+Suppose we know the values of c and k, so we can set the threshold.
+What bit sequence does this correspond to?
+Now, we know that this distance over here is SPB.
+Then we can kind of say, well, you know, this is one bit over here.
+This is another bit over here, another bit over here, and so on.
+So we can see the bits.
+So what does this correspond to?
+One guess might be 1 1 0 1 0 1 0.
+So that's one possibility.
+But what's wrong with that?
+It could be 1 1 0 1.
+Or it could be 0 1 1 0 1, or 0 0 1 1 or 0 0 0 1 1,
+or perhaps any number of zeros.
+So how do we know that this doesn't actually correspond to a bit?
+And so in order to do that kind of indication,
+we need to understand what the real problem is.
+And the problem here is that we assume that the transmitter only
+sends information occasionally.
+So this could be either you're transmitting information,
+or you're just sitting around waiting for some information
+to be available to send.
+And so this type of channel then is called an "asynchronous channel."
+So in many kinds of communication systems,
+the transmitter and receiver are not what is called "synchronized"
+or aligned in time.
+So this term, "synchronize," consists of two terms;
+"syn," which means the same-- just like synonym means two words that
+have the same meaning-- and "chron," which corresponds to time,
+like chronometer.
+And so the problem then is that in an asynchronous communication--
+because we don't know exactly when the transmitter is sending,
+then receiver doesn't know when to listen.
+So let's think about examples of synchronous and asynchronous kind
+of communications that we have.
+So if we have a synchronous communication,
+that might be something like television programs or broadcast television
+programs.
+You know that your favorite TV series always occurs at 9:00 PM on Wednesday
+evening.
+So you make sure that you block out 9:00 PM on Wednesday evening.
+You invite your friends to come over.
+You all get together at the same time-- "syn," "chron"--
+to watch that television show.
+So that's an example of a synchronous communication system.
+What about an asynchronous communication system?
+An asynchronous communication, for example,
+would be something like you're walking down the street and maybe you got lost.
+And so you're looking around.
+And you try to find somebody, because you
+need to communicate with them to figure out where you are,
+and you see somebody else walking down the street toward you.
+And so what do you do in that case?
+Well, you ask that person a question.
+Now, what's the problem then?
+Well, when you walk up to that person, what do you normally say?
+Do you normally immediately say, where am I?
+You wouldn't say that.
+That would be perceived-- the person might not catch your question.
+That's exactly the problem we talked about before.
+He doesn't know that you're going to talk to him.
+He doesn't know you have information that you want to send.
+And so what do you do before you start sending
+any kind of meaningful information?
+Well, usually you make some kind of indication toward that person.
+For example, you might try to catch their eye.
+Or you might raise your hand when you're near them.
+Or you might say excuse me.
+So those kind of things aren't conveying any information aside
+from the fact that you want to communicate.
+And so just like in that kind of human communication,
+we need to also send in wireless communication, when
+we're dealing asynchronously, we need to send some kind of signal,
+telling the receiver that we're ready, or we
+have some kind of data to transmit.
+And so in order to do that, what we do is a process which is called "framing."
+So in an asynchronous communication system, what we do is we first group
+our data bits into blocks.
+So for example, we might have eight bits of data, which is one block.
+And then we might have multiple blocks, so we
+might have another eight-bit thing over here.
+And then we frame those blocks.
+What we mean by framing is just exactly what it sounds like.
+When we have a picture frame, we have a picture, which is like our data.
+And then we put something around that to kind of indicate
+where is the border or boundary of that picture.
+And that's called the "frame."
+And so when we do framing in data communications,
+it's exactly the same idea.
+We have the picture or the important kind
+of information, which is the data bits.
+And we want to put something around those data bits.
+And those are something at the beginning and at the end, which
+we call the "start bit" and the "stop bit."
+And so this entire thing, the data block, plus these start bits and stop
+bits, is called one frame.
+Now, why do we use the start bit?
+Well, the start bit is exactly like the indicator that I talked about before.
+It's something like if you're sitting in a classroom
+and you have a question-- that's another example
+of an asynchronous communication system-- you raise your hand.
+Or you're walking down the street, you say, hi, excuse me.
+Those are examples of start bits in human communication.
+Basically, the idea of the start bit is to tell the receiver
+that the transmitter has something to send.
+And so we can choose the start bit to be either zero or one.
+And our choice then depends on what the normal received output
+of the idle channel is.
+So if our normal idle is a low value here, which normally corresponds to zero,
+then we would choose our start bit to be something different than that, like one.
+For example, when you're in the classroom,
+normally your hands are down.
+That's the normal state.
+And so if you want to indicate that you have a question, you raise your hand.
+Of course, you could imagine something else,
+which might be a little bit silly, where your hands are always raised.
+And then in that case, what you need to do
+is you need to put your hand down, if you
+have a question-- if everybody had their hands up.
+So in our channel that we use, the output is normally low,
+so when we do the illustration, we're going to assume that start bit is one.
+The data block then contains the important information.
+And there's also an aspect of the protocol
+that's involved in the data block as well.
+The transmitter doesn't only need to know when to start listening.
+It also needs to know how long it needs to listen for.
+So this is kind of like the length of your TV program.
+You know that it's going to be one hour and things like that.
+And so you need to then agree as part of the protocol
+how many bits you're going to transmit after the start bit.
+So in, for example, something like the RS232 serial transmission protocol,
+they're usually eight data bits following the start bit.
+And so this really has enough information to send one character.
+In fact, that was usually what RS232 was used for,
+which is sending single characters at a time.
+And so in the online portion of the lab here--
+this is a little bit too short, because you can't really
+transmit-- it's not that interesting to transmit one thing.
+So we're going to transmit actually 160 bytes.
+So one bit, remember, is eight bits.
+And so 160 bytes corresponds to 1,280 bits.
+And so why did we choose 160 bytes?
+Actually that choice is completely arbitrary.
+So whatever we choose, that's totally fine.
+And it just depends on we have to make that agreement.
+Remember, the importance of the protocol, we have to make an agreement.
+But a lot of times there's choices subject to different trade-offs.
+Obviously, one of the trade-offs in the length
+is that we can send more information if we have a longer data block.
+But then lot of times what might happen is maybe
+we don't have that much information to send.
+And so maybe we don't want to set the data block that long,
+because we have nothing to say.
+And so we don't want to spend the time.
+And so the transmitter then sometimes is in the situation
+that it has too few bits to send.
+But it's still, according to the protocol,
+has to send that length of data.
+That's the agreement.
+And so if it doesn't have enough bits, usually it does something, for example,
+like adding zeros to the end.
+That's called "zero padding."
+In other cases, it might have too many bits.
+And so in that case what it does is actually
+to split the bits into multiple blocks.
+And the reason we actually chose 160 here
+is that 160 is actually the size of a typical SMS
+that you send on your mobile phone.
+Now, you may not know that, because normally you
+don't think about how long your SMS is when you send your SMS to your friend.
+And you've never seen the fact that the idea
+that if you write your SMS too long, it's going to get
+split into multiple messages.
+That's because in modern smartphones, what
+happens is that the smartphone will receive multiple SMSs
+and then glue them back together.
+But if you use your smartphone and write a very, very long SMS
+and send it to your friend, who has a dumb phone
+that doesn't know how to do that
+what will actually happen is your long SMS will be received as multiple SMSs
+by your friend, who has the very, very old phone that didn't know that.
+And in fact, when the mobile phone company charges you,
+they will actually usually charge you in terms
+of the number of SMS chunks of 160 blocks that you'll send.
+So the final part of the frame then is the stop bit.
+Now, the stop bit is added so that we can actually allow time
+for the receiver to process the frame.
+So its name somehow suggests that perhaps it tells you when to stop listening,
+just like to start bit tells you when to start listening.
+You might think the stop bit tells you to stop listening.
+But in fact, that's not the case, because in fact, you already
+know from our protocol when to stop listening.
+Because we specify the length of the data block.
+You know that the data block is going to end after, in this case, eight bits.
+And so you don't need a stop bit to tell you that is over.
+You've already listened for that amount of time.
+And so the stop bit really is then just to allow time
+for the receiver to process the frame.
+And so for example, in human communication or let's say in classroom
+communication, you can think of the stop bit in this way.
+If I'm giving you lectures, I give you lectures, usually
+those lectures are of a fixed time period,
+just like the data block is a fixed length; for example,
+like a one-hour or perhaps a 50-minute lecture.
+And then after that I stop.
+And why do I stop and not keep going?
+Well, the reason I stop is that you need time
+to process the data that I just gave you.
+Perhaps you have to go back and think about it or review it.
+So you can really absorb it, before I can start sending you more information.
+So it's really just to give you that time between lectures
+to allow you to process that information.
+And so the advantage of a different stop bits
+is that if you have a longer set of stop bits,
+the receiver has more time to process the frame.
+But, of course, there's a disadvantage because that's just time
+that I'm not sending information.
+So it reduces the rate we can send information.
+And so in fact, in modern telecommunication systems,
+we usually don't use stop bits because our electronics are so fast,
+that we really don't need that much time to process the frame.
+So the final thing we need to talk about then is the level of the stop bit.
+The stop bits are actually chosen so that the received signal
+is the same as when the channel is idle.
+So you can see here, I've chosen the stop bit to be zero,
+which is the same as the channel idle level.
+And so that's simply allows us to easily distinguish
+between the stop bit and the start of the new start bit.

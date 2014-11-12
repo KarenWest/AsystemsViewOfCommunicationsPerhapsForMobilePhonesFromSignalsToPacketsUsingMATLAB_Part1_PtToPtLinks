@@ -1,0 +1,21 @@
+﻿messages = gen_messages(4); % cell array of all four bit messages
+codewords = cell(16,1);     % cell array to hold codewords
+
+for i=1:16, % loop over all messages
+    msg = messages{i}; % take the i'th message
+
+    % Modify the code below to return the 8 bit codeword corresponding to
+    % the 4 bit message in msg by
+    %  1. calculating the 4 parity bits
+    %  2. concatenating the parity bits to the message bits
+    
+    codeword = [msg 0 0 0 0];
+        
+    % do not modify code below this point
+    % store codeword for checking
+    codewords{i} = codeword;
+end
+
+check_blk_encoding(messages,codewords);
+        
+      

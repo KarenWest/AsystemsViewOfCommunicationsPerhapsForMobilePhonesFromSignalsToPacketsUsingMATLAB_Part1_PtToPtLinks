@@ -1,0 +1,165 @@
+ 
+So what we see then, is that intersymbol interference, or ISI,
+means that we have a large number of different responses or different
+possible responses to a zero or one bit, depending on the past history.
+What we'd like to be able to do is come up
+with an easy way of visualizing the effect of ISI,
+or intersymbol interference.
+And the way that engineers have developed to visualize ISI
+is called an eye diagram.
+So what is an eye diagram?
+Well, an eye diagram is a way of visualizing
+the response of a channel in a slightly different way.
+So what we've been used to looking at is something like this.
+And so what we again see is a bit stream.
+The input to the channel is represented in blue,
+and the response to the channel is represented in black.
+And in this case here, what I've done is I've also added a little bit of noise
+to the channel to make the responses look a little bit more different,
+even though the bit stream may be very, very similar.
+And this is a way of getting us to distinguish
+between different responses a little bit easier.
+And so now, this is one way that we can visualize the response of the channel,
+but in this case here, it's kind of difficult for us to imagine all
+the different possible responses to a zero or one bit.
+And so what the eye diagram does is it kind of summarizes
+all the different possible responses in one graph, which is shown down here.
+And the reason that this is called an eye diagram
+is because if we look in this region over here,
+we can see that we have this shape over here that looks kind of like an eye.
+And in fact, very similar to the regular eye that we use to see,
+what we always like to have if we want to have a very, very good system,
+is we always want to have our eyes wide open.
+And so what we'd like to see then in an eye diagram
+is an eye, as shown here, that's very, very wide open.
+Now what is this eye diagram, and how did we generate it?
+Well the way that we generated this was we took this response over here,
+and we actually overlaid different responses
+taken from intervals that are about two-bit times long, or two SPB long.
+So let's take a look at that construction in a little bit
+more detail.
+So suppose we have this input bit sequence shown
+over here corresponding to the blue waveform as this.
+So the input bit sequence waveform goes from zero to one and it's random.
+And we're going to show you the response of the channel to the first two bits,
+in this case here, the samples per bit is 10,
+so two bits corresponds to 20 samples.
+And we're going to plot that down here on this curve over here.
+And now what we're going to do is we're going
+to overlay the next response for the next two bits
+on top of a graph that contains this one already.
+So we're going to keep that one.
+And then overlay the next response, as shown over here.
+And then the next step then would be to repeat that step
+and continue on by looking at the next two bits,
+and keeping these two ones present.
+And overlaying that one.
+So now you can see that this one goes up and down,
+and the red curve here goes up and down like that.
+And so we just continue this process, taking the next two bits
+and holding all the rest of them.
+Taking the next two bits and holding all the rest of them, and so on.
+And then finally what we get is we get a final eye diagram that looks like this.
+And so now what we've done is we've taken all the possible bit waveforms
+for the entire bit sequence that we have,
+and just overlaid all the possible two-bit long sequences, or responses,
+from that channel in order to generate this final eye diagram over here.
+And so what we can see here is this nice white area here
+that looks kind of like an eye, and what we want
+is we want the eye to be as open as possible.
+So when we say the eye is open, what do we mean by that?
+Well there's two ways of measuring this kind of openness of the eye.
+One is in terms of the height, which is the difference between the top value
+and the bottom value over here, and we'd like
+that to be as large or as high as possible.
+And we also can measure the width, which is
+the difference between this side on the right hand side
+and the left hand side over here.
+And we'd like that one to be as wide as possible.
+And so then that means that the eye then is large,
+or open, if these two values are very large.
+So let's take a look at an example of when we have a relatively large bit
+time.
+In this case, let's make the bit time a little bit larger,
+let's say samples per bit is 15.
+And so when the samples per bit is 15, we
+get an eye diagram that looks like this.
+You can see here the height is very, very high or large.
+And the width is also very, very wide.
+So this is a very nice, big, open eye diagram, illustrating the fact
+that you can see that there's really only kind of two
+different responses to a zero and a one bit.
+You can see that at least for a one, you can see
+that you can either have this kind of response over here
+that's very, very high all the time.
+And this response is coming up like this.
+So really only two responses to a one.
+And down here on this side, two responses to a zero over here.
+And this is just repetition of that over here, just to kind of complete the eye.
+So we have one complete eye shown inside the diagram over here.
+So then the amount of intersymbol interference then,
+or the diversity of the responses, gets more as we decrease the bit time.
+So let's take a look at a shorter bit time.
+We're going to change the bit time to five.
+And so now you see that when we change the bit time to five,
+you can see that the eye has closed.
+In fact, it's closed dramatically.
+You can see the height is very, very narrow in this case here.
+And the width is very, very short here.
+So this corresponds to a closed eye.
+And just like intuitively, you don't want
+to walk around with your eyes closed, you
+don't want to have a communication channel that has a closed eye.
+Because what that means then is that the response to a zero and a response to a one
+are very, very close to each other.
+And so you can imagine that it's very easy for us to mistake a zero for a one
+when we have a closed eye.
+And so now you can see that in this case here also, in terms
+of the response to the zero and one bit, you can
+see there's a very, very large diversity of different responses
+kind of filling up this entire region over here.
+Whereas in the previous case where we had the much larger bit time,
+you could see that there is a very clear distinction between this response here
+and this response over here.
+But once we go to a smaller bit time, then what happens
+is we get a whole mess of different kinds of responses.
+And the whole advantage of the eye diagram
+then is to give us a way of visualizing all of those different responses in one
+easy to understand curve.
+So then summarizing, if we look at many, many different eye
+diagrams for varying bit times, we can see
+we start out here with very, very large bit times.
+Samples per bit is 20.
+So two samples per bit is 40.
+And we go all the way down to over here, where
+we have a samples per bit which is two.
+So the width here is four.
+two times two is four.
+And so as we go from larger samples per bit, or bit times,
+to smaller bit times, you can see that the eye slowly starts to close.
+So you can see it if we just look at the height here.
+The same thing holds true for the width.
+But if we look at the height as we go to smaller and smaller bit times,
+it gets short.
+Smaller, smaller, smaller, and then finally here it's
+basically disappeared in these two cases.
+And you can see also that there's also this kind of narrowing
+of the eye diagram for this one compared to here,
+because what we're trying to do in this case, finally down here,
+is to try to really drive the channel very, very quickly.
+So you can imagine in the case where I was
+talking about moving my hand up and down, if I try to change that bit
+time to a very short bit time in this case here,
+this slow motion might correspond to this bit time over here.
+But if I try to drive it very, very, very,
+very quickly, you can imagine that what will happen
+is my hand will eventually get stuck in the middle.
+And that's really corresponding to this kind of narrowing
+that we see in this final version over here,
+when we have a very, very short bit time.
+So then what we've seen then in this small part of the lecture
+is that the eye diagram is a way of visualizing
+the effect of intersymbol interference, and showing that as the bit time gets
+smaller and smaller, than for the same channel,
+the intersymbol interference increases, and that
+corresponds to a closing of the eye.

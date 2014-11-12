@@ -1,0 +1,86 @@
+ 
+ 
+So last time we introduced the idea of the recursive channel model.
+And what we'd like to do this time is discuss
+how we can use that in the design of the equalizer.
+So to start, let's discuss the motivation of why we need the equalizer
+and then think about what we expect this equalizer to do
+to try to get some intuition.
+So if we remember, the idea behind the equalizer
+is to undo the effect of the channel.
+So again, what we'd like to do is take this channel, which
+has this input which has these nice transitions here,
+and because of the blurring effect of the channel, what happens
+is that the eye diagram at the received end
+starts to close, especially when we have very, very high bit rates or very, very
+short bit times.
+And so then the idea then is we'd like to take this and go backwards
+to the channel to try to recover this.
+And that's really the job of the equalizer.
+We're going to take this and go to here and get something
+that hopefully looks like the original input.
+And in that case, what we'll get is a very nice, wide open eye,
+like we can see right here.
+And so in order to do this, we're going to use
+the idea of the recursive channel model that we introduced last time.
+So remember, we now have two equivalent models of the channel, the first one
+being based on the idea that the channel is linear and time invariant,
+and that we know its step response.
+The second model, the recursive model that we introduced last time,
+says that the input and the output are related by this equation down here.
+And remember, this equation is recursive because it
+allows us to take the old channel output and then predict the new channel
+output.
+And then, given that new channel output,
+we can stick it back into this equation and predict the output after that,
+and continue with the prediction by just repeating that process over and over
+again.
+And so remember, these two models are really equivalent.
+So given this one, I know this one.
+And given this one, I know this one.
+So I really have no new information.
+However, the idea is that for the purposes of deriving the equalizer,
+this one is going to be a better model.
+So now let's talk about what we kind of expect the equalizer to do.
+So let's look at the response of a channel
+to a particular bitstream shown here.
+And so the waveform corresponding to the bitstream is shown as the blue curve
+here, making those nice, fast transitions.
+But the channel cannot respond that quickly,
+as shown in the black line over here.
+And so then the problem then is that even though we're
+transmitting a "1" bit over here, because of the fact
+that the bit time is so short, the channel
+doesn't have enough time to raise up above this threshold, which
+is shown in the red line over here.
+And so because of that, this thing which should be a one is classified as a zero.
+And so then what we can say is, well, if we look at that, even though it hasn't
+crossed above the threshold, if I look at what's happening here,
+I can look at the black line and figure out what's happening.
+And that's because even though it hasn't reached the threshold, when
+there's a one, it's actually moving up.
+And so that's really due to the properties of the step response,
+as I show over here.
+So remember, the idea behind the step response is that it's zero up to time zero.
+And then at time zero, it makes an instantaneous change up to one,
+and it stays up there.
+And this is the response of the channel to that step, the step response.
+And so we can see here, even though it hasn't
+reached the final value, at each time step, it's going up.
+And so this is for this particular channel that we have.
+And so then the question then is, well, if the channel hasn't reached
+its final value but we see it's going up,
+can we then infer that perhaps the input to the channel is a one?
+And so then that raises the question, well,
+can we use the idea that we're using
+ideas about how the channel output is changing,
+rather than the actual output level?
+Of course, that's not the only source of information,
+because we also have the idea of, well, when the output is high,
+it does correspond to a one.
+And so then can we somehow combine these two ideas
+of looking at the channel output level and the changes in the channel?
+And so this is really what the equalizer is going to do.
+And it's going to be able to give us a way
+that we can actually combine these two sources of information
+in the correct way.

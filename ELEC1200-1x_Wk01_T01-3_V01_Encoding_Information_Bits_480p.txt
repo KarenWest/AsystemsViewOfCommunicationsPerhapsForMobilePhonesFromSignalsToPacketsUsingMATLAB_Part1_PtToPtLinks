@@ -1,0 +1,194 @@
+So what I've said is that we can code information using bits,
+and what I'd like to do in this part is talk
+about two specific ways in which we can do that.
+So just to review then, a bit is the basic unit of information
+that we're going to use in our communication system,
+and a bit is a variable that can assume one of two possible values, either zero
+or one.
+And intuitively, you can think about the bit
+as being the answer to a single yes or no question.
+And of course, we'd like to be able to transmit more complex information
+than a simple yes or no answer, and so in order
+to do that, what we do is we actually use combinations of bits
+that the transmitter, remember, transmits
+as a sequence of bits over time.
+And so using multiple bits then, and their combinations,
+we can transmit or encode more complex information.
+And I'm going to give you two examples here, the first being binary numbers,
+and the second one being the ASCII code that we
+use for transmitting things like text.
+And so let's take a look at the first example of binary numbers.
+So for binary numbers, the idea here is that you can think of a bit
+as being a number that can assume either zero or one, but in many cases,
+we're interested in numbers that have other kinds of values or many, many more
+possible values.
+For example, if I'm taking an image with my camera,
+every pixel receives a certain amount of light,
+and that amount of light that's received by that pixel varies over a long range
+and actually assumes many, many values in between the lowest
+value and the highest value.
+So we'd like to have more values to encode
+the amount of light received at a particular pixel.
+And so how can we do that?
+Well, for example, suppose that we had eight different values of light going
+from zero up to seven, and we'd like to encode those just using bits.
+Well, it turns out that we can use three bits to encode those eight
+different values, and if we have each one of those different combinations
+of possible values of the three bits, we can convert from that
+into the actual value of the decimal number
+that we are interested in using this equation that's shown over here.
+And so if we expand this equation over here, what we're going to do
+is we're going to look at the three different bits, which
+I'm going to indicate by b2, b1, and b0, and it turns out
+that b2 is kind of the most important bit for reasons
+I'll talk about in a little bit.
+So we're going to call that the most significant bit, and then
+b0 is going to kind of contain less significant information.
+We're kind of to call b0 the least significant bit.
+Starting from b2 and going all the way down to b0, if we expand this one out,
+we get this expression that's shown over here.
+So what we've done then, in this case, is we've looked at powers of two,
+and the two, one, or zero indicates the power of two that we see over here.
+So in this case here, we have two to the two multiplied by b2;
+two to the one, which is two multiplied by b1; and then two to the zero,
+which is one multiplied by b0, and that gives us that expression over here.
+Now, if we substitute in the zero and one values
+for each one of the possible values of b2 through b0,
+then we can get the encoded value x.
+So for example, if we look at this example of trying to encode five
+using three bits, what we would do is we would set b2
+to be equal to one, b1 to be equal to zero, and b0 to equal one.
+And so then what we would decode then, from that sequence,
+would be four times one plus two times zero, which is zero, plus one times one,
+so we get four plus one, or five.
+And so you can go through and verify any of these other combinations,
+for example let's say three, you can see would be zero plus two plus one, or two plus one
+is three.
+And so all of those different bit combinations
+can be used to encode this eight possible values of the thing
+that we're trying to represent.
+And of course, for images, usually we have
+many more than eight possible values, for example 256 possible values.
+But what that would really mean is that we would just need to have more bits,
+and then that would give us more bit combinations
+to represent those higher number of possibilities.
+I talked a little bit about the idea that the bit sequence is really
+a sequence of yes or no questions, and I'd
+like to draw that connection a little bit clearer with this slide over here.
+So I have a son, and when he was young, we
+used to play this game, which is called the Animal Game, where
+I would ask him to think of an animal.
+And then I would ask him a sequence of yes or no questions
+to try to figure out what that animal was.
+For example, if he was thinking about an animal,
+I might ask him the question does it have four legs,
+and he would answer yes or no.
+And based on the result of that answer, I
+could then try to get some information about what animal was and then ask
+more questions on that.
+And so it's the same kind of idea with the binary numbers.
+Let's take the example of my son.
+I can ask him think of a number from zero to seven,
+and then I can ask him a sequence of questions
+to try to figure out what number he's thinking about.
+And so in this case here, there's a certain strategy
+that I could ask him questions at that would
+generate those binary numbers over there.
+So for example, suppose that we look at the example
+that we talked about in the previous slide, where we talked about five.
+Suppose my son's thinking about five.
+I could ask him a sequence of questions.
+For example, is the number you're thinking about bigger than three?
+Now, since he's thinking about five, he would answer yes, and in that case,
+it's equivalent to saying, well, this value of b2 would be one.
+That's the most significant bit.
+To some extent, it's giving me the most information about the number
+because-- here, I've chosen three because three
+is kind of at the halfway point.
+If it's bigger than three, there's four possibilities here.
+If it's less than or equal to three, there's four possibilities here.
+So I kind of split it equally, and so that's kind of
+narrow down the field by as much as possible.
+And so now what I can do is, now that I know that the number is bigger
+than three, I can ask him another question.
+Is it bigger than five?
+Now, because it's actually equal to five, in that case,
+he would answer no, which corresponds to b1 being zero.
+And then I would finally ask him the final question, is it bigger than four,
+and because he's thinking about five, he would answer yes.
+And so now, the sequence of answers that my son gave me to my questioning
+would be yes, no, yes, or one, zero, one,
+which is exactly the encoding that I have over here.
+And you can verify, just by going through this flow chart or this tree,
+that any number here can be accessed through the answers to yes
+or no questions to the questions posed in these boxes.
+For example, three would be no, yes, yes,
+and that corresponds to exactly this sequence
+that we see over here, which is the same as what we gave in the previous slide.
+So we can represent numbers using sequences or combinations of digits,
+where the number of possible values of the numbers
+just corresponds to increasing the number of binary digits
+that we're going to use in the representation.
+Now, we don't necessarily just only want to send numbers.
+For example, if I'm using my cellphone, a lot of times
+I want to message my friends, and so I want to use words for that.
+And so it turns out that we can do exactly the same kind of encoding.
+We'll talk about just sending words, and I'm
+going to talk about an idea called the ASCII code.
+It's actually a very, very old code, and in fact,
+for now modern communications over the Internet,
+we use more sophisticated codes, or more powerful codes such as Unicode.
+But the ASCII code captures the basic idea
+in encoding text or text messages over binary sequences.
+And so what the ASCII code is - it is a code
+that assigns a particular bit sequence to a symbol.
+And so what we can see on this diagram here is symbols,
+let's say numbers, letters, punctuation symbols,
+and those symbols are the kinds of things
+that we want to put together if we are going send a message to our friends,
+at least in English.
+And so typically what we would do is we want to send a letter, for example E.
+And then in order to encode that as a binary sequence,
+what we would do is we go over to the ASCII table and then read out
+the actual sequence of bits that correspond to E, so in this case,
+it would be 0100 0101, and we might call this thing the most significant bit.
+On the left-hand side, the least significant bit
+b0 on the other side.
+For other kind of letters, like C, we would look over
+on the table over here and send that.
+In fact, we don't just do that, though.
+In fact, we don't just send single letters,
+but we actually send an entire text message.
+So an entire text message consists of a bunch of words separated by spaces.
+And so in order to do that, what we would do is we'd
+take the individual letters of the words, find their bit sequences,
+and then put those bit sequences one after another
+into a very, very long sequence of bits.
+So in fact, you can see that, even with the ASCII code,
+because we have words separated by spaces,
+there's actually even a code down here encoding the fact
+that we want to send a space.
+And so for example, we might want to send something
+like the abbreviation for Electrical and Computer Engineering, ECE.
+I would end up with this kind of bit sequence over here,
+where I make a decision now that what I'm going to do
+is I'm going to send the least significant bit first.
+The reason I do that is simply because the least significant bit,
+I have indicate it by b0, and so then if I do that,
+then the sequence of bits that I'm sending exactly
+corresponds to the indexes that I've used, so b0, b1, and so on.
+But what that means then is that I'm going
+to have to flip the sequence with respect
+to what I showed you before because, oftentimes
+when we're representing information, we put the most significant bit first.
+But it really doesn't matter.
+I could have sent the most significant bit first as well,
+and there are some computer systems that do that.
+And as long as we agree which convention we're going to use,
+it really doesn't matter.
+And so I could send this then, sequence ECE,
+using this sequence of 24 different bits.
+Even though we've restricted ourselves to a bit, which
+corresponds to a physical variable that assumes only two possible values,
+by using sequences of bits, we can actually
+transmit much, much more complex kinds of information.

@@ -1,0 +1,274 @@
+So we've been talking about bit error rate
+and the role of the power in the signal and the noise
+in determining that bit error rate.
+And we've talked already about the power in the bit signal.
+Now what I'd like to do is talk more about the noise.
+And the model of the noise that we'll be using
+is what's called the Gaussian noise model.
+So let's take a look at how noise enters into the system.
+And so I show you here the binary channel.
+And remember, what happens is the input bits come in as 0 or 1.
+That corresponds to a lower level r_min or r_max, the high level.
+And added to that I get this additional noise, which is shown here by v.
+And the idea is that this noise is random in some sense.
+And so we call this noise, v, a random variable.
+The noise is then added to the signal, and that combination
+is compared to a threshold to lead to the final bit output, either 0 or 1.
+And so we'd like to take a look at and understand this noise a little bit
+better.
+And it turns out that even though individually each noise sample
+is random, over large number of samples the properties of that noise
+is quite consistent.
+And so what I show you here is an example
+of a particular noise waveform that might
+be observed at a communication system.
+So you can see at different samples, or different bits,
+the amount of noise that's added varies.
+It might go up, it might go down, but if I look at it,
+it has some properties that seem to be quite consistent.
+If I look at this thing, it seems to be varying around a certain level
+and it has a certain typical variation.
+Let's say perhaps in this range.
+Although sometimes it can be much higher or much lower than that.
+And so the way we can see that kind of regularity
+is by looking at what's called a histogram
+of a bunch of different samples.
+And so here in the histogram what I do is I take all of these samples,
+and then I say well, these samples can achieve different values.
+And I count how many samples achieve a particular value.
+And so what this histogram tells me is that I
+have a lot of samples that achieve a value somewhere around here that
+might be, for example, something around here.
+But relatively few values that either achieve very high values,
+the ones over here, or very low values, the ones over here.
+And so if I collect 100 samples and count how many samples are in there,
+and divide by the total number to compute the percentage,
+I get a curve like this.
+But as I collect more and more samples, what I'll see
+is that this kind of curve will appear more and more regular.
+So if I collect 1,000 samples I'll get a curve that looks like this.
+If I then collect 10,000 samples I get a curve that looks like this.
+And if I get a million samples then I get a curve
+that actually looks very, very regular, in this case here.
+So if I look at that, then I say well, there's
+some kind of regularity that's going on.
+It's how can I capture that kind of regularity
+in this kind of noisy or a random waveform?
+Now, in order to do that, there's one more step I have to do.
+I have to look at this histogram and I say well,
+this histogram is not quite smooth, because what
+I have to do is, in order to count how many samples I have
+at a particular value, it turns out that actually for the noise
+it's not going to achieve a particular value over and over.
+In fact, what it's going to do is it's going
+to be inside a certain range, or a certain bin range, over and over.
+And so, in order to calculate this I have to divide it into these bins.
+And these bins are going to give this kind of staircase structure
+to the histogram that I compute.
+And so what I'm going to do then, is I'm going to collect more and more data.
+In fact, as I go to an infinite amount of data that I collect, what I can do
+is I can shrink these bins to be smaller and smaller and smaller.
+And what that's going to do is going to make
+this curve smoother and smoother and smoother.
+And it turns out if I do that in the limit, if I make the bins shrink
+all the way to infinity and I collect an infinite amount of data,
+then what will happen is I'll get a curve that looks like this.
+And it will be a smooth curve and it approaches
+something which is known as the probability density function.
+And the shape of this probability density function
+will be very similar to histograms that I'm seeing over here,
+but the difference will be that this is kind of a smoother function.
+It has the values for all possible values of v,
+whereas here was kind of restricted to discreet values of v corresponding to,
+let's say, the bin centers.
+And so these have similar properties as well.
+So, if I took this as being the percentage of samples,
+and I looked at the total sum of the columns here,
+the sum of all the columns must sum to 100%.
+In this case here, if I look at the total area
+under this curve, what I'll get is 1.
+Now, the shape that I get is going to have this very stereotypical picture.
+It looks something like a bell.
+And, in fact, what's going to happen is that
+in many, many kinds of random variables that I
+measure I'm going to get this kind of bell shaped curve.
+And so this curve is so important it's given a special name.
+It's called the Gaussian distribution.
+And it turns out that we can actually prove that in many, many cases
+we're going to result in this kind of Gaussian distribution,
+and that result is called the central limit theorem.
+And so, in fact, this Gaussian distribution
+is so important that we kind of also give it another name.
+It's called the "normal" distribution because of the idea
+that perhaps this is "normally" what you might
+see if you are seeing some kind of random signal.
+And so, this kind of Gaussian distribution
+has a lot of different applications.
+And in particular, the one that we're interested in
+is the idea that it's a good model for noise in communication system.
+Now, this Gaussian curve looks very nice.
+It turns out that the equation for the Gaussian is a little bit complicated.
+This is typically the kind of thing that, as students, we
+don't like to see.
+Because it has all these things that we don't really
+know how to deal with that much.
+Like exponentials, squaring, and things like that.
+But it turns out that actually this Gaussian distribution
+has some very, very nice properties.
+And if we don't worry too much about the exact equation
+here, and just think about the parameters,
+then it's somewhat easy to understand.
+So it turns out that the Gaussian here then depends on
+really just two parameters.
+One of them is this one that's occurring inside here, m, the mean value.
+And that's kind of the average value of the random variable over many samples.
+So if I take the the random variable and I just compute its average over,
+let's say, a million samples, the number I'll get
+is going to be random because the values are random.
+But it's going to be very, very close to this value, which
+is called the mean value.
+We can also see it, in this case, through the diagram
+here of the probability density function.
+Because what it is is the center location of the probability density
+function for the Gaussian.
+Now, the standard deviation then, is a measure
+of the spread of how spread out the samples are.
+And the way that we can define the standard deviation is in this equation
+here it's given by this value sigma.
+But graphically what we can say is that well, the peak value here
+is going to be when the value of v is equal to the mean.
+So when v is equal to the mean what I get is zero up here.
+So I get e to the zero.
+e to the zero is one.
+And so the peak value at the mean is just
+going to be given by this coefficient over here,
+1 over square root of two pi sigma.
+Now if I take this peak value here and I drop down by about 60%,
+not exactly 60%, but actually e to the minus 0.5,
+which is somewhere near 60%, then what I'll get is a level here.
+And if I look at where this level intersects with the probability density
+function I'll get a certain width that looks like this.
+And it turns out that half of that width is the standard deviation.
+So the more spread out the samples are, the wider this probability density
+function is, then the wider the value of the standard deviation.
+I also sometimes refer to the variance.
+The variance is simply the square of the standard deviation.
+But of particular relevance to this course,
+it turns out that the variance is the average power computed
+over many samples.
+So the variance then, which is related to the standard deviation, which
+is this spread, is a measure of the average power.
+So that's kind of the idea that if I'm moving my hand up and down
+to indicate 0 and 1 bits, and my noise is
+being added by the fluctuations in my hand over here.
+Then if I have a very, very spread distribution then
+that would correspond to my hand doing something like this.
+And a very narrow distribution would correspond to something like this.
+And this would correspond to a very large noise power.
+And this would correspond to a very small noise power.
+So what's going to then determine the properties of the noise
+then are the mean value and the standard deviation.
+Or equivalently the squared value, or the variance, which is the average power.
+And so shifting those values then shifts the shape of the probability density
+function.
+And so if I take the mean, let's say perhaps this guy here
+has a mean equal to A, and I shift it to another value B, what will happen
+is that the probability density function will have exactly the same shape.
+The only difference is that the peak will be shifted over like this.
+So changes in the mean will really only just take this hill
+and move the hill back and forth depending on the location of the mean.
+The variance then, remember, determines the power or the spread.
+And that's going to be reflected in the probability density
+function either being a very, very narrow probability density
+function like this, or very wide density function like this.
+And so when we were talking about my hand
+the small variance would be something like this,
+and the large variance would be something like this over here.
+And so remember that because of the fact that this is related to the histogram
+then the area inside here has to be one and the area inside here has to be one.
+So, if you think about this as being perhaps a hill of sand,
+and the area is some measure of the number of,
+let's say, sand particles or sand granules inside that hill.
+Then if I take the hill and I spread it out, what's going to happen
+is that the height of the hill is going to drop down.
+If I take all those sand and I try to pull all that sand together.
+Then what's going to happen is the hill is going to get higher.
+And so you can see that the height here is higher than the height over here.
+As the spread increases, the height will drop down.
+But the total area is always going to be one
+in all cases for all of these graphs over here.
+So now we have some intuitive idea then about how
+changing the mean and the variance then changes
+the kind of probability distributions that we're observing.
+Now what we're going to be interested in with this probability density function
+is trying to compute how likely it is that certain events occur.
+And so the kind of events that we're typically interested in
+would be something like how likely is it that the noise value
+lies between two values v₁ and v₂.
+Or some other event, for example, how likely
+is it that the noise is bigger than some value v₁, or smaller than some value
+v₂, or something like that.
+But if we're going to do that, it turns out
+that we can compute that probability just by simply looking at this curve.
+And then if we're interested in what's the probability that the noise is
+between some value v₁ and v₂, to find that probability all we have to do
+is find the total area under this curve.
+And so since the total area here is one, if I take from here to here
+I know that that value is going to be something less than one.
+For example, in this case it looks like it might be something like 70%.
+And then if I compute that area, that's going to give me the probability.
+Now, of course, mathematically what I have to do
+is I have to integrate this thing to get the area.
+And you can imagine from that equation that I gave you
+before with that exponential in that square,
+that if I ask you to integrate that, you would be very worried about that.
+In fact, I would be very worried about that as well.
+Because, in fact, there's no way to solve that problem
+and actually get a closed form solution.
+So if I take the Gaussian and try to integrate that formula
+it turns out that I actually can't do that.
+We'll talk about how to deal with that later on.
+But let's just look at a simpler example then of another kind of distribution
+where we can actually do that kind of calculation
+to give you an example of how those calculations are done.
+So here I show you a different kind of distribution of something like noise.
+And so in this case here, the value of v varies between zero and two.
+And, because of the fact that the probability density
+function is zero in this range here and zero this range here, what it's saying
+is that it's impossible for this random variable
+to have any value below zero or above two.
+All the values must be inside this range from zero to two.
+The fact that it's flat in this region indicates
+that all the values are somehow equally likely.
+So there's no preference or grouping around a particular value
+inside this range.
+Now in order to verify that this is a valid probability density function,
+you need to verify number one that all the values are non-negative, which is true,
+and number two that the total area is equal to one.
+Now because the curve is zero here and zero here
+the total area underneath the curve there is zero.
+And so we only have to worry about this rectangular area here.
+And we know that for a rectangle the area is the base times the height.
+Here the base is two, the height is 1/2, and so when I multiply those two things
+together I get 1.
+So it is a valid probability density function.
+And then we can start manipulating that to see
+what's the probability of different kinds of events
+of that random variable.
+So one thing we might be interested in, for example, might be how likely
+is it that the value of v lies between 0.5 and one.
+And so in order to calculate that what we need to do is then find the area
+under this curve between 0.5 and 1.0.
+Now because the total area is one we know that's going to be less than one.
+And we can see again this is going to be a rectangle.
+The base is 0.5, the height is 0.5,
+and so when I multiply those two things together I get 1/4 or 25%.
+So that means that 25% of the time is going to be inside here.
+And then the other 75% of the time is going to be outside that range.
+Now what we've seen then is that we can use this probability density function
+to describe the values of the random variable.
+And we can use that to calculate probabilities
+that the random variable is going to lie within a certain range.
+And so what we're going to do moving forward then
+is use that intuition in order to understand
+the effect of the signal and the noise on the probability of bit error.

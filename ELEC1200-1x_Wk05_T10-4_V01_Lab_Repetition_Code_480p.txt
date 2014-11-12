@@ -1,0 +1,61 @@
+Hello, everybody.
+Welcome to the lab demo.
+In the previous labs, we have seen that the intersymbol interference
+and the additive noise will cause bit error to our communication system.
+We can use equalization to handle the intersymbol interference.
+However, there's no way we can undo the bad effect caused
+by the additive noise.
+This is because the additive noise is so random.
+There is no way we can predict how the additive noise will
+affect our transmission next time.
+Since we cannot undo the bad effects, can we do something to save
+the information even if it is wrongly decoded at the receiver?
+This can be achieved by using the channel codes.
+In this course, we introduced two kinds of channel codes, the repetition codes
+and the block parity checking codes.
+In this lab demo, we are going to investigate
+the effect of using the repetition codes.
+To understand why the repetition code can help improve the bit error rate
+performance, we should go back to see how the noise will affect our signal.
+Basically, from a previous lab, we have seen
+that the additive noise will cause bit error
+rate to increase whenever the noise value is high.
+Fortunately, the additive noise is so random
+that the noise values at two-bit duration are normally independent.
+We call this the independence property.
+This means what?
+This means normally the additive noise will not
+affect two bits at two-bit duration in the same way.
+Repetition code can help to improve the performance just because it
+takes advantage of this independence property, basically
+with the (3, 1, 3) repetition codes,
+whenever we want to transmit 1, we are going to transmit three 1s, 1 1 1,
+instead.
+At the receiver side, the receiver will use the majority rule
+to make the decision.
+Basically, the receiver will say, it receives
+bit 1 whenever it recovers more 1s than 0s.
+Just because of the independence property,
+the probability of getting two or three 0s out of the three 1s
+is much smaller compared to the probability of getting one "0" out of one "1".
+So now let's check how the repetition code
+can help to improve the bit error rate performance.
+For that purpose, we run the code.
+So the code is now running.
+And we get the bit error rate when we increase the transmission power.
+So the result is here.
+In this figure, there are two curves.
+The green one corresponds to the case where we use the repetition code.
+The blue one is without the repetition code.
+On the x-axis, the indexes 0.1, 0.2, until 1, correspond to the case
+where we increase the transmission power from 10%, 20%
+until 100% of the maximum transmit power.
+So we have two observations from the figure.
+First one, the repetition code can indeed
+improve the communication performance.
+On the other hand, by increasing the transmission power,
+we can achieve a better performance for both the cases
+with and without error correction code.
+So finally, I have a question for you to think about.
+We can improve the error performance by using repetition code.
+But what do we lose during this process?

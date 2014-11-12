@@ -1,0 +1,204 @@
+Now that we understand how to calculate the bit error rate,
+we're ready to understand what's the effect of the signal power
+and the noise power on the bit error rate.
+So remember, in our binary channel model,
+what we have is we have that the bit error rate is given by this expression
+here.
+Remember that the transmitter determines these two probabilities.
+And so the thing that determines the bit error rate is mostly P_e0 and P_e1.
+And those are the two things that depend on the signal power and the noise
+power.
+Now, in fact, it's not the absolute power in the signal
+or the absolute power in the noise that's really critical,
+but really the ratio between those two things.
+And we call that ratio of signal power to noise power
+the signal to noise ratio.
+And the intuition here is if I asked you, well,
+how loud do I need to speak in order for you to understand me?
+What's the signal power you need?
+Well, that depends on the situation you're in,
+or for example, where you're listening to this video now.
+How loud do you have to put the volume up?
+Well it depends on how much noise there is.
+If you're in a loud area, maybe you have to turn up the volume by a lot,
+meaning your signal power is very, very high, but if you're in a quiet area
+or you're using headphones which are blocking out most of the noise,
+then maybe your signal power could be very, very low.
+So it's really the relative power in the signal versus the noise that
+determines how well you can understand me.
+And it's the same thing in a communication system.
+The power of the signal versus the power in the noise.
+And the higher that signal to noise ratio is, the more powerful
+the signal is, the fewer errors you're going to get.
+So remember, in our particular situation,
+the power in the signal for these kind of bit errors
+depends on the difference between the low level r_min and r_max.
+The larger that difference is, r_min minus r_max, the more power
+I'm using to transmit my signal.
+The noise is given by sigma squared, which
+is that variation that I was adding on top.
+And of course, what you want is that this r_min minus r_max
+to be very large compared to that additional oscillation that
+was introduced by the noise.
+And so when we take that ratio of these two things,
+we get that expression over there, which says
+that, essentially, the signal to noise ratio
+increases as the difference between r_min and r_max gets bigger.
+But it decreases as the noise power, sigma squared, gets bigger.
+So normally, when talking about the signal to noise ratio,
+we express the signal to noise ratio in units which are called decibels.
+In order to compute the signal to noise ratio in decibels, what we do
+is we take that ratio that we originally defined and just apply log 10
+and then multiply by 10 to get the signal to noise ratio in decibels.
+Now, when we have 0 dB signal to noise ratio, then what that means
+is that the signal power and the noise power are equal to each other.
+In that case, the ratio is one.
+And log to the base 10 of one is zero.
+Now, every time we increase the signal to noise ratio in decibels
+by 10 decibels, what we're doing is either increasing the signal power
+by a factor of 10 or equivalently decreasing the noise power
+by a factor of 10.
+At least that ratio increases by a factor of 10.
+So when I go from 0 dB to 10 dB what happens
+is that the signal power now is 10 times the noise power.
+And when I add an additional 10 dB, I multiply that ratio by 10,
+so now the signal power is now 10 times 10 or 100 times the noise power.
+And then at 30 dB, I get 1,000 times signal power versus noise power.
+Now, let's talk about what are the things
+that determine the signal to noise ratio in mobile phones.
+So of course, the two things are the signal and the noise,
+so let's talk about the noise first.
+So the noise determines the minimum signal level
+that can be received without error or with at least very, very small errors
+by your radio and receiver.
+And so one question might be, well, what's the typical noise power
+present at the input of a mobile phone?
+And this really depends on the components that are being used,
+but it turns out that noise power is very, very small,
+10 to the minus 15 watts.
+And so when your received signal falls somewhere in the range of that,
+your phone will actually lose its connection.
+So what you want to have is you want to have the signal
+power be much larger than noise power, at least 10 times, so about 10 dB.
+Now what determines, then, the signal power that's received by your phone?
+Well, this one is actually the one that changes quite dramatically.
+In particular, now that we have these mobile phones,
+we're moving around all the time as we use them.
+As I'm talking to my friends, I might be walking someplace.
+And so what that means is that my phone that is receiving the signal,
+let's say, this one over here, might be varying distance away
+from the transmitter, which might be the base station.
+Now as I get farther and farther away from the base station, what will happen
+is that signal level will get smaller and smaller.
+It's just like if I'm speaking to you and you walk farther and farther
+away from the computer, my voice that you hear
+gets quieter and quieter and quieter when you hear it at your ears.
+And the reason for that is very simple.
+The antenna has a fixed size, just like your ears have a fixed size.
+I'm transmitting with a fixed amount of energy.
+And what happens is that depending on how far you are,
+that energy is spread over a different range.
+So if I'm this distance away, the energy is spread over this circle here.
+But then as I get farther and farther away,
+the energy gets more and more spread out over a larger and larger circle
+or in 3-D a larger and larger sphere.
+So that the antenna then has the same size so
+it's always getting the same cross section.
+But the amount of energy that's involved or inside this small cross section
+is actually getting smaller and smaller because the same energy
+is getting spread out over that larger area.
+And so that means that as you get farther away,
+the signal power is going to drop.
+And in fact, once the signal to noise ratio falls below about 10 dB,
+remember that means if the signal powers about 10 times the noise power,
+or in this case if the noise power is 10 to the minus 15,
+the signal power is about 10 to the minus 14 watts,
+then your receiver will actually stop functioning.
+So you need to have relatively large signal to noise ratio.
+Now let's use our idea of this signal to noise ratio,
+and try to figure out well, how does that determine the bit error rate?
+And so what we might expect to see is a curve that looks something like this.
+If we plot signal to noise ratio in dB, it could go from, let's say, minus 10,
+which would be a bad situation, in that case
+our signal is actually lower than the noise, up to larger values over here.
+Now, the bit error rate then that we're receiving might go something like this.
+It might start out at a relatively large level
+and then drop down to a smaller and smaller level
+as the signal to noise ratio increases.
+Now, what happens when we change the signal power?
+Well let's take one starting signal power, let's say, my r_min is here,
+my r_max is here, and I have some oscillation on top of that.
+Then I get this variation.
+I choose the optimal threshold in between the two of these.
+And then what will happen is I'll get this particular value of bit error
+rate.
+Now, if I increase the signal power, what I'm doing is
+I'm increasing the difference between r_min and r_max.
+I should expect to see then that the bit error rate goes down.
+And if I decrease the signal power, then what happens
+is I'm decreasing the difference between r_min and r_max.
+And I would expect in that case the bit error rate to go up.
+So let's take an example of the low signal to noise power ratio case.
+And in this case here, the noise power is exactly the same.
+And so what that's reflected by is the fact
+is that this width here is exactly the same as this width here.
+The only difference is I've changed the difference between r_min and r_max.
+And so what that's done is I've gone from a situation like this
+with relatively high signal power to a case where
+I've moved the two things closer and closer together.
+And so what that means then is I've taken r_max and r_min
+and I've moved them closer together.
+What that does is it takes these two hills and shifts them closer together.
+Now if I leave the threshold in the same place,
+halfway between r_min and r_max, what's happened
+as I've moved these two things closer together is that area of overlap
+is increased.
+And once that area overlap increases, that
+takes the bit error rate from this level here
+and it increases it up to this area here.
+Now if I increase my signal power on the other hand,
+let's say I'm originally at this level here
+and I increase the signal power to something
+like this, what that corresponds to is taking r_min and r_max
+and separating them by more.
+So when I separate these two hills by more and I look at the area of overlap
+now, you can see that it's almost invisible in this plot corresponding
+to a relatively low value of the bit error rate.
+Now I can do exactly the same thing with the noise.
+So in this case, what I'm going to do is I'm
+going to keep my signal power constant and I'm
+going to change the amount of noise.
+So let's start out with the nominal case here
+where I have this r_min, r_max and a certain amount of noise.
+That puts me at this location here.
+And then what I can do is I can look at the case where I have high noise power.
+So here I'm keeping r_min and r_max at the same level.
+The only difference is here I have maybe noise that looks like this.
+And then when I increase the noise, I'm going like this.
+So r_min and r_max are the same distance apart,
+but when the noise power increases, I'm taking the values
+and I'm spreading them out more.
+And so when I spread them out, remember what
+happens is also the maximum value drops down,
+because remember the total area under here always has to be constant.
+But when I spread that thing out and I look at the area under the curve,
+bigger than T and less than T, what I get
+is a much larger area corresponding to a much larger bit error rate.
+On the other hand, if I take the same levels here
+and I decrease the amount of noise so it's much smaller, what that does
+is it takes these two things and it squeezes them together.
+And so when I do that, the width becomes narrower.
+Because the area has to be constant,
+the height gets bigger. But if I look at this area
+here, which is where the area under the curve less than T and bigger than T
+is indicated, you can see that that's much smaller now,
+almost invisible like the last case.
+And correspondingly, I get a relatively small value of the bit error rate.
+So what we've seen then is that we can analyze
+the effect of the power in the signal and the noise
+and its effect on the bit error rate.
+In fact, the important quantity is the signal to noise ratio.
+But using our graphical analysis, we can understand
+the effect of changes in the signal power
+or the noise power in terms of changes in the probability distribution
+of the received signal.

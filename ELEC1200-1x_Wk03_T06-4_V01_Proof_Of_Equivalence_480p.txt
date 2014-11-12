@@ -1,0 +1,216 @@
+ 
+So what we've done is we've given you two ways of describing the channel.
+And what we'd like to know is, are these two ways
+of describing the channel in fact equivalent.
+In other words, do they predict the exact same output for the same input?
+And so let's review the two models and talk
+about how we're going to prove that these two things are equivalent.
+So in Model 1, what we said is we have a channel
+which is linear and time invariant.
+And we also know that it has a certain step response given
+by this exponential equation over here.
+In Model 2, we have that the input is x of n.
+And the output is just given by a recursive channel
+model that looks like this one over here, which is the formula
+that we talked about in the last part.
+Now, how are we going to establish that these two things are equivalent?
+The way that we can establish that these two things are equivalent
+is by showing that, if you look at Model 2,
+we want to show that, well, is it the same as Model 1.
+Well, it's going to be the same, if it's linear and time invariant,
+and it has this step response s of n.
+In that case, then these two things will be equivalent.
+So let's start out by looking at that.
+And so the first thing we need to do then
+is we need to establish whether it's linear and time invariant.
+And so in order to prove that it's linear and time invariant,
+we have to show two things separately, one that it's
+linear and secondly that it's time invariant.
+Now, intuitively, if I look at this equation over here, I might say,
+well, you know, it looks linear.
+Because of the fact that if I look at y of n over here
+and I look at the expression over here, I
+don't see anything like any square terms or anything
+that you can consider not linear, like a cosine or anything like that,
+or x cubed or anything that.
+So this one kind of looks linear, it just takes a value here
+and multiplies it by a constant, takes a value here
+and multiplies it by a constant.
+So those are the kinds of things we associate with linear equations.
+Formally, what we have to do, though, is to show that it's a linear system,
+we have to show that it satisfies the two properties of linear systems
+that we talked about before, homogeneity and additivity.
+So let's do that now.
+What we'll do now is we'll first prove homogeneity.
+And so remember, the idea of homogeneity was that if I take an input x of n
+and that produces an output y of n, then if I take that input and I scale it
+by c, then what I'll get is the exact same output, except scaled by c.
+So the idea here was that if I say something
+and I put it into a system, what you'll hear is going to be something.
+If I say exactly the same thing with a louder volume,
+then you'll hear exactly the same thing.
+It'll just be louder.
+And so can we prove this thing?
+So by the definition of Model 2, we know that if I have this particular input
+x of n, then the output y of n will be described by this equation over here.
+I can take this equation over here, and I
+can multiply the left and the right sides by c.
+So if I can take this and multiply this by c, multiply the right side by c,
+I get c times this plus c times this.
+It's just distributing the multiplication
+over the two different terms.
+And so, in the end, I get this equation over here.
+And if I look at this equation over here, what you can see
+is that by comparing this equation and this equation over here,
+you can see that these are exactly the same.
+The only difference is I've replaced x of n by c times x of n,
+and y of n or y of n minus one, by c times that.
+And so what that means then is that if I put in c times x of n
+into this equation, what I'll get at the output is c times y of n.
+So that's exactly the idea of homogeneity.
+To prove additivity, what we can do is I put in an input x₁.
+And that gives me an output, y₁.
+And if I put in a different input, x₂, that gives me a different output y₂.
+If I add these two things together, x₁ plus x₂,
+and I put that into the system, then what I get at the output of the system
+is exactly y₁ plus y₂, or the sum of the outputs
+of each one of these applied individually.
+Remember, this is what we'd used or exploited
+when we were trying to combine those step response
+outputs to predict the output of the channel.
+So what can we prove that Model 2 also satisfies this kind of additivity.
+Well, by the definition of Model 2, I know
+that if the input here is x₁ and produces output y₁,
+then this is the equation for the recursive channel model.
+I've just replaced x by x₁ and y by y₁.
+I can do exactly the same thing here, replace x by x₂ and y by y₂,
+and I get this equation here.
+And then, I can add these two equations together.
+So if I add these two things together, I get
+y₁ plus y₂ equals to this one plus this one is a times y₁ plus y₂.
+And one minus a times k times x₁ plus x₂.
+And so now if I look at this equation here,
+this one here looks exactly the same as this one here.
+The only difference is I've replaced y₁ by y₁ plus y₂ and x₁ by x₁ plus x₂.
+And so what that implies, then, is that if I put in x₁ plus x₂ into Model 2,
+what I'll get out at the output is y₁ plus y₂.
+So what we've done is we've shown that the system is
+linear by showing that it satisfies those two properties of homogeneity
+and additivity.
+Now, we'd like to talk about is the system time invariant.
+Now, intuitively, if we look at this equation,
+we might say that this system seems to be
+time invariant, because these values of a and k don't change with time
+or don't change with n.
+So remember, the value k is scaling the input, and the value a
+is this memory parameter.
+And if the memory parameter doesn't change over time
+and the scaling doesn't change over time,
+then maybe if we put in the same input just delayed
+by a certain amount of time, then we should get the same output.
+And so formally, that's what we have to prove.
+We have to prove that if we delay the input by d,
+the output will be exactly the same, just delayed by d.
+So to prove that, what we can do is we can start out with this system here,
+x of n going into the system producing y of n.
+And if the system is time invariant, then
+it must be true that if I take x of n minus d,
+I get the same output, just delayed by d or y of n minus d.
+And so what we need to do is show that Model 2 satisfies this.
+So we know that by the definition of Model 2
+that the relationship between the input and the output
+is given by this equation over here.
+And what we can do is we can just replace n by n minus d.
+And if we do that, then we get an n minus d here, we get an n minus d here,
+and we get an n minus d here.
+And if I take this equation and I compare it with this one,
+it's exactly the same equation, except that I've taken x of n minus
+d and replaced the x of n here and y of n minus d and replaced this one here.
+And so what that means, then, if I put into the system x of n
+minus d, then the output will be y of n minus d.
+And so now, I've proven that the system is time invariant.
+And so then, the final step then, remember, there's two parts of Model 1.
+One is that it's linear time invariant.
+And the second part is that it has a certain step response.
+So to complete the proof of equivalence, what we need to do
+is given that we know that the system is linear and time invariant,
+we need to prove that it has the same step response.
+And so in this oral part of the lectures, what I'll do
+is I'll just go through one particular example, where
+we assume a particular value of a and k.
+And then, in the online materials, we'll give you
+a more formal proof in written material that
+is using more mathematical, formal reasoning based on induction.
+So let's take a look at this example.
+And so what we want to show is that the response of the two models
+is exactly the same for the unit step input.
+So remember, the unit step input is this input that's zero for all time,
+less than zero, and then is equal to one for all time equal to zero and afterwards.
+And so if the input has been zero long time,
+it's a good assumption then that at time minus one, the output is equal to zero.
+And so, we're going to start with that thing.
+And we're going to go through the two models,
+or let's say five or six times steps, and show you
+that they give you actually the same response.
+And so for Model 1.
+It really doesn't matter.
+Model 1 is just an equation, so it doesn't really matter what y minus one
+is.
+And so for Model 1, we just simply take this equation,
+and we stick in the value of n into this point over here.
+So at time zero, what we get is s at time zero is one minus 1/2.
+And when n is equal to zero, I get zero plus one, or one.
+And so this is one minus 1/2, which is 1/2.
+And then at time one, the only difference is I get one plus one, or two.
+And so I get 1/2 squared or 1/4 in this point here.
+And one minus 1/4 is 3/4.
+And then just going on, I get 1/2 cubed, or 1/8.
+And one minus 1/8 is 7/8.
+Then I get 1/16.
+one minus 1/16 is 15/16.
+And you can see the trend here.
+It will be 31/32, and then 63/64, and then 127/128.
+So each time what happens is that we double the denominator
+and then subtract one to get the numerator.
+So for Model 2, we use this assumption that y minus one is equal to zero.
+If the input here is a one, then I know that y of n
+is equal to 1/2 y of n minus one plus 1/2 times the input.
+But the input for all time zero and onward is equal to one.
+And so I'm just going to put the 1/2 there.
+So now at time minus one, I have zero.
+And so now, I know that at time zero, what I get is 1/2 times that value of zero,
+or zero plus 1/2, or 1/2, which is exactly the same thing as I get here.
+Then, I take that value of 1/2, I multiply that here by 1/2.
+So I get 1/4, and I add it to 1/2, or the same thing as 2/4, and I get 3/4.
+Then, I take that value and repeating the recursion, I divide by two.
+So I get 3/8.
+And then, I add that to 1/2, or the same as 4/8, I get 7/8.
+I again divide that by 1/2.
+I get seven divided by 16.
+I add that to eight, divided by 16.
+I get 15 divided by 16.
+And now, you can see that the trend is exactly the same.
+So if I continue this on for all future time steps,
+I'm going to get 31 divided by 32, 63/64, and so on.
+So now, you can see that if I put in a unit step into Model 2,
+I'm getting exactly the same responses, at least for these first five.
+And you can see the trend is going to continue.
+And it's going to exactly match the equation
+that I specify for the step response over here.
+And so that shows you that the two things have exactly the same step
+response.
+So then in summary, what we've done is we've
+given you two models for the channel.
+Model 1 is based on the two assumptions that the channel is linear and time
+invariant.
+And it has a particular form of the step response given by that.
+Model 2 is this recursive channel model, where
+we say that it has a certain input x of n.
+And I can take this recursive model, or this formula,
+and then predict what the output of the channel
+is at time n based on the input at time n and the previous output.
+And we've proven in this lecture that these two things are equivalent.
+Moving forward, what we'll do is we'll say, well, can we use this model here,
+since this model is the same as this model.
+These are both equivalent models for the channel.
+Can we use this model over here to develop the equalizer?

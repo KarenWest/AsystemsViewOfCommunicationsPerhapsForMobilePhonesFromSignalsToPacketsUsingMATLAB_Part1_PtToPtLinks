@@ -1,0 +1,80 @@
+ 
+Let's conclude then by pulling all of the things
+that we've talked about together and summarize a simple protocol
+that we've developed for communication in this class.
+The communication protocol I'll talk about from the point of view
+of two parties.
+The first being the transmitter and the second being the receiver.
+So from the point of view of the transmitter,
+he's the one that has the information to send.
+So what he'll take is the information that he
+wants to send in terms of a bit sequence.
+For example, he wants to send the letter E using this eight-bit ASCII code.
+He's going to first create the data block.
+And so, for example, in this protocol, let's say
+we would have a two-byte data block.
+And so there's 16 bits in the block.
+And so the first eight bits would be the data.
+And then we would have to fill the block out, because that's our agreement.
+And so we just put zeros there to hold those points.
+Then what we have to do is we
+have to surround that data block to create one entire frame by adding
+the start bit one and the stop bit zero.
+But the stop bit, we can add any number of stop bits
+that we want to provide for time to communicate the information.
+Then what we do is we take this entire frame
+and we convert it into a sample waveform,
+for example, by encoding it each bit by five samples of the waveform
+so that we get now a waveform that we can send through our discrete time
+channel.
+And then what we do is in order to help the receiver figure out the values of c
+and k that it needs to set the threshold, what it does
+is it adds the training sequence to the beginning.
+And then starts transmitting the data.
+And so what can happen is that the training sequence can be sent once.
+And then we can send multiple blocks.
+And then we can perhaps send the training sequence again.
+If the channel starts to change, we could send the training sequence
+periodically, or things like that.
+But this is basically what the transmitter
+is going to do in this communication protocol.
+And so given that communication protocol,
+in order for the receiver then to figure out what the transmitted bits
+where, it's going to kind of reverse those operations.
+So remember, what the transmitter did was
+it added the training sequence last.
+And so what the receiver is going to do is it's
+going to take that last thing that the transmitter did and use that first.
+So the receiver then is going to receive something that looks like this.
+What it needs to do is it needs to look at the training sequence and remember,
+what he's going to do is that's going to be
+this long pulse, such that you're sure that the maximum value is going
+to be c plus k, and the minimum value is c.
+And it's going to use that to estimate these values to determine
+the threshold.
+Now once it's got that threshold, it's going
+to do then wait for the next start bit.
+And then it's going to be able to detect that start
+bit as the first crossing of the threshold.
+And then once it's done that, then it's going to then,
+remember, sample or sub sample the received waveform.
+And do the comparison at the sub-sampled locations
+in order to get the final bit stream here,
+let's say the seven or 16 bits that it needs to get.
+Now in order to determine the actual time to sample,
+it knows that this difference between the different samples
+has to be SPB samples to find the decoding.
+But in order to find the first one, what it will do
+is it will find the first transition and then it will move forward.
+And it should move forward to pass the start bit
+and pass to almost the end of the first bit transmission.
+So that's about two SPB, but a little bit less than that.
+So we're going to just say two SPB minus a little bit.
+So let's say minus one sample.
+And the reason for that remember, is that this received transition here
+is going to occur a little bit later than the actual bit was transmitted.
+So the bit was actually starting to transmit over here,
+but this transition occurs a little bit later, as we saw in the first part.
+And so that then summarizes all the things
+we've talked about in this topic in terms of one simple example
+protocol that we'll be using for decoding information in this class.

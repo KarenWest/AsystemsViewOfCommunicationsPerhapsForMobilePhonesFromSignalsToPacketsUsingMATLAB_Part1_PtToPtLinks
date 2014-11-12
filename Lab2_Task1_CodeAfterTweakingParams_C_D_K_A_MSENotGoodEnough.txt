@@ -1,0 +1,18 @@
+﻿distance = 10;  % distance from transmitter to receiver
+tx_wave = [zeros(1,150) ones(1,250)];   % define step-like waveform
+
+% channel %
+rx_wave = txrx_lab02(tx_wave,distance); % transmit waveform through channel
+
+% fit_rcv(rx_wave,c,d,k,a) fits rx_wave by a function of the form
+%     y(n) = c + k*(1-a^(n-d)) for n >= d and 0 otherwise. 
+% modify the values below to find the correct fit
+c = 0.23;
+d = 150;
+k = 0.82 - 0.23;
+a = 0.9;
+
+mse = fit_rcv(rx_wave,c,d,k,a);           % fit channel output to model
+title(['distance = ' num2str(distance)]); % put title on graph
+display(['MSE = ' num2str(mse)]);         % print out MSE of fit
+        

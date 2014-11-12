@@ -1,0 +1,74 @@
+﻿num_bits=20000;
+bs_raw = rand(1,num_bits)>0.5;    % generate a random bit sequence
+
+% loop over different transmission distances
+distance_list = [1:50];           % list of transmission distances
+num_dist = length(distance_list);
+BER_no_ecc = zeros(1,num_dist);   % initialize storage arrays
+BER_ecc = zeros(1,num_dist);
+
+for i = 1:num_dist,
+    distance = distance_list(i);
+    
+    % compute BER without error correction
+    bs_out = binary_channel(bs_raw,distance);   % simulate the transmission
+    BER_no_ecc(i) = compute_BER(bs_raw,bs_out); % compute bit error rate
+
+    % Modify the code below to compute the BER with error correction
+    % Your code should
+    % 1. Encode bs_raw with the (3,1,3) repetition code and save the
+    % result as bs_enc.
+    % 2. Transmit bs_enc over the noisy binary channel.  Do not change this
+    % line in the code.
+    % 3. Decode the received waveform bs_out with error correction
+    
+    % change this line so that bs_enc is the encoded bit stream
+    rep = 3;
+    len_bs_raw = length(bs_raw);
+    for k = 1:len_bs_raw
+        bs_enc(k + 2*(k-1)) = bs_raw(k);
+        bs_enc(k + 2*(k-1) + 1) = bs_raw(k);
+        bs_enc(k + 2*(k-1) + 2) = bs_raw(k);
+    end
+    
+    % do not change the line below
+    bs_out = binary_channel(bs_enc,distance);   % simulate the transmission
+    % change this line so that bs_dec is the decoded bit stream after error
+    % correction
+    bs_dec = [];
+    for k = 1:(length(bs_out)/rep),                 % loop to get all codewords
+        codeword = bs_out((k-1)*rep+1:k*rep);       % get the kth codeword 
+   
+        %  1. decode the repetition codeword with error correction and return 1 bit information for each code word
+        %  2. reconstruct the original bit sequence
+        countOnes = 0;
+        countZeros = 0;
+        for j = 1:rep
+            if (codeword(j) == 1)
+                countOnes = countOnes + 1;
+            else
+                countZeros = countZeros + 1;
+            end
+        end
+        if (countZeros > countOnes)
+            bs_dec(k) = 0;
+        else
+            bs_dec(k) = 1;
+        end
+    end
+            
+    % do not modify code below this line
+    BER_ecc(i) = compute_BER(bs_raw,bs_dec);        % compute bit error rate    
+end
+% display the results, do not modify the code below
+figure(1)
+plot(distance_list,BER_no_ecc,'r','LineWidth',2);
+hold on;
+plot(distance_list,BER_ecc,'bx','LineWidth',2);
+hold off;
+axis([0 50 0 0.5]);
+legend('BER\_no\_ecc','BER\_ecc','Location','southeast');
+title('BER as a function of distance');
+ylabel('BER');
+grid;
+      

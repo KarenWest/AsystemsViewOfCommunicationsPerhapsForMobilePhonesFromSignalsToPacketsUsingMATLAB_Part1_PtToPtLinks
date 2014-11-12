@@ -1,0 +1,54 @@
+ 
+Hello everybody.
+Welcome to the lab demo.
+As we know communication protocol plays an important role
+in the design of a communication system.
+This is because of the following reasons.
+Firstly, the transmitter and the receiver must agree on the rules where
+at the transmitter side how we represent the information by the waveform.
+On the receiver side, we also need to agree
+on the rules about how to recover the information from the waveform.
+Secondly, the training sequence, the start bit or the end bit
+can help us to estimate the channel and also synchronize
+the transmitter and the receiver.
+So in this lab demo, we will see how we can create a frame
+signal by implementing several communication protocols.
+So basically what we are going to do is we
+are going to include the training sequence, the start bit, and the end
+bit to an information sequence.
+So let's start by generating the information sequence.
+The function we use here is the rand() function.
+So basically, this command will generate an information sequence of 1,280 bits.
+The command, rand() here, will generate a random variable,
+which is uniformly distributed between zero and one.
+By comparing this random variable with the threshold 0.5,
+we can obtain a new random variable, which takes on the value
+zero and one with equal probability 0.5.
+So basically the sequence bs here will serve
+as the information sequence for our communication purpose.
+Next, we define the parameter, samples per bit to SPB
+equals one just for ease of illustration.
+Then we can create the frame signal by using the command, format_bitseq.
+ 
+Now let's look at what the frame signal looks like.
+ 
+Basically, we can see that the frame signal starts from the training
+sequence which includes 500 zeros, 500 ones, and again, 500 zeros.
+Recall that the sampling frequency we use is one megahertz.
+So here the 500 zeros will correspond to 500 microseconds.
+Next, we will observe the effect of the parameter, samples per bit.
+Basically, we're going to change the value of SPB.
+So we change the value, SPB, to SPB equals five.
+We generate the frame again.
+Now let's see what the new frame looks like.
+ 
+So basically, by comparing the two frame signals,
+we can observe that the frame structure doesn't change.
+What changes is the information sequence.
+To be more specific, it is the length of the information sequence.
+So basically, the length of the new information sequence
+is five times that of the previous one.
+So basically, we can regard a frame as railway cars,
+and the information sequence are the passengers here.
+So we hope the frame can carry the passengers, which
+is our information, from the transmitter to the receiver side.

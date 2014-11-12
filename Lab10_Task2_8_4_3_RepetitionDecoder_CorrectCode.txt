@@ -1,0 +1,85 @@
+﻿codewords = gen_messages(8); % cell array of all eight bit codewords
+messages = cell(256,1);     % cell array to hold codewords
+
+for i=1:256, % loop over all messages
+    codeword = codewords{i}; % take the i'th codeword from the array
+
+    % Modify the code below to return the 4 bit message after error
+    % correction assuming that the 8 bit codeword is received with at most
+    % one bit error.
+    
+    message = codeword(1:4);
+    parity = codeword(5:8);
+    s1 = message(1) + message(2) + parity(1);
+    s2 = message(3) + message(4) + parity(2);
+    s3 = message(1) + message(3) + parity(3);
+    s4 = message(2) + message(4) + parity(4);
+    if (mod(s1,2) == 0)
+        s1 = 0;
+    else
+        s1 = 1;
+    end
+    if (mod(s2,2) == 0)
+        s2 = 0;
+    else
+        s2 = 1;
+    end
+    if (mod(s3,2) == 0)
+        s3 = 0;
+    else
+        s3 = 1;
+    end
+    if (mod(s4,2) == 0)
+        s4 = 0;
+    else
+        s4 = 1;
+    end
+    sumSyndromes = s1 + s2 + s3 + s4;
+    if (sumSyndromes ~= 0) %if bit error
+        if (sumSyndromes > 1) %if Si = 1, Pi = PARITY(i) is the error bit
+            msgBit1Err = and(s1,s3);
+            msgBit2Err = and(s1,s4);
+            msgBit3Err = and(s2,s3);
+            msgBit4Err = and(s2,s4);
+            sumBitErrors = msgBit1Err + msgBit2Err + msgBit3Err + msgBit4Err;
+            if (sumBitErrors == 1) %can only correct one data bit error - otherwise ignore
+                if (msgBit1Err == 1) % then message(1) is an error
+                    if (message(1) == 0)
+                        message(1) = 1;
+                    else
+                        message(1) = 0;
+                    end
+                end
+                if (msgBit2Err == 1) % then message(2) is an error
+                    if (message(2) == 0)
+                        message(2) = 1;
+                    else
+                        message(2) = 0;
+                    end
+                end
+                if (msgBit3Err == 1) % then message(3) is an error
+                    if (message(3) == 0)
+                        message(3) = 1;
+                    else
+                        message(3) = 0;
+                    end
+                end
+                if (msgBit4Err == 1) % then message(4) is an error
+                    if (message(4) == 0)
+                        message(4) = 1;
+                    else
+                        message(4) = 0;
+                    end
+                end
+            end
+        end
+    end
+
+% do not modify code below this point
+    % store message in cell array for checking
+    messages{i} = message;    
+end
+
+check_blk_decoding(codewords,messages);
+        
+      

@@ -1,0 +1,20 @@
+﻿tx_msg = tx_msg_gen();                          % pick a random text message
+display(['The encoded message: ' tx_msg]);      % display the text message
+bs_raw = text2bitseq(tx_msg);                   % change text message to bit sequence
+
+% Modify the code below to repeat each bit three times
+len_bs_raw = length(bs_raw);
+for i = 1:len_bs_raw
+    bs_enc(i + 2*(i-1)) = bs_raw(i);
+    bs_enc(i + 2*(i-1) + 1) = bs_raw(i);
+    bs_enc(i + 2*(i-1) + 2) = bs_raw(i);
+end
+
+% Do not modify the code below     
+bs_out = binary_channel1(bs_enc); % simulate transmission with noise
+bs_dec = rep_decode_bs(bs_out);   % decode bitstream with error correction
+
+rx_msg = bitseq2text(bs_dec);    % Recover the text message from bit sequence
+display(['The decoded message: ' rx_msg]); % display the decoded message
+
+      

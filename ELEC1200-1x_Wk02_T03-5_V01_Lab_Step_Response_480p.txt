@@ -1,0 +1,102 @@
+ 
+Hello, everybody.
+Welcome to the lab demo.
+In the first lab, we have seen how we can use a communication
+system to transmit a text message from one computer to another computer.
+From this lab on, we're going to see how we can build our own communication
+system step by step.
+The first step of building any communication system
+is to understand the channel.
+Why?
+Because if we don't know how the channel will affect our signal, there is no way
+we can recover our information at the receiver side.
+So the purpose of this lab is to determine
+the step response of our channel.
+The step response is defined as the response of the channel
+to a step function.
+So our first job is to create the step function.
+Unfortunately, there's no way we can create a step function,
+because it will last forever.
+Fortunately, what we are concerned with is the position
+where the step function steps up.
+So we can create a pulse signal with sufficiently long pulse high time
+to trigger the channel response and get the step response.
+For that purpose, we first define the all one vector.
+ 
+We define the bit duration to be 100 microseconds.
+So we set SPB to 100.
+Next, we change the bit sequence to waveform.
+ 
+Different from last lab, we're not going to transmit and receive
+the waveform by two boards.
+What we are going to do is we're going to transmit and receive the waveform
+by using the same board with the help of the reflection board.
+What happens is the LED transmitter here will generate infrared signals.
+The signals will be reflected by the board
+and then captured by the receiver.
+Let's see what kind of signal we can receive by sending this waveform.
+ 
+Now, we are going to compare the received waveform with the transmitted step
+function.
+ 
+So here, we have two curves.
+The red one is the ideal step function.
+The blue one is the received actual response of the channel.
+By comparing those two figures, we have several observations.
+First one, we observed an offset signal, which
+comes from the ambient light in this room.
+Secondly, we have a time offset, which comes from the transmission delay
+and the processing time on the board.
+Thirdly, we see that the range of the response,
+which is the difference between the minimum value and the maximum value,
+is reduced from one to 0.25.
+Thirdly, we observed an exponential channel response,
+where the channel response increases from its minimum value
+to its maximum value gradually.
+In the lecture, we have proposed a mathematical model
+to describe the channel response.
+Now, let's see how we can use the model to predict the channel response.
+For that purpose, we use the command fit_rcv.
+And we randomly pick four parameters for the model.
+For example, the signal offset we chose here is 0.3.
+The time offset is 500.
+That range parameter is 0.1.
+And the exponential channel response parameter is 0.8.
+Now, we have a figure, which includes two plots.
+The upper plot gives the whole range of the waveform.
+The lower plot focuses on the region, which we are more concerned with.
+By comparing the predicted waveform, which is the green one,
+and the actual response, which is the blue one,
+we can see that we need to adjust the four
+parameters to improve the fitting performance.
+How can we do that?
+So to determine the time offset and the signal offset,
+I can simply put the data cursor at the position
+where the channel starts to respond.
+And we got two coordinates.
+The x-coordinate here, 713, gives us the time offset.
+The y-coordinate 0.3072 gives us the signal offset.
+So what I can do now is I can change the signal offset to 0.3072.
+And I can change the time offset to 713.
+The range of the response is the difference between the maximum value
+and the minimum value of the channel response.
+We already determined the minimum value.
+Now, we determine the maximum value by putting the data cursor
+at the position with the maximum channel response.
+And we got two coordinates.
+The y-coordinate here, 0.6114, corresponds to the maximum channel
+response.
+So now, I can change the parameter to be the difference between 0.6114
+and 0.3072.
+Let's see how the three new parameters work.
+Obviously, the predicted waveform, the green one,
+now matches the actual response, the blue one,
+in terms of the signal offset, time offset, and the range.
+However, the predicted waveform increases much faster
+compared to the actual one.
+To solve this, we can simply increase the exponential channel response
+parameter to 0.93.
+OK, now, the predicted waveform matches the actual response perfectly.
+This tells us the mathematical model proposed in the lecture is indeed
+a good fit for the actual response.
+And we're going to use it to design our communication system in future labs.

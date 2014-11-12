@@ -1,0 +1,49 @@
+﻿num_bits=20000;
+bs_raw = rand(1,num_bits)>0.5;    % generate a random bit sequence
+
+% loop over different transmission distances
+distance_list = [1:50];           % list of transmission distances
+num_dist = length(distance_list);
+BER_no_ecc = zeros(1,num_dist);   % initialize storage arrays
+BER_ecc = zeros(1,num_dist);
+
+for i = 1:num_dist,
+    distance = distance_list(i);
+    
+    % compute BER without error correction
+    bs_out = binary_channel(bs_raw,distance);   % simulate the transmission
+    BER_no_ecc(i) = compute_BER(bs_raw,bs_out); % compute bit error rate
+
+    % Modify the code below to compute the BER with error correction
+    % Your code should
+    % 1. Encode bs_raw with the (3,1,3) repetition code and save the
+    % result as bs_enc.
+    % 2. Transmit bs_enc over the noisy binary channel.  Do not change this
+    % line in the code.
+    % 3. Decode the received waveform bs_out with error correction
+    
+    % change this line so that bs_enc is the encoded bit stream
+    bs_enc = bs_raw;
+    
+    % do not change the line below
+    bs_out = binary_channel(bs_enc,distance);   % simulate the transmission
+    
+    % change this line so that bs_dec is the decoded bit stream after error
+    % correction
+    bs_dec = bs_out;
+            
+    % do not modify code below this line
+    BER_ecc(i) = compute_BER(bs_raw,bs_dec);        % compute bit error rate    
+end
+% display the results, do not modify the code below
+figure(1)
+plot(distance_list,BER_no_ecc,'r','LineWidth',2);
+hold on;
+plot(distance_list,BER_ecc,'bx','LineWidth',2);
+hold off;
+axis([0 50 0 0.5]);
+legend('BER\_no\_ecc','BER\_ecc','Location','southeast');
+title('BER as a function of distance');
+ylabel('BER');
+grid;
+      

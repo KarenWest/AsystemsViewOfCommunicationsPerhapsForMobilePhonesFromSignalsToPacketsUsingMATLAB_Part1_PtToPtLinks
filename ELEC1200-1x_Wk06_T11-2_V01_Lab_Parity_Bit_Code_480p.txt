@@ -1,0 +1,98 @@
+ 
+Hello, everybody.
+Welcome to the lab demo.
+In the previous lab, we have observed that repetition code
+can help to improve the bit error rate performance of our communication system
+by taking advantage of the independence property of the additive noise.
+The basic idea is to spread the energy of 1 bit to several bits.
+Due to the independence property, the chance
+of getting most of the bits ruined simultaneously is very small.
+So we can improve the bit error rate performance
+by using the repetition code.
+The question is can we do a little bit more
+to detect and even recover the bit information if it is wrongly
+detected by the receiver.
+We can do that by using the parity checking codes.
+So in this lab, we are going to investigate
+the benefit of using the parity checking codes.
+The idea of parity checking code is different from the repetition code.
+Basically, it will not simply repeat the information bits,
+but add some parity checking bits.
+The parity checking bits can be utilized to recover the information
+bits at the receiver side because we put certain correlation
+or mathematical connection between the information bits and the parity bits.
+Now let's observe the performance of the parity checking block codes.
+For that purpose, we use the command test.
+ 
+So the code is now running.
+Here, in this figure, we have two curves.
+The green one corresponds to a case where
+we used the parity checking codes.
+The blue one corresponds with a case where we don't use any coding schemes.
+The x-axis here, we have index 0.1, 0.2, and 1.
+Those indexes corresponds with the case where we increased the transmission
+power from 10%, 20%, to 100% of the maximum transmission power.
+Again, we have two observations.
+First one, the block code can indeed help
+to improve the bit error rate performance.
+Secondly, by increasing the transmission power,
+we can improve the performance with and without out using the block codes.
+The question is do we have similar examples in our daily life?
+Yes, we do.
+Let's look at this example.
+Imagine that I want to say a sentence with four words.
+Due to some reason, maybe the channel is bad,
+you only received the first one, the third one, and the fourth one.
+The first word is no.
+The third word is no.
+The fourth word is gain.
+So the sentence is something like, no what, no gain.
+Based on the known words, can you figure out what is the missing word.
+I think you can.
+And the sentence is, no pain, no gain.
+So why can we figure out the missing word from the known words?
+Because in our mind, we have built a strong connection
+between the four words.
+So whenever there's one word missing, we can recover it from the known words.
+The kind of the connection we built between the four words
+is similar to the connection we build between the information
+bits and the parity checking bits.
+That is why the block codes can help to improve
+the performance of our communication system.
+However, there is no free lunch in the world.
+In fact, we achieve the performance improvement
+at the cost of transmission time.
+For example, the code rate of the 8 4 3 parity checking code and 3 1
+3 repetition codes are 1/2 and 1/3, respectively.
+This means that if we want to transmit a message of 100 bits,
+we need to transmit a code word of 200 bits when we use the 8 4 3 block codes.
+And we need to transmit a code word of 300 bits if we want to use the 3 1
+3 repetition codes.
+Now let's compare the performance of the 3 schemes, the uncoded scheme,
+the scheme with the repetition codes, the scheme
+with the parity checking codes.
+For that, we use the command check run time.
+ 
+First, let's compare the bit error rate performance of the three schemes.
+So the first scheme corresponds to a case where we don't use any coding.
+So obviously, you can see there are some errors in the received message.
+And if we check the bit error rate performance, it's not 0.
+Now if we go to the two schemes with coding,
+we can see that the bit error rate for the repetition code and the bit error
+rate for the parity checking codes are both 0.
+That means there's no error in the received message.
+However, if we go back to check the amount of time we
+need to transmit the same message, Burt is
+a professor at the Department of Electronic
+and Computer Engineering at HKUST, you can
+see that the transmission time without coding is 0.03 seconds.
+The transmission time for repetition code is 0.28 seconds.
+The transmission time for the parity checking code is 0.1 seconds.
+This means what?
+This means we have a trade-off between the bit error
+performance and the transmission time we want
+to use for different coding schemes.
+In reality, we are going to face this kind of trade-off
+in many design problems.
+As engineers, we make our decisions based on the requirements of the users.
+ 

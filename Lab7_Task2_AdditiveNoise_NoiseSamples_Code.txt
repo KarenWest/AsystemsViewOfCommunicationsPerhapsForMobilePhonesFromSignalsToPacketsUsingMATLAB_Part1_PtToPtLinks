@@ -1,0 +1,39 @@
+﻿% Copy your code from Task 1 below
+ SPB = 50;                            % bit time in samples
+tx_bs = zeros(1,1280);               % generate the all-zero bit sequence 
+tx_wave = format_bitseq(tx_bs,SPB);  % create waveform following protocol
+
+% transmit and receive over noisy channel
+[rx_wave,start_ind,rx_min,rx_max,sigma] = txrx_lab07(tx_wave); 
+sample_ind = start_ind+2*SPB-1+SPB*[0:1279]; % set subsampling points
+signal_samples = rx_wave(sample_ind);        % get the received samples 
+
+xhist = 0.1:0.01:0.7;    % centers of histogram bins
+
+% Do not modify code above this line
+nsamp = 1280;   % number of samples to use for histogram
+signal_samples_firstNSAMPbits = signal_samples(1:nsamp);
+
+% Place your code below that plots the percentage histogram of 
+% the first nsamp=80 samples from the vector signal_samples.
+% 1. Use the function hist
+% 2. Use the vector xhist defined above as the centers of the bins
+% 3. The value of the histogram should be the percentage of samples in each bin,
+%    where the percentage is expressed as a number between 0 and 1 (100%).
+% 4. Plot the histogram using the MATLAB function BAR
+[counts] = hist(signal_samples_firstNSAMPbits,xhist); 
+%disp(counts);
+percents = counts ./ nsamp;
+%disp(percents);
+bar(xhist,percents);
+
+% Do not modify code below this line       
+% Plot histogram predicted by Gaussian distribution
+hold on; % all plots on the same figure
+plot_ghist(xhist,rx_min,sigma);      % predicted histogram
+title(['Number of Samples = ' num2str(nsamp) ]); % add title
+xlabel('Received signal');
+ylabel('Frequency (%)');
+hold off;
+             
+      

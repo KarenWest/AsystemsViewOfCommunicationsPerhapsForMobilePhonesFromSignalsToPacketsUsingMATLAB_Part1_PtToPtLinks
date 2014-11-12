@@ -1,0 +1,227 @@
+ 
+We now have all that we need to model a channel.
+So what I'd like to do now is talk about the channel that we'll
+be using in this lab, and particular in the online labs
+that you'll be working with to get a better physical understanding
+about the limitations of communication systems.
+And for our system, the step response will
+be modeled by this formula over here.
+And so this formula over here is what we call the exponential step response.
+It includes this exponential component over here.
+And this exponential step response can model two types of different phenomena.
+One is changes in amplitude through the parameter k.
+And so the parameter k is describing what the final value of the response
+is.
+And so typically, the value of a here will be something between zero and one.
+So when I take a to the power, let's say a is equal to 0.5,
+when I raise it to a power, what happens is that a to that power
+keeps on getting smaller and smaller.
+For example, if a was equal to 0.5, I raise it to the first power,
+I get 0.5 or 1/2, raise it to the second power,
+I get 1/4, third power, 1/8, 1/16, 1/32 and so on.
+So this term, as n gets bigger, keeps on getting smaller and smaller.
+So when n goes out and gets very, very large, goes out to infinity,
+this thing disappears and I just get one. So k then is the final value.
+And so here, you can see that this thing does indeed increase and approach
+a final value of k, in this case here, I have k is equal to one.
+The other property of this step response is that it is equal to zero
+for all values of n less than zero.
+And the way I can enforce that is just taking this formula here
+and multiplying it by u of n, which is the unit step.
+Remember, the unit step is equal to one for all values of n bigger than zero.
+And so if this is just one, it's not going to change anything.
+Everything's going to be dictated by what's happening here.
+But for n less than zero, u of n is zero.
+And what's going to happen is that that's just
+going to force everything over here to be zero, because zero times anything is just
+going to give us zero.
+And the final thing that this thing will do
+is it will enable us to model the blurring of the transitions
+that we'll see when we look at the actual channel responses.
+That's the fact that even though the unit step goes up instantaneously
+from zero to one, this one takes some time to reach its final value.
+In fact, because of the exponential, it will take infinite time
+to reach that because this will always have some small value.
+Might be very, very small, but it will always have some small value.
+But the blurring of the transitions here is modeled by this a parameter.
+In particular, the value of that parameter a
+will determine how quickly this moves up.
+And it turns out that the larger that value of a is,
+or the closer that value of a is to one-- because the largest value of a
+will be one -- the closer that value is to one,
+the slower this transition is going to be.
+The easiest way to see that is just to look at this first value over here.
+If we look at this first value over here, in this case, n is equal to zero.
+When n is equal to zero, I remove this term here.
+I just get one minus a.
+And so if I have one minus a, this value here is one minus a,
+I know that if a, let's say, is 0.9, then one minus 0.9 is 0.1.
+But if a is some value that's small, let's say very close to zero,
+then what I'm going to get is, let's say, 0.1.
+I'm going to get one minus 0.1, or 0.9.
+And that means a very quick increase up to here.
+So let's take a look at a few different examples of different parameters
+setting for this exponential step response.
+So these are all step responses that are generated
+according to this formula over here.
+The only thing I've done is change the values of k and a.
+So this is the thing that we saw before where I have the value of k
+is equal to one, and the value of a is equal to 0.8.
+So remember, this value here was one minus 0.8, or around 0.2.
+Now what I'm going to do is I'm going to take k and multiply and set k
+to be 0.5, but leave a to be the same.
+And because k multiplies this whole thing, what's going to happen
+is that all the values here are just going to be multiplied by 0.5.
+So instead of going from zero to one, it's going to go up to 0.5.
+And this value here will also be dropped down by a half.
+And so instead of being 0.2 over here, it will be 0.1.
+But you can see that roughly speaking, it's
+still increasing at about the same rate, although to a lower value here.
+But the amount of time it takes to reach somewhere close to that value
+looks to be about the same.
+If I compare these two waveforms over here,
+here I've left the k value the same.
+So the final value of these two waveforms is exactly the same.
+But what I've done is I've changed the value of a.
+And so when I've changed the value of a, I've made it smaller in this case.
+And remember, when a is smaller, it corresponds to faster transitions.
+Remember I told you that the value of this first sample is one minus a.
+And so if I have a is equal to 0.5, then one minus 0.5
+is 0.5, or 1/2, versus one minus 0.8, or 0.2.
+So you can see that already at the first sample, it's moved up by much more.
+And so it's going to approach this final value of one much quicker than this.
+And so now given the fact that we understand this step response,
+then we can use the fact that the channel is linear and time invariant
+to predict the response to any kind of input.
+And what I'll do next is show you the response
+to different bits where I've chosen different numbers of samples per bit
+to represent that bit.
+So this is a single bit waveform.
+It goes from zero to one, holds that one for a certain number of samples
+per bit, in this case, 32, and then goes back down to zero.
+So this is just one single bit.
+And this is the response of the channel using those same parameters
+that I started out this section of the lecture with.
+And so remember, how do we compute the response?
+Well, the input to the channel, remember,
+is this single bit waveform, which I can
+model as the sum of a unit step that brings me up at time zero
+and brings me back down at time 32 over here.
+So this is evaluated n minus SPB, in this case, it would be 32.
+So that's a delay of 32 over here.
+And this is shown in the blue waveforms that I've shown you here,
+and if I combine this blue waveform with this blue waveform,
+I get this nice blue waveform over here.
+The output of the channel then, for this particular input,
+is just the step response that we talked about-- that's
+what we plotted in the previous page.
+And now if we take this waveform over here,
+then by homogeneity and time invariance,
+I know that the response will be the same as this response, only delayed
+by 32 and multiplied by minus one.
+So instead of going up from up zero up to one, it goes from zero down to minus one.
+And then I know by additivity, that I can compute the response
+to this input, which is the sum of this blue waveform plus that blue waveform,
+as the sum of this black waveform plus this black waveform over here.
+And what you can see is that for all of these points here where it's zero,
+I'm going to simply get the sum being just this waveform over here.
+And at this point here, it's pretty close to one.
+And if I add this one plus this negative waveform
+over here, that's going from zero down to minus one, then I'm going to go from one
+and slowly go back down to somewhere close to zero, at which point
+I'm going to be adding plus one and minus one.
+Now what we can look at is what happens if we
+change the number of samples per bit, making the bit time smaller.
+And so we can do that by simply taking the bit time and changing it to 16.
+And the only thing that really changes is
+that this waveform remains the same.
+This one changes.
+It goes to a faster transition down to here, sample number 16.
+And that's introduced by this unit step downwards at time 16 now.
+And so what happens is the input basically remains the same as before,
+just delayed and again, scaled by minus one.
+And then I get the response by adding this one to this one.
+And you can see that I'm going to get this difference mainly just over here.
+So if I compare this one over here and this one over here,
+the difference is really just in this latter part over here.
+Now, if I continue to decrease the number of samples per bit
+that I'm holding the bit, then I'm transmitting information faster.
+And you can see that the analysis, is going to be the same.
+I'm going to start going up, but at some point, I'm going to start pulling down.
+And as I try to push that limit and try to transmit information
+faster and faster by decreasing the bit time,
+decreasing the number of samples per bit,
+you can see what's happening is that it starts going up,
+but before it has time to reach the final value, what
+happens is that this downward going step kicks in
+and starts pulling the value back down because of that additivity.
+And so now you can see it starts to go up.
+But at this point, it comes down.
+And then the rise here is canceled by the downward trend over there.
+And if I keep on going, you can see that when this bit is really, really,
+really short, that I only go up for a little bit of time and immediately
+I start coming back down again.
+And you can see that if I have a very, very short sample per bit,
+then it just goes up only a little bit and then
+starts immediately coming down.
+And so from this then, we can use this and extend this analysis
+to more general inputs.
+And the way that we do that is simply by building upon what we already know
+and extending it to the more complicated situation.
+So here, I show you a more complicated bit stream corresponding
+to encoding the bit sequence 1010001 and so on at five samples per bit.
+And we already know that we can express this
+as a sum and difference of a bunch of unit steps.
+And then by exploiting homogeneity and time invariance,
+we can predict the output to each one of these individual unit steps.
+For example, the unit step leads to the step response here,
+if I delayed by five and multiply by minus one,
+I just take the step response delay by five and multiply by minus one.
+And I continue to do that for each of the components that you see over here.
+And then finally, I can exploit additivity
+to take all of these individual predictions
+and combine them together so that I finally
+get my prediction for the input to output
+relationship of that channel for this particular input, x of n.
+And so we can take almost any input and predict
+what its output is to this linear and time invariant portion
+of the channel using the methodology that I've talked about.
+And so if we want to get a complete description of what
+the channel actually looks like and what is received by the receiver,
+then we have to add in one more term.
+And so to think about this, think about the situation where you're at a party
+and I'm trying to talk to you, but there are additional people at the party
+and they are also talking.
+And so what is actually the signal that's received by you?
+It's not just the signal that's coming from my mouth,
+but it's also additional noise that's coming
+in from other people inside the room, and perhaps there's
+some background music.
+And so the actual signal that's received by your ears-- and you
+can think about now in this example here rather than
+being an antenna as being your ears-- the signal that's received
+is not just what I'm saying, the information
+that I'm trying to transmit to you, which
+is going through some kind of channel and it's being distorted in some way.
+For example, by the room acoustics.
+But also the fact that there's additional signals that are just
+ambient within the environment.
+For example, the party noise that we model over here.
+But with our model, what we're going to do
+is we're going to assume that those two effects are additive.
+Just like we assume that this effect of the individual components here
+combining together was additive, we're going
+to assume that the effect of this additional ambient noise
+is also additive.
+And in that case, we can do the same kind of thing
+where we do the pointwise addition.
+In this case here, we have zero plus this component over here will give us this.
+This nice and clean transition over here, plus this over here
+will give us this more noisy looking waveform
+over here, plus the constant bias.
+And we can just write an expression for that using this.
+And so that then gives us the complete description
+of what's going to be seen by the receiver.
+And then the receivers job then is to take this and try
+to figure out what the original bit waveform that
+was sent by the sender over here was.

@@ -1,0 +1,108 @@
+Hello, everybody.
+Welcome to the lab demo.
+In the previous labs, we have seen how we can use some communication
+techniques to handle the bad effect caused by the channel.
+For example, we have used the training sequence
+to estimate the offset signal and the range of the channel response
+so that they are known to the receiver when setting the decision threshold.
+We have used the start and end bits to synchronize
+the transmitter and the receiver so that the time offset is not an issue.
+Also, we used equalization to handle the intersymbol interference
+caused by the exponential channel response.
+Now, does this mean we are going to achieve an error-free communication?
+Unfortunately, the answer is no, because we still
+have a big problem for any communication system, the additive noise.
+So in this lab, we are going to observe the distribution of the additive noise
+by simulation.
+So we want to see what is the effect of the additive noise to our communication
+system.
+From the lecture, we know that the additive noise is no longer
+a deterministic signal, but a random process.
+And we used the Gaussian distribution to model the random process.
+Now let's check whether this theoretical Gaussian distribution
+is a good fit for the distribution of the random process.
+The next question is how can we estimate the distribution of the additivel noise
+by using this communication set.
+Recall that the received waveform is the sum between the signal
+component and the noise component.
+So indeed, we can estimate the distribution of the noise component
+by removing the signal component.
+How can we do that?
+We can simply transmit the all-0 sequence.
+Now let's see how we can achieve that purpose.
+So first, we define the all-0 sequence.
+And I'm going to define the bit duration to 50 microseconds.
+So SPB equals 50.
+Next, I add the start and end bits.
+Then, we generate the waveform from the bit sequence.
+Finally, we add the training sequence.
+OK.
+Now I'm going to transmit and receive the frame signal
+by using the same bar with the help from this reflecting board.
+And let's see what kind of signal we can receive.
+OK.
+Now let's check the distribution of the received signal.
+For that purpose, we first define the region
+where we want to observe the distribution.
+We hold the plot.
+Now let's see the distribution.
+What we can observe here is not a theoretical probability density
+function, but just an empirical histogram.
+What we can observe is, it indeed follows the Gaussian distribution.
+But how accurate is this model in modeling the additive noise?
+We want to check the accuracy of this model
+by comparing the empirical histogram with the theoretical PDF.
+So now let's compare those two things.
+What we can see here is the red curve, which
+represents the theoretical probability density function,
+matches the blue histogram very well.
+So this tells us Gaussian distribution indeed
+is a good fit for the distribution of the additive noise.
+However, you may also note that the mean value for this Gaussian distribution
+is not 0.
+This happens because the offset signal is included in the received signal.
+The above distribution tells us the distribution of the additive noise.
+However, it also indicates the distribution
+of the received signal when we transmit bit 0 because we obtained it
+by transmitting the all-0 sequence.
+For comparison purpose, now we want to generate
+the distribution of the received signal when we transmit bit 1.
+To do that, we only need to change the first line of the previous code
+from the function "zeros()" to the function "ones()".
+To save some time, I have got the codes here.
+So the only difference here is we changed the first line to bs equals "ones()"
+so that we can generate the all-1 sequence.
+Now I'm going to copy the whole program codes and run it here.
+So now we have the distributions for the received signal
+when we transmit bit 0 and bit 1.
+Basically, the left histogram corresponds
+to the case we transmit bit 0, and the right histogram
+tells us the distribution of the received signal when we transmit bit 1.
+Basically, the two mean values here tell us
+the range of the channel response.
+And also we can determine the received signal power
+from the two distributions.
+I have a question for you to think about.
+Based on the comparison of the two histograms,
+do we expect any bit error for using this communication system?
+And how the additive noise has affected our communication system.
+From the comparison of the two distribution functions for the case,
+we transmitted bit 0 and bit 1, we can tell the received signal power.
+In fact, the received signal power can be
+determined by the difference between the mean values for the two distribution
+functions.
+Now we want to investigate the effect of the transmission distance
+on the distribution of the received signals.
+For that purpose, we simply increase the transmission distance
+between the transmitter and the reflection board.
+We are going to run the same set of code,
+and we are going to see how the distribution of the received signal
+will change.
+What we can see here is the difference between the mean values of the two
+distribution functions now has decreased.
+Basically, a longer transmission distance
+will give us a lower received signal power,
+which will give us a bad performance.
+The question now is can you expect what kind of bit error performance
+we are going to achieve by using this communication system?
+We are going to talk about this in the next lab.

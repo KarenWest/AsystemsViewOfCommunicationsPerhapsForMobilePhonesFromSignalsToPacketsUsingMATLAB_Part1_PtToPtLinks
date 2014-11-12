@@ -1,0 +1,56 @@
+ 
+Hello, everybody.
+Welcome to the lab demo.
+In the previous lab demo, we have seen that we can use communication protocol
+to handle the issue of synchronization and also channel estimation.
+The next question is if we indeed implement all those communication
+protocols, what kind of performance we can achieve.
+In the system design of a communication system,
+we call this performance evaluation.
+The metric we use to measure the performance of a communication system
+is bit error rate.
+So in this lab demo, we're going to see how we can calculate the bit error
+rate of our communication system.
+For that purpose, we first generate the information sequence.
+So similar to the previous lab demo, we are
+going to use the command rand() to generate the information
+sequence, which includes 1,280 bits.
+Next, we set the parameter samples per bit to SPB equals ten.
+And next, we generate the frame signal by using the command format_bitseq().
+Now let's see what the transmit signal or the transmit frame
+signal looks like.
+ 
+So we can observe from the waveform, that the transmit waveform is quite clear.
+Next, we are going to transmit and receive
+the waveform by using the same board with the help of the reflection board.
+So now, we transmit and receive the same waveform
+by using the function txrx_ir().
+ 
+OK.
+Now let's see what the received waveform looks like.
+ 
+OK.
+If we put the transmit waveform and the received waveform together,
+we can observe that the received waveform is distorted by the channel.
+So all those distortions will cause us some error.
+Let's see how we can calculate the bit error rate here.
+So the first step, we try to recover the bit information
+from the received waveform by using the command receive().
+Next, we calculate the bit error rate.
+We see a number, 0.0125.
+What does this number mean?
+This number tells us if we use our communication system,
+we will obtain an average of 1.25 errors for every transmission of 100 bits.
+Now let's see what is the effect of the parameter samples per bit.
+To do that, we are going to only change the parameter samples per bit to 30,
+and run exactly the same group of codes.
+To save some time, I already put the code here.
+So I copy the same set of codes, and execute them.
+So basically, we have two observations.
+First, by comparing the transmit and the received waveforms,
+we can see that if we change or increase the parameter samples per bit,
+the received waveform is much more improved.
+And accordingly, we are going to have a better performance.
+So you can see here the bit error rate now
+is zero, meaning that we are not going to see any error from this communication
+system.

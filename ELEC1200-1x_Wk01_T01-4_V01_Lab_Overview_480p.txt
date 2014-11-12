@@ -1,0 +1,59 @@
+Hello.
+My name is SH Song, and I will be the instructor
+for the lab session of this course.
+The objective of the lab session is to show
+you what are the key concepts of communication theory
+through building a real communication system.
+Before talking about what is a communication system,
+let's first see what is communication.
+So basically, communication is the process
+where we transmit information from one position to the other.
+For example, my talking with my friend is already a communication example.
+You may have a question.
+Since you can communicate with your friends
+by using your natural equipment, why do we
+want to build a communication system?
+The answer is like this.
+Because there are certain situations where we cannot achieve communication
+by using our natural equipment.
+For example, without Internet, there is no way
+you can watch this lecture video at home, maybe in the US,
+and now I'm delivering this lecture in Hong Kong.
+So basically a communication system is a system
+which can help us to transmit information
+from one point to the other.
+Now let's see what are the key components of a communication system.
+For that purpose, we'll look at a daily communication example.
+For example, I want to say "Hi Bert!",
+to Professor Bert Shi.
+So in my mind, I have the
+information, "Hi Bert!",
+I want to send the information to Bert.
+How will I achieve this communication purpose?
+Basically, I will use my transmitter, which is my mouth,
+to create the sound wave.
+The wave will propagate through the channel, which is the air,
+and then arrives at the receiver, which are the ears of Professor Bert.
+Bert can then recover the information from the received waveform by his ear,
+and get the information "Hi Bert!" in his mind.
+So through this process, we can see that a communication system in fact
+has three components, the transmitter, the receiver, and also the channel.
+In the lab, what we are going to do is, we
+are going to achieve the communication between two computers.
+Obviously, they don't have their transmitter and receiver.
+So what we are going to do, we are going to use the universal software radio
+peripheral board as the transmitter and the receiver of our system.
+Basically, the board has several light emitting diodes,
+which will generate infrared signals as the transmitter.
+We also have several light detectors as the receiver.
+Because the LED will generate infrared, so the channel we're going to face
+is what we call infrared light channel.
+Also, because we are going to use the on and off state of an LED
+to transmit information, we can only transmit binary information
+in our communication system.
+So to summarize, through the experiments,
+we shall understand the effect of the channel on our communication system.
+We will build some communication protocols and techniques
+to handle the issues caused by the channel.
+And eventually we are going to evaluate the performance of our communication
+system.

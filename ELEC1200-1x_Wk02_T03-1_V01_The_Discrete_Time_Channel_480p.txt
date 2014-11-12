@@ -1,0 +1,134 @@
+ 
+In topic two, what we saw was that we can
+represent waveforms in discrete time.
+We can go back and forth from continuous time to discrete time.
+And we also saw that once we adopt this kind of discrete time representation,
+we can represent a wide variety of different waveforms using
+sums and differences of unit steps.
+So now we're ready to start analyzing mathematically the communication
+channel that we talked about in topic one.
+And we're going to start then by talking about what
+we mean by a discrete time channel.
+So let's go back to what we talked about in topic one
+and look at the communication system.
+So remember that we had a communication system transmitting information
+from a source to a destination.
+We have information to send that we transmit in terms of bits.
+And that information then is turned into a physical waveform.
+And then the physical waveform is sent over the channel where
+the channel modifies the properties of that physical waveform,
+so that what's received is not the same as what's sent.
+But the job of the receiver then, is to try to figure out, well,
+from this, which doesn't look the same as this, what was actually sent over here?
+So it has to look at this and try to guess what was sent.
+And so when we're going to analyze this thing,
+we're going to look at it in discrete time.
+So what we can see here is that we don't have
+quite a discrete time description over here.
+So let's break this system apart into a discrete time part
+and a continuous time part.
+And that's shown over here where we've taken the transmitter and the receiver
+and we've broken them both into two different parts.
+And so if we look at this part here, we're
+again taking the information, which we are encoding as bits.
+We're receiving information over here.
+And at the far end here, we have a continuous time waveform
+that's being sent over the channel that's being modified.
+But if we look over here at the signal that's being modified,
+we want to represent things in discrete time.
+And we know that to go from continuous time into discrete time,
+we do that by a process of sampling.
+We take regular measurements of the signal.
+And so instead of getting this continuous waveform over here,
+we get this discrete waveform that's only
+defined at particular multiples of the sampling instant.
+We can take the bit sequence and we can represent that as a bit waveform.
+And we saw how we can do that, how we can convert
+from a verbal description of, let's say, a particular bit
+sequence at a particular number of samples per bit
+into some kind of representation here, either graphical or the formula
+that we talked about.
+And then what happens is that to go from discrete time to continuous time,
+remember what we do is we do the hold.
+So we take the value at this point in time,
+and just to get a continuous time waveform between this point and this time,
+we just hold that value for all these points in time
+until the next sample we get this.
+And you can see that we get that waveform over here.
+So once we have this waveform over here, we send it over the channel,
+and we get this one over here.
+And so now, this is a continuous time channel, but what we're going to do
+is we're going to kind of hide all the continuous time parts that we've
+introduced and just talk about a conversion
+from discrete time to discrete time over here.
+And so what we're going to do is we're going to say this process of going
+from a bit sequence to a discrete time waveform,
+we're going to call this a discrete time transmitter.
+That's going to give us a discrete time waveform.
+That's going to go through this channel, which
+remembering includes all of that conversion from discrete to continuous time
+and so on.
+But what we're going to do is we're going
+to hide of all of those things in this one box
+over here, which we're going to call the discrete time channel, that's just
+going to take this discrete time waveform,
+and get this discrete time waveform at the output.
+And so then from this discrete time waveform,
+we want the receiver here, the discrete time receiver
+to come back and give us a sequence of received bits.
+So the next thing we need to do then is somehow
+come up with a way of describing how we go
+from this kind of discrete time input to the channel
+to the actual response of the channel on the other side of the channel,
+at the receiver.
+And we've already seen in topic two how we can represent this waveform
+over here mathematically with these kinds of steps, unit steps, and so on.
+And what we'd like to be able to do is given this formula over here,
+get a formula that describes this actual response over here.
+And we know that we'll have a good model, if two things are satisfied.
+Number one, we'd like this equation here to be,
+if not identical to this waveform over here, at least very close to that.
+And the closer it is, the better the model's going to be.
+But the other thing we want the model to do
+is we want the model to be relatively simple.
+That's because we, as engineers, are lazy.
+We don't like to do too much extra work.
+And so we like our jobs to be as simple as possible
+when we're dealing with things, especially,
+when we're dealing with more mathematical things.
+Because we'd like to also, in addition to be doing prediction,
+we also want to be building our understanding.
+And so in fact, engineers use models all the time.
+And modeling is a very important part of your engineering education.
+In fact, engineers use models for many, many different kinds of uses.
+One of them is to really understand the operation.
+Of course, we can describe a channel in words,
+but if we can also describe a channel using, let's
+say a computer or mathematical equations,
+then the more ways we can describe that channel the better we understand them.
+It's just like, if I'm telling you a story,
+the more ways I can tell you that story-- the more different ways--
+for example, I can tell it to you verbally, or I can act it out,
+or perhaps I can take a musical composition
+and build a musical composition about that.
+The more ways I can express that story to you,
+the more nuances about that story you'll be able to understand.
+And so engineers use models and different kinds of models, verbal,
+computer, mathematical models in much the same way.
+But because of the fact that we're actually using mathematical models
+that gives us the ability to predict the performance of a system.
+And so once we have that prediction, we can answer questions
+like for this particular system, how quickly can I transmit information
+over that particular channel?
+What are the limitations of the information transmission
+over that channel?
+And once I know the limitations of the system
+and what's causing those limitations, because I
+have that better understanding.
+Then that opens the door for us as engineers to take the next step.
+And that's really what we as engineers do is the design step.
+What we do is we develop modifications to the system that
+actually improve performance.
+So instead of being satisfied with transmitting information
+at a particular rate, maybe what I can do is modify the system,
+so I can improve the rate at which I can transmit information.

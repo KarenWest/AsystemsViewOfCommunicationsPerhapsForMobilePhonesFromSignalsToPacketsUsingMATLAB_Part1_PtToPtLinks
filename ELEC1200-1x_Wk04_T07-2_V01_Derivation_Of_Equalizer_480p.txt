@@ -1,0 +1,138 @@
+ 
+OK.
+So let's now use that recursive channel model
+to derive the equation for the equalizer.
+And so, remember, our model of the channel given by the recursive model
+says that the input and the output are related by this equation over here.
+And so now, it's a fairly simple process, then,
+to express the input of the channel in terms of the output
+simply by inverting this equation.
+So remember, what we'd like to be able to do
+is we'd like to be able to isolate x of n.
+And so, in order to do that, what we do is we take this term here
+and we move it over here with a subtraction.
+That gives us the subtraction over here.
+And then we isolate the x of n just by dividing by one minus a times k,
+as shown over here.
+And so now we have an expression here that gives us
+the input to the channel in terms of the output and the past output.
+And what we'd like to be able to do now is then use
+that equation for the equalizer.
+Now, the important thing to remember, though,
+is that this equation here is really only exact if the output of the channel
+is related to the input exactly by this equation right here.
+But there are many effects which might happen to cause that not to be true.
+For example, there might be noise in the channel.
+That's introduced later on.
+Or, for example, we might have an incorrect estimate of a or k.
+And that's going to cause the channel to have
+a slightly different output than what's predicted over here.
+And so therefore, this equation is not going
+to give us the input, but rather some prediction of what the input is.
+So I'm going to call that prediction x tilde.
+Because it's not going to be exactly the same as the actual input.
+So remember, last time what we talked about
+was the idea that the equalizer is somehow
+going to combine information about, not only the level of the output,
+but also in terms of how the output is changing.
+And so, how does this equation reflect those two effects?
+And so, in order to do that, let's take that equation and then manipulate
+it a little bit more to kind of separate those two effects out.
+So, here is the equation that we just derived on the previous slide.
+And we're going to do some simple manipulations to try
+to separate these effects of the level of the channel and changes
+in the channel.
+So what I'm going to do in this line here is I'm simply going to add
+and then subtract the same thing.
+So I'm going to add an a times y of n.
+And I'm going to subtract an a times y of n.
+So I've just added and subtracted the same thing.
+So there's really no change in the output here.
+In the next step, what I'm going to do is
+I'm going to combine these two together because they're both multiplied by a.
+So I'm going to get a times y of n minus y of n minus one.
+And then I'm going to take the whole thing
+and multiply through by one minus a.
+So when I do that this thing cancels out.
+So I get nothing there.
+And here I get a divided by one minus a.
+And now, if we take this equation here that we have and look at it,
+we can see that we've separated out the two effects.
+This one here tells us what the channel output is,
+or the level of the channel output.
+And this one here is telling us how the channel is changing.
+It's looking at the difference between the output of the channel now
+and the previous output of the channel over here.
+And these two things are then combined by adding them together.
+And the coefficient that's determining the addition over here
+is shown by this equation over here.
+And that's plotted as a function of a, that's shown over here.
+And so, intuitively, we can look at the two end points, when a is equal to zero
+and when a is equal to one, to try to figure out what's happening.
+So when a is equal to zero, if I stick a is equal to zero into this equation
+over here what I'll get is zero.
+And so, that makes sense because what that
+does is it knocks out this equation, or that part of the equation over there.
+And what it says is that the equalizer is just
+going to look at the level of the channel.
+Why does that make sense?
+Well, remember when a is equal to zero it means
+that the channel is changing very, very quickly.
+In other words, if the input changes from zero to one,
+the output will immediately change from zero to one.
+And in that case, there's no intersymbol interference.
+And I only need to look at the output of the channel
+to figure out what the input was.
+On the other hand, when a starts increasing,
+what that means is that the channel is getting slower and slower.
+And in that case, the level is not going to be
+a very reliable indicator of the input.
+And in that case, the changes in the output are going to be more important.
+And so what we can see in this equation over here is that as a increases
+the channel gets slower.
+We start to increase the weighting on this second term over here, which
+is reflecting the effect of the changes in the input on the equalizer.
+So, now we can see that the equalizer, then, is combining information
+about the actual channel output level and how the actual channel is changing.
+That's the intuition we had.
+But through this analysis that we've done,
+we've actually been able to derive an equation that is, in some sense,
+exact, if there are no unmodeled effects.
+So, let's conclude then, with a short example
+of how we could derive the equalizer.
+So suppose that we have a channel which we know is linear and time invariant,
+and it has this particular step response,
+an exponential step response where the final value of the output
+is going to be 1/2 and it's going to increase somewhat slowly.
+Because the value of a is not equal to zero.
+So this is not in the format that we had before.
+The format that we had before was really this recursive channel model.
+But this is the first model that we talked about,
+the model 1.
+And so, now what I'd like to be able to do
+is then say, well, the first step is to try
+to express this in terms of the recursive channel model.
+So, in order to do that, we take the step response.
+And from the step response we know that, in general, it has this format here.
+And we can just match terms.
+So, if we look at this equation here and match with that equation there,
+we know that, well, k is equal to 1/2 and a is equal to 2/3.
+Now, given that, what we can do is we can then say,
+well, the recursive channel model is equivalent to that.
+The recursive channel model says that the input and output
+are related by this.
+And we can simply take these two numbers here and insert them
+into the equation over there.
+And we get this equation down here reflecting
+the relationship between the input and the output of the channel
+using that recursive formula.
+Now, given that, then, we can then find the equation for the equalizer
+by inverting that recursive model.
+So, from the previous page, we know that we
+have this equation for the output of the channel in terms
+of the input and the previous output.
+And we simply then solve for x of n.
+And that's a simple manipulation.
+And we get this equation right here, which
+gives us the input to the channel in terms
+of the past output and the current output.

@@ -1,0 +1,113 @@
+ 
+Today what I'd like to do is talk about the effect of noise,
+where it comes from, and what we expect it to do to our communication channel.
+So let's see where noise enters into our communication system.
+So what we've said is that we have the input signal that's
+encoded as a waveform, which is a constant value, either high or low.
+And that passes through the linear time invariant
+system that causes those quick transitions to kind of blur out.
+And then at the receiver, we receive something.
+And we saw that we could actually undo a lot
+of the effects of that blurring of the transitions
+due to the step response using the equalization.
+And so using that, we were actually able to push the bit error rate down
+to a very, very low level.
+And so, in fact, the effect of this linear time invariant system
+is really not the limiting factor in our communication system,
+but it's really this additional effect that comes in, which is the noise.
+And so where does this noise come in?
+The noise actually comes in, at some point, additively into the channel
+that we see over here.
+And so the noise can come from a variety of different places
+that we'll discuss a little bit later.
+But one example you can think about is if you're at a party, somebody's
+trying to talk to you, but there might be
+other people trying to talk to you at the same time
+or maybe talking to other people, and you overhear their conversations.
+And so what you actually would receive, let's say, at your ear,
+would be a mixture of what you're trying to receive from your friend talking
+to you plus other conversations going around you.
+And so those two things add together to give us our final received signal.
+And so what we'd like to do now is think about, well,
+what is the effect of the noise, and how does it
+affect our communications system?
+So let's first talk a little bit about noise in general
+and where it comes from.
+And like I said, noise is actually the fundamental limiter
+in any kind of communications system that we have,
+because other kinds of effects, if they're well known
+and we can model them and understand them like we did before,
+we can actually use that knowledge to compensate for those things.
+And so, really, without noise, the complexity in this course
+would be very, very low, and we would really
+have no need to talk about this course at all.
+And so noise, then, is something which is ubiquitous.
+It happens everywhere.
+And typically we think of the noise signal
+as being something random or unpredictable.
+And so something like a noise signal might
+be something like this, where you can see
+it really has no predictable structure in it.
+Although there is, to some extent, something
+predictable about this, because if you look at it, you can say,
+well, that looks like noise.
+But overall, generally speaking, the values of that
+are somewhat unpredictable.
+And so we've talked about this thing as being a random signal.
+Now where does noise come from?
+Well, noise, like I said, is everywhere, and it
+occurs from a variety of different places.
+So, for example, if we're talking about our mobile phone,
+then, actually, the individual electronic components, things
+like resistors, transistors, all of those things add noise to the signal,
+even though it's what we use to process.
+So the very process of actually measuring and manipulating the signals
+that we have introduces noise.
+Then there, like I said, might be other external influences of noise.
+Those might be other users of the system who
+are adding noise into the received signal.
+But the idea is that resistors and devices
+are going to add noise because of an effect called thermal noise.
+So because these devices have atoms in there
+and those atoms are actually moving, they're
+going to disrupt the flow electrons flowing through them.
+And that disruption is then going to cause
+the noise that we observe in the system.
+And so noise is ubiquitous.
+Why is it so important?
+Well imagine, suppose that we didn't have any noise.
+If we didn't have any noise, then I would
+be able to speak very, very quietly, and you would still
+be able to hear exactly what I said.
+In fact, without any noise, potentially, I
+could just speak at a very, very low level,
+and you would understand everything.
+Of course, we don't do that, and we change the volume of our voice
+depending on the situation.
+And what is that situation?
+Well, it's the amount of noise in the environment.
+So, for example, if I'm in a quiet restaurant,
+then I would tend to speak much quieter than if I'm at a big party
+or at a bar with many, many people around me.
+Then I would tend to speak very, very loudly.
+And so the amount of noise around me really
+determines what's the minimum level of signal that I can send to you,
+or the volume that I'm speaking, that will
+determine how well you can understand what I'm saying.
+And it's exactly the same system, or same effect,
+that occurs in a mobile phone.
+So the noise determines the minimum signal
+that can be decoded by radios and receivers
+that we have inside our mobile phone.
+Now, of course, I'd like to use as low a signal as possible
+when I'm transmitting information, to save energy.
+For example, after I go to a party, usually my voice is sore
+or my throat is sore.
+I'm tired, because I've been speaking very, very loudly.
+And so in that case, we'd like to then avoid those large noise situations.
+But of course, we can never avoid them completely.
+And so what happens, then, is that if I'm speaking too quietly,
+the noise, the bit error levels, will increase significantly.
+And so what we'd like to do moving forward,
+then, is understand how to model this, specifically
+in the context of our communication system.

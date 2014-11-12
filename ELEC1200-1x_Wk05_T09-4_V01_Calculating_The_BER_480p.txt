@@ -1,0 +1,259 @@
+Now that we know how to describe the power in signals,
+and we know how to characterize or understand
+the characteristics of the noise, we're now
+ready to see how these things interact in calculating the bit error rate.
+So remember, the bit error rate depends on several things.
+It depends on the probability of IN equals 0 and IN equals 1.
+Again, that's determined by the transmitter.
+And so the key things that we're interested in
+are these two additional branches here, P_e0 and P_e1,
+which are the probability of error if the input is 0,
+and probability the error when the input is 1.
+And it turns out that those are the things that
+depend on the transmit power or the transmit levels,
+the power in the noise, and the threshold.
+And we're going to see graphically how these kinds of things interact.
+So the first thing we need to do in order to do this,
+is to understand, well, what are the characteristics of the transmit level
+and the power in the noise.
+And how do they interact to determine what
+is the received signal that we get?
+And in order to do this analysis, we're going
+to split the analysis into two cases, one when
+the input is equal to 0 and the other when the input is equal to 1.
+Now, remember that when the input is 0, then
+we know at the output of the channel we're going to have that low level.
+That's going to be added to the noise, which
+we assumed was this Gaussian, to give us the sum.
+And given that we know that the Gaussian here has this particular PDF
+and we're adding a constant to it, it turns out
+that we can predict what the output of y is.
+It's going to be random because the noise is random.
+So it's going to have its own PDF.
+And the PDF is going to look like this.
+Instead of being centered around zero, which would be this value here,
+and varying around that, we're going to put it around the r_min value
+and let it vary around that value over here.
+So the most common value is going to be r_min,
+but it's going to have some variation around there.
+And so it turns out just by doing this addition here, all we've done
+is really shifted the mean of the Gaussian away from zero toward r_min.
+And still it turns out that y is still Gaussian,
+and it has exactly the same variance: that determined by the noise over here.
+Now we can do exactly the same kind of analysis
+for the case when IN is equal to 1.
+In this case, the value will be the high value.
+We'll add that additional noise to it to give us the additive noise model.
+And the only difference now is we're going
+to get a Gaussian that's not centered around r_min, as it is over here,
+but shifted over to r_max.
+But the variance is still going to be exactly the same, because we're
+dealing with this additive noise model.
+So now what we can see is, depending on whether the input is 0
+or the input is 1, the received signal, which
+is the output of the channel plus the noise,
+is going to have a different probability distribution.
+One is going to be centered around r_min, the other one's
+going to be centered around r_max with some variation that's
+determined by the noise.
+Now, given that understanding, we can use this idea
+that we can predict the probability of any kind of event
+by using the area in order to predict the bit error rate.
+And we're going to again split our analysis into two different cases.
+The first case was when input is equal to 0.
+We have this thing and we know from our previous analysis
+that the probability density function of this signal here,
+y, is going to have this shape right here.
+Now what we do with this then in the binary channel model,
+is we compare the signal here with a threshold.
+And depending on whether above the threshold or below the threshold,
+the output is either going to be 1 or 0.
+And so the value of that threshold then tells us
+when the output is going to be 1 and when the output is going to be 0.
+And so I've shown the threshold as this location right here.
+And so for all the values of y that are bigger than this I'm going to get a 1.
+And the problem is that the input, in this case here, we're assuming is a 0.
+And so whenever the output is a 1, that's going to be an error.
+And so that occurs when the noise is big enough that it pushes y above T.
+And so the probability of that happening then is just the area under the curve
+where y is greater than T, which is shown with this red bar there.
+Now, it turns out that that probability then depends on the value of T.
+So if I change the value of T, for example, if I put that value of T
+down here, then the area under the curve for y above T
+is going to fill almost the entire probability density function.
+So there the error is going to be one.
+So the probability of getting an error for a very, very low threshold,
+because everything is going to be above this very, very, low threshold,
+is going to be close to one.
+And then what I can do is I can look at raising that threshold.
+And then as I raise that threshold, then it's going to be less and less likely
+that the noise is going to keep carrying me above that threshold.
+So when I'm down here the noise, no matter what it is,
+is going to be above the threshold.
+I'm going to have a little bit less error over here.
+And then it's going to keep on decreasing as I raise that threshold.
+And so we can see that as the threshold increases that area gets smaller.
+And I plot the probability of error down here
+and we see that it decreases down towards zero.
+So when the threshold is very, very high I'm never above the threshold.
+And so that seems to be, on the one hand, to be a good thing,
+because that means that the error is zero.
+But we're going to see that actually there's
+something else we have to consider beyond the case
+where input is equal to 0.
+And that's when the case where the input is equal to 1.
+And so, what happens when the input is equal to 1
+is that now the value at the output of the channel is r_max: that high value.
+So the values of y are concentrated around that large value
+that we can see here.
+Now what happens here is that when we complete this thing
+we're going to take the binary channel and we're
+going to look at to see whenever it's below the threshold.
+And whenever it's below the threshold then we
+know that the output is equal to 0.
+And so that's going to be an error in that case.
+And so the error then is going to have probability,
+which is given by the area under this curve for y less than T.
+So that's this area over here shown in this little red area down here.
+Now we can also ask the same question, what
+happens when the threshold changes?
+So we can take the threshold and move it back to here.
+And in that case, the area for y less than the threshold
+is very, very close to 0.
+So it's going to be down here.
+And then as I sweep the threshold in this direction what's going to happen?
+Well here we're at this high level here and the error
+is going to be whenever I go below the threshold.
+When the threshold is way down here it's very hard for the noise
+to push the signal down below that threshold.
+But as I get closer, that probability of error is going to increase.
+And when the threshold is very high, I'm always going to be below the threshold,
+and so the error is going to be one.
+So when we sweep the threshold then, we see that the area of the red part
+gets bigger.
+And as plotted over here, we can see that increase over there.
+And so that means then that we have kind of two different kinds of situations,
+depending on whether the input is 0 or the input is 1.
+When the input is 0 we saw we had that decreasing curve with threshold.
+And when the error was 1 we have that increasing curve.
+And so in one case, when the input is 0 we'd
+like the threshold to be as high as possible.
+And when the input is 1 we'd like the threshold to be as low as possible.
+So there's going to be some compromise between the two of those situations
+and so we have to combine the results of these two different analysis
+into one final number for the bit error rate.
+And so remember the bit error rate.
+If we assume that the input bits are equally likely to be 0 or 1,
+the bit error rate is just the average between P_e0 and P_e1.
+So P_e0, remember, is the error when the input is 0.
+And that's given by this red curve here where
+this is the probability density for y when the input is 0.
+And when the input is 1, remember that probability density shifts over here.
+But then what we're interested in is the error occurs
+when the value y is less than T.
+So that's given by this one here.
+And so if I combine these two things together
+by multiplying them by 1/2, what I can do is I can take this whole curve,
+multiply the whole curve by 1/2 here.
+Whole curve and multiply it by 1/2.
+And I take the threshold at this point here,
+and I look for the area under this curve over here plus the area
+under the curve over here.
+And that gives me the bit error rate.
+So this area under this combined curve here shows the bit error rate.
+And, of course, we want that thing to be as small as possible.
+Now we're going to look at what makes that as small as possible, in terms
+of the signal power and the noise power, a little bit later on.
+But right now let's take a look at what's
+the effect of changing that threshold?
+Because remember, in one case we wanted to have
+a very, very low threshold for one type of input.
+That was when the input was high or 1.
+And the other case we wanted a very, very high threshold.
+And that was when the input was 0.
+So let's take a look at the effect of changing the threshold T.
+And it turns out that we're going to get a curve that looks like this.
+So the bit error rate changes with T.
+So that for very low values of T it's not good because it's high here.
+For very high values of T it's also not good.
+The bit error rate is high or 0.5.
+And there's some value in the middle where it is actually the best.
+Where it's the lowest.
+So, in order for us to understand this, let's
+take a look at what the situation is at different points along this curve.
+So let's look at one point, which is on this side, or low
+compared tothe value of T which gives us  the lowest bit error rate.
+So, on this point over here what we have is,
+we have a value of T, which is a little bit on the left.
+And what's happening there?
+Well, in one case we're actually making one type of error very, very small.
+On the other hand we're making another type of error big.
+And so when we make the threshold low, suppose
+this hand represents the threshold, then that's going
+to be good if my input is high.
+Because if my input is high, the output will be near r_max and then
+the noise will fluctuate around that.
+But if I put my threshold to be very low, then what's going to happen
+is it's going to be very, very hard for that noise
+to push the value down below that threshold if the threshold is low.
+So when the input is 1, r_max is the value of the channel.
+And when I add the noise I get the spread.
+And what I'm interested in is the errors,
+which is going to occur when y is below that threshold.
+And you can see that's very, very small in this case here.
+And, in fact, when I move the threshold here even farther and farther back,
+that error is going to get smaller and smaller.
+So that's a good thing.
+On the other hand, we also have to consider the case when the input is 0.
+So when the input is 0 remember we're at this r_min level
+and the threshold is down here.
+And now when I add the noise to that it's
+going to be very easy for me to take that output value
+and push it above the threshold using the noise.
+And that's going to get worse and worse as I move that threshold further
+and further down.
+And so that probability of error when the input is 0
+is given by this red area here.
+And you can see that as I move this thing over,
+that's going to get bigger and bigger.
+And that's going to counteract the fact that this
+is going to get smaller and smaller.
+Because this eventually just goes down to 0,
+but this one eventually fills the whole curve here,
+which is going to give us a final value of 1/2.
+Because remember we've taken this curve and multiplied it by 1/2.
+So that explains what's happening down here.
+And the exact opposite thing is what's happening
+on the other side of this minimum point.
+On the other side of the minimum point I've taken that threshold
+and I moved that threshold high.
+And so now it's hard for me to make errors when the input is low,
+but it becomes easier for me to make errors when the input is high.
+So now you can see here when the input is
+high the bit error rate is given by this curve here.
+And as I take the threshold and I move it over here
+that red area is going to get bigger at the same time
+this one is getting smaller.
+So again there's two things, one good and one bad,
+but eventually the bad thing will overwhelm that.
+And so now then the idea behind choosing threshold
+is then really a balance between two conflicting ideas.
+One is minimizing P_e0, and the other one is minimizing P_e1.
+And it turns out that if we assume that the input bits are equally
+likely to be 0 or 1, then we just get the average.
+In that case it makes sense to choose the threshold
+so that it's exactly half way in between r_min and r_max.
+What that's going to do, is it's going to take the threshold and put it here.
+And we're going to eliminate this kind of extra area.
+This is really the smallest that we can do.
+Because you can see if I move the threshold over in this direction,
+what's going to happen?
+I'm going to add a little bit of extra area over here.
+But if I move the threshold a little bit far to the right,
+I'm going to add extra area over here.
+And so only by choosing that threshold exactly in the middle
+here where these two curves cross, am I going
+to completely eliminate that extra source of error,
+and then get my optimal threshold.
+So now moving forward, we're going to look at
+is what's the effect of the signal power and the noise power.

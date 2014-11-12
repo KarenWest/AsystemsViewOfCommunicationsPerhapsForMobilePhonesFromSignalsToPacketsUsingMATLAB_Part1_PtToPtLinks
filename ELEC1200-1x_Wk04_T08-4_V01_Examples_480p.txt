@@ -1,0 +1,221 @@
+Let's take a look at some numerical examples using the bit error rate
+formula that we just introduced to try to build some intuition about the way
+it works and what it means.
+So in this first example, let's look at an actual input/output data stream
+from the binary channel.
+So here I give you a sequence of input bits, ones and zeros, 25 of them.
+And I show you the corresponding outputs.
+And ideally, what we'd like to have is we'd like to have the input bit
+and the output bit be exactly the same, 1, 1; 1, 1; 0, 0, and so on.
+But unfortunately, there are three cases where the input and the output
+are different, 0, 1; 1, 0; and 1, 0.
+So we have three bit errors in this case out of a total of 25 bits
+that we've transmitted.
+And so by definition then, the bit error rate is three divided by 25 or 12%.
+Now, let's look at how our formula works in this case.
+Well, if you remember, what we had was we
+had the binary channel model that looked like this.
+And we have to assign probabilities to each one of these paths.
+So let's take a look at this first path.
+This first path is telling us how many times do we
+we enter through the zero pathway.
+And so in order to do that, we look at the input here
+and we count how many times it's actually zero.
+So we have one, two, three, four, five, six, seven, eight.
+So there's eight times the input is zero out of a total of 25.
+And so, therefore, the probability that input is equal to zero is eight divided by 25.
+And since the rest of them are all ones, the probability
+that the input is equal to one is then 25 minus eight, or 17 divided by 25.
+Now let's take a look at the probability of these pathways over here.
+Now, these pathways remember, assume that we're already on the zero pathway.
+So in computing that probability then, we're
+only interested in these eight instances where we had the input being zero.
+And then we want to know, well, how often out of those eight instances
+did we go down this path here?
+And so what we can see is that, well, in this case here,
+there's only one out of those eight instances
+where we went down the wrong path and came out to one.
+And so, therefore, the probability of going down
+this path, assuming we're already on here, is 1/8.
+And since the two things must add up to one, the other probability is 7/8.
+Similarly, we can look at the bottom path here.
+And we're on that one 17 times.
+And then out of that, only two of them you can see take the wrong path.
+So it's two out of 17 and 15/17 for this pathway here.
+And then we can then combine them by multiplying this times this
+and adding it to this times this.
+And so we do that.
+We have Pe0 times P IN is equal to one.
+So we have 1/8 times eight divided by 25, 2/17 times 17 divided by 25.
+And so you can see the eights cancel here.
+So I get 1/25.
+The 17s cancel over here.
+So I have 2/25.
+And so in total I get 3/25, which is exactly the same answer
+that we got over here by doing the numerical counting.
+So that gives you some idea about the way the formula's working
+and how we can actually assign probabilities if we actually
+have input/output data from the binary channel.
+And this is certainly one way that you can
+measure the performance of a channel.
+Now let's try to look at that formula that we got
+and try to build some intuition about what does that formula really mean.
+So here's the formula that we gave you.
+The bit error rate is equal to this times this, plus this times that.
+And of course, students are really happy when
+they see a formula like that because once you see a formula,
+you can memorize it.
+And then you can stick numbers in and plug it right into a calculator
+and get a nice number.
+And then everybody's happy.
+But when you look at a formula, what you should really be trying to do
+is understand, well, what is this formula telling us about the system?
+What intuition can we build from that formula
+and from looking at that formula, because that formula is really
+not just something you plug into your calculator.
+It's really a language or statement in the language of mathematics.
+And so if there's a statement, it should be telling us something.
+So what is this formula telling us?
+Well, if we look at this thing, remember that P IN is equal to zero
+and P IN is equal to one, those two things must sum to one.
+So maybe 50% and 50%.
+So in some sense, we can think of this thing, the bit error rate
+as being an average between Pe0 and Pe1.
+In fact, it's a weighted average.
+If it's 50-50, then it's exactly the average, right?
+But otherwise, if it's 20-80, then it's going to be a weighted average.
+And so it's going to be closer to Pe0 or Pe1,
+depending on the relative values of P IN is equal to zero and P IN is equal to one.
+So for example, if P IN is equal to one is 100%,
+what that means is that I'm never on this path.
+I'm always on this path.
+And so what's the probability of the bit error?
+Well, the bit error rate must be given then by just this one path over here,
+because I'll never have a chance to take this one over here.
+And so in that case, the probability of error or the total bit error rate
+would be Pe1.
+And that makes sense because this would be zero.
+And this is one.
+And so I get this times zero.
+And then I would only get Pe1.
+Similarly, if this was one, I'm always on this path here.
+And then my probability of error overall, the bit error rate
+would be Pe0.
+And so in between that, if I have something
+in between these two things, not one or zero, then you
+would get something that's in between Pe0 and Pe1,
+but closer to Pe0 if P IN is equal to zero is bigger and closer to Pe1
+if P IN is equal to one is bigger.
+So then given that intuition, we can then
+approach problems in a more intuitive way
+because we have now an understanding of not just how to apply this formula
+but what it actually means.
+So let's try to apply that intuition in a real numerical problem.
+So in this problem here, I'll show you an equation that as students we'd
+be very happy to see because I give you all the numbers here.
+And you know there's a formula that relates these numbers to the bit error
+rate.
+And so you could just remember that formula,
+stick the numbers into your calculator, and compute the answer.
+And you'd get some number on your calculator
+and put it down on the exam sheet.
+And it would be over.
+But let's think about this and say, well,
+before we even do that, before we even touch our calculator,
+can we come up with a prediction about what the bit error rate is going to be?
+So remember, when do we get errors?
+We get errors when we go down this pathway over here.
+And those two pathways are labeled with probabilities 20% and 30%.
+And just remember the bit error rate has to lie somewhere in between those two
+values of 20% and 30%.
+So now what we've done is we've already taken our range of possible bit error
+rates, which was 100%, and narrowed it down to 20% to 30%.
+So now you know, if you put in the numbers
+and you get some number like 80%, you realize,
+oh, I must have done something a little bit wrong because what's
+on my calculator doesn't match with my intuition.
+So we have this range here of 20% to 30%.
+But now within that range of 20% to 30%, what do we expect?
+Is it going to be 21%?
+25?
+27?
+Do we have a guess about where it's going to be in that range?
+Well, that's going to depend then on how often I'm actually on this path
+or on this path over here.
+And so I'm on this path here 60% of the time versus 40% of the time here.
+So I'm on this path more often.
+And so what that means, that I'm going to be more weighted
+toward making this type of error than making this type of error.
+And so then what you'd expect then is that you
+should be closer to 20% than 30%, right?
+So now we can say, well, we've actually narrowed it down even further.
+We've narrowed it down from 20% to 30% because now I
+know I'm going to be closer to 20%.
+So now I've narrowed it down to 20% to 25%.
+And so I've narrowed it down, just based on my intuition.
+And now you can kind of look at the numbers
+and say, well, I'm going to be kind of like 60% closer to 20 than to 30.
+And so maybe it's going to be 24.
+OK, so that was without even touching our calculator, plugging in equations.
+So we got this guess of 24.
+Now let's check on whether or not that guess is actually correct.
+So let's plug it into the formula like good students that we are.
+And so here's the formula.
+I'm going to simply take these values from the chart here,
+so 20%, 60%, 30%, and 40% over here.
+I get 0.2 times 0.6 or 0.12.
+0.3 times 0.40 is 0.12 and 24% just like we predicted without even having
+to touch our calculator.
+And so from this then we've used these kind of examples
+to try to build up some understanding about what this bit error rate
+calculation means.
+And in summary, what we need to do in order to predict the bit
+error rate is the probability of input equal to zero, and then
+if we know that, we can predict what this one is because it's just
+going to be one minus that, and these two probabilities over here.
+Now it turns out that, in fact, most of the time
+these things are not set by the channel.
+These are set by the transmitter.
+So the transmitter decides whether to transmit zeros or ones.
+And so the thing that the channel really determines is Pe0 and Pe1.
+And that's going to depend on things like the transmission
+level, the amount of noise that occurs.
+And we're going to look at that a little bit later on.
+Now, so usually, we're going to make an assumption about these two
+things here because it's determined by the transmitter.
+Usually we assume that it's actually 50-50.
+It might not be.
+But usually, that's a pretty good assumption.
+And the reason that that is a good assumption
+is because that's kind of the case where the transmitter's kind
+of transmitting the most information.
+And to kind of get some intuition about that,
+you can kind of think about the two extremes.
+Suppose that we are at some extreme case where it wasn't 50-50,
+but maybe it was zero-100.
+Now, if it's zero-100, then, in fact, what happens
+is that I don't even have to look at the output of the channel
+to know what the channel's saying because I
+know that every time the channel says something it's always one.
+So no matter what happens, it's always one.
+It's just like when you see your friend.
+And every time that you see him, he always tells you the same joke.
+Then the joke's no longer funny.
+It's not carrying any novelty.
+And so what you want to do is always see something new.
+And so that occurs when the situation is that the probability of input is equal
+to one and input equals to zero is exactly equal at 50%.
+So then before moving on, let's summarise then.
+What we've talked about in this topic is the idea
+that noise is really the critical and fundamental limit in our communication
+systems.
+And so without noise, really there would be no need for this course
+because there'd be really no difficulty in communication.
+And so we started our analysis, in this case,
+by considering this binary channel model where
+we assumed that the input and output just had two possible values.
+And then we used probability theory to finally get an expression for the BER.
+And the key point now is that the dependency of the channel
+is really going to enter through Pe0 and Pe1.
+And so moving forward, we're going to have
+to look at how the signal levels and the noise affect those two probabilities.

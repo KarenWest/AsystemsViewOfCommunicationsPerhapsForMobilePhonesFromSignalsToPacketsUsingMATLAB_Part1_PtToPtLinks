@@ -1,0 +1,30 @@
+﻿tx_bs = rand(1,1280) > 0.5; % generate random bit sequence
+SPB=5;                      % bit time in samples
+
+% transmitter %
+tx_bs_frame = frame_bs(tx_bs);              % add start and stop bit and generate framed block 
+tx_wave = bitseq2waveform(tx_bs_frame,SPB); % create a samples waveform with SPB samples per bit
+tx_wave = add_training(tx_wave);            % add a training sequence
+
+%channel
+rx_wave=txrx_lab03(tx_wave,15); % simulate channel with distance=15 cm
+
+n=[1:3000];
+figure(1); 
+%---your code here to generate plot of tx_wave--- 
+plot(n, tx_wave(n));
+grid on;                 % create grid
+title('Channel Input'); % create plot title
+xlabel('sample index');  % label X axis
+ylabel('amplitude');     % label Y axis
+
+figure(2)
+%---your code here to generate plot of rx_wave---
+plot(n, rx_wave(n));
+grid on;                % create grid
+title('Channel Output'); % create plot title
+xlabel('sample index'); % label x axis
+ylabel('amplitude');    % labe y axis
+        
+figure(1)  % make sure figure(1) shows at top of returned display
+      

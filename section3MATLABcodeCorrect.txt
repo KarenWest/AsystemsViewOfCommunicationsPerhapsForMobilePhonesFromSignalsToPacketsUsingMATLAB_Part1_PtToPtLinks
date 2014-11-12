@@ -1,0 +1,26 @@
+﻿SPB = 3; % samples per bit, change this to 3
+
+% get response to random sequence of 50-bits transmitted at SPB samples per
+% bit.  Do not change the values of rx_wave or bscode.
+[rx_wave,bscode] = rxwave_final_03(SPB);   
+
+start_ind = 1501; % for convenience the location of the start bit is fixed
+ind = start_ind + 2*SPB - 1 + SPB*[0:49];
+
+thresh = (max(rx_wave)+min(rx_wave))/2;
+%can't change rx_wave OR bscode, but you can change bsout
+eq_wave = zeros(size(rx_wave)); % initialize equalizer output
+len_rxwave = length(rx_wave);
+for i = 1:len_rxwave
+    if (i > 1)
+        eq_wave(i) = 11.9 * rx_wave(i) - 10.5 * rx_wave(i - 1);
+    else
+        eq_wave(i) = 11.9 * rx_wave(i);
+    end
+end
+bsout = eq_wave(ind) > thresh;
+
+% do not modify code below this line
+check_final_03(bsout,bscode);
+        
+      

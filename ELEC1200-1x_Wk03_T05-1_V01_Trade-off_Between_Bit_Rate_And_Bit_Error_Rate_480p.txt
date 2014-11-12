@@ -1,0 +1,105 @@
+ 
+ 
+So when we went into the lab or at least the online lab what we saw
+was that there's a trade-off between bit rate and bit error rate.
+So in other words, what we did is we tried decreasing the bit time.
+And what happens when we decrease the bit time is that the bit rate, which
+is just inversely proportional to the bit time,
+so it has this hyperbolic relationship, the bit rate goes up.
+And of course, that's a good thing, because what we'd like to be able to do
+is send information as quickly as possible.
+So that implies, then, that we would like the bit time
+to be as short as possible, so that the bit rate is as high as possible.
+But then what we saw though is that there's
+a problem with trying to push the bit time too small.
+What we saw was that the bit error rate will also increase.
+And the bit error rate is a bad thing, because that means,
+essentially, we're making mistakes and we'd
+like to make as few mistakes as possible.
+So we'll make as few wrong decoding decisions as possible.
+And so that means that there's a trade-off, because, on the one hand,
+we want the bit time to be small, so that we have a high bit rate.
+On the other hand, we don't want it to be too small, because what will happen
+is the bit error rate will go up.
+And so in many cases, what we do is we set some maximum threshold
+on the bit error rate.
+And then that would then imply some kind of bit time, which
+will then imply certain bit rate.
+And so what we'd like to be able to do is
+try to understand why there is this increase in the bit error rate
+as the bit time goes down.
+And hopefully, if we understand that, what we can do
+is do something about that.
+So let's take a look at this in a very simple situation, where we just
+have a single bit.
+So in these graphs here, I show you the response
+to a single bit, shown in blue, the input waveform, for different bit times.
+And then the response of the channel is shown in black, as seen here.
+And so for just the single bit for a very long bit time what we observe
+is that the response starts to go up when the bit goes up,
+finally reaches a value very, very close to its final value,
+and then, once the bit ends, we go back down to zero.
+As the bit time gets shorter and shorter, it starts to go up.
+And then you can see in these two cases here,
+it hasn't really reached a value very, very
+close to that final value, like it did in these top two cases here.
+And so you can see here in this case here it went up only, let's say,
+about 80% of the way.
+Here, maybe about 60% of the way before it had to start going down.
+And so when the bit time gets even shorter
+than that, what happens, as you see in these bottom two cases,
+is that it starts to go up and almost immediately
+it has to start going back down, because the bit is over.
+And so you remember what happens when we start
+to try to do the decoding, what we normally do is we set a threshold.
+And in order for us to decode a one-bit, the response
+has to go above that threshold.
+And in order to decode a zero-bit, it has to go below that threshold.
+And you can see in these two cases, certainly in this case here,
+you can see that it has not had enough time to get above that threshold value.
+So let's take a look at this, then, in a more complicated situation with a more
+realistic bit stream, and see what happens with that.
+So here I show you the input bit stream for different bit times.
+And the response will be shown in black.
+And then the threshold at which we make a decision
+whether a one-bit or zero-bit is shown in red over here.
+So you can see here, when I have a relatively slow bit time,
+and I'm going to sub-sample toward the end of the bit.
+You can see that for these slow bit times, indeed, for this one bit here,
+it does have enough time to get at least above the threshold.
+So if I sampled at the correct location here, what we would get
+is we would get a correct decoding.
+So in this case here, we would get correct decoding for all of these bits.
+And you can see what happens then, as we start decreasing the bit time.
+As you start decreasing that bit time, it becomes less time
+for the response shown in black to get up and cross that red threshold.
+And so we can see here, well, it did have enough time for this bit
+time of four samples per bit, it did have enough time
+to go up, and then cross the threshold before it
+had to start coming down in response to the zero-bit over here.
+And so for here, we can see that there are generally no errors introduced.
+But then if we further decrease the bit time, what we see is that, in this case
+here, they are errors that start to introduce.
+In particular, if we look here in this first bit here,
+we see that it's supposed to be a one-bit.
+And so hopefully, the black curve should go above the red curve,
+but it doesn't have enough time to do that.
+However, on the other hand, there are many cases
+where it does seem to do that.
+For example, for all these bits here, it does seem to get high enough
+and to get low enough.
+But there are some cases where it does not have enough time.
+For example, over here on the end here, it started to go up
+and then it started to come down to respond to the zero-bit,
+but there's not enough time before the zero-bit
+ends for it to reach below the threshold.
+And so I would get a bit error here and I would get a bit error here.
+So in this graphs, then, we can see that as the bit time starts
+to get shorter and shorter, we start to introduce these kinds of bit errors.
+But the bit errors don't always occur.
+So we don't go from a situation where we have no bit errors to a situation where
+we have all bit errors, but there's some kind of in-between.
+And so what we like to understand is, well,
+in what cases do we get a bit error and what cases do we not get a bit error?
+And so it turns out that that can be best understood using eye diagrams,
+as we'll discuss next.

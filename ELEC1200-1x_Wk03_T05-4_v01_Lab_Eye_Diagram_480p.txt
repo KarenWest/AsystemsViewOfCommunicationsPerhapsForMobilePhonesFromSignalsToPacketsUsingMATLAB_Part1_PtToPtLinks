@@ -1,0 +1,56 @@
+ 
+Hello, everybody.
+Welcome to the lab demo.
+In a previous lab demo, we have seen that by increasing the samples per bit,
+we can achieve a better performance.
+Since the parameter samples per bit corresponds to the bit duration for one
+bit, basically it means we can achieve a better performance
+if we increase the bit duration.
+The reason is a longer bit duration will
+handle the exponential step response better.
+So in this lab, we are going to use eye diagram
+to understand why that phenomenon happened.
+So we are going to generate an eye diagram of the received signal.
+For that purpose, we first generate the information sequence.
+So similar to the previous lab demo, we use the function rand
+to generate the information sequence which has 1,280 bits.
+Next, we set the parameter samples per bit to SPB equals to 30.
+Given the sampling frequency is one megahertz.
+This means the bit duration of each bit is 30 microseconds.
+Now we generate the frame signal by using this sample per bit equals 30.
+So here the transmitted waveform is the frame signal.
+Now, we are going to transmit and receive the same frame signal
+by using this board with the help of the reflection board.
+ 
+OK, so we transmit and receive the waveform.
+Now let's see what the received waveform looks like.
+So we can observe that the received waveform includes both the training
+sequence and the information sequence.
+To generate the eye diagram, we should only consider the information sequence.
+So the next step, we will try to identify the position
+where the information sequence starts.
+ 
+So for that purpose we use the function find_start.
+So this function will help us identify the location
+where the information sequence starts.
+After that, we can generate the eye diagram.
+ 
+OK, so this is the eye diagram.
+Why we call it an eye diagram is because it resembles our eye.
+And basically the wider the eye, the larger the difference
+between the two signal levels we use to represent bit zero and bit one.
+Obviously a larger difference between the two levels
+will give us a better performance.
+So now let's see what is the effect of the parameter
+samples per bit on the eye diagram.
+For that purpose, I'm going to decrease the parameter SPB to 15.
+To save some time, I already got the code here,
+so I'm going to execute the same code.
+The only difference is we change the parameter SPB here.
+ 
+So after executing the new code, we got a new eye diagram.
+So basically if we compare the two eye diagrams,
+we can observe that a larger SPB will give us a wider eye,
+and obviously a larger difference between the two levels
+we use to represent bit zero and bit one.
+And in turn, this will give us a better performance.

@@ -1,0 +1,319 @@
+ 
+So let's take a look at how we can start developing this equivalent channel
+model, and the kind of model that we'd be developing
+is what's called the recursive channel model.
+So let's take a look at this term, recursive.
+So a recursive channel model is one that involves
+repeated application of a rule.
+And so in particular, if I have a particular discrete time waveform
+x of n that I'd like to define, the recursive model has two parts.
+It has the recursive part, which is a formula that
+defines the value of the nth sample, x of n, in terms of the previous samples.
+So if I know the previous sample, x of n minus one,
+I apply this rule, or this function, f, and I
+get the value at the next sample time.
+And then I need to start out this process
+with an initial or starting condition, so typically I
+say, well, at time zero I give it some value here, so let's say zero.
+Or it could be any value — whatever value
+I need to get this process started.
+And so then when I'm actually trying to generate the waveform
+or find out what the values of the waveform
+are at different values of n, what I do is I just
+keep on repeating the same process over and over again.
+So I start out with the initial or starting condition x of zero,
+and given that, then I can find the value at time one
+just by applying the rule, f.
+And then given the value at time one that I have,
+I can apply the rule again and get the value of x at two, and then get x of three,
+x of four, and so on.
+So let's take a look at some concrete examples of this.
+So here what I do is I show you different examples of waveforms
+that we can define with a simple formula of n.
+So in particular this one here, x of n is equal to c, is just a constant.
+No matter what value of n I give you, it's always the same value, c.
+So if c was one, let's say, then in that case no matter what value of n
+I gave you it would always be one.
+And so that's just a waveform that's always
+equal to that same constant value, c, for all time.
+This one here, x of n is equal to n, is something that increases linearly.
+So at time zero it's zero, then it goes up to one, two, three, four, five, and so on,
+and so that's just increasing by one each time.
+And here I have something that increases with a slightly slower slope of 0.2.
+And so this one would be zero, 0.2, 0.4, 0.6, 0.8, and so on.
+And this one here is more complicated than these other ones.
+This is an alternating bit stream, so it goes 0, 1, 0, 1, 0, 1...
+and keeps on going back and forth.
+And so maybe this is something that you might
+see if you're using a communication system or something like that.
+And so how can we define this one?
+Well, one intuitive way you might think about this one
+is that for all even values of n, let's say zero, two, four, it's equal to zero.
+And then for all odd values of n, one, three, and five,  it's equal to one.
+And so for each of these ones then we can come up
+with a way, given n, we can give you the value.
+And we'd like to then say, well, can we come up
+with recursive rules that do exactly the same thing?
+So remember for the recursive rule we need to have two things.
+We need to have first an initial starting point,
+and then we need to have the rule that we can apply to that starting point
+over and over to generate the values of the process at different times of n.
+So let's take a look at this first example over here
+and see how we can do that.
+Well, again we need the initial starting point.
+And so at time zero, we know that it's equal to c.
+So that's our initial condition.
+And then we need to have some kind of rule that says, well,
+given I know the value at time zero, what's the value at time one?
+And so in this case here, what we have is we actually have well, the value
+is always the same.
+So if I know the value at time zero, then it must be the same at time one,
+and if I have the value at time n minus one,
+then it must be exactly the same value at time n.
+And so this is our recursion — a very simple formula
+that just says it's the same as the previous time.
+How about this one over here, the linear ramp?
+Again, we need to start it off, and if we know that at time zero it's equal to zero,
+and then what we can do is we can say well,
+how do I know,  if it's equal to zero at time zero, what's the next value?
+Remember, what happens here is it's increasing by one at every point.
+And so then what we can say is, well, our rule then just embodies that.
+What happens is that the value at the next time instant, x of n,
+is just equal to the value at the old time instant, x of n minus one plus one.
+I could do the same thing for this one here.
+I can start it out at zero, and then in this case here
+it doesn't increase by one, but it increases by 0.2,
+remember zero, 0.2, 0.4.
+And so my rule for that would be something
+like this: the value at time n is just the old value at time n minus one
+plus 0.2.
+Finally, let's take a look at this one, which is quite complicated.
+It might be actually surprising to you that maybe — that you can actually
+come up with a recursive rule for this one.
+Finding the initial condition is quite easy.
+We just have to start it out at whatever value it is at time zero,
+and so in this case here we know that it's zero.
+And then how would we get the value at time one?
+Well, you can't really do this, because this will give us a linear ramp.
+But what we can do is we can say, well, at each point it's
+going to be different.
+So how can we incorporate that?
+Well, if we think about it, at the next time instant what we're going to get
+is one.
+And what we need to be able to do is take
+that one, and at the next time instance, convert that back to a zero.
+And so it turns out that if we give it a little thought,
+we can come up with this rule over here.
+And this rule over here will satisfy that.
+So we know that at time zero it's zero, and then at the next time, one.
+I put in zero at this point over here, and I get a one.
+Now at time zero I have a one, and if I put in a one over here, what I'll get is a zero.
+And then once I have the zero, I put it back in.
+I get a one, then 0, 1, 0, 1.
+So that very simple rule will actually give us this alternating bit stream.
+So that gives us the basic idea of what a recursive model of a waveform is
+and how it operates.
+And so now can we take this idea and come up with a recursive channel model?
+And so it turns out that we can.
+And remember, what happens with the recursive channel
+model is that for the thing to be a model of the channel,
+we have to be able to take the input to the channel,
+and then predict what the output of the channel is: y of n.
+And it turns out that this equation here will do that.
+And so this is a recursive equation, because what happens
+is that the value, y of n, depends on the previous value at time n minus one.
+But it's slightly different than what we had before because of the fact
+that we're not just interested in one waveform,
+but we're actually interested in a model of the channel
+where there must be some dependency on the input.
+And so when we look at the input, then we
+can add that in as this term over here, and we
+get this equation that looks like this.
+This diagram down here is really just a graphical way
+of explaining this equation right here.
+What it says is that if I have the input to the channel,
+I do certain operations to it, and then I get the output of the channel.
+So if I look at this equation over here, and I compare to this diagram,
+what is it saying?
+Well, it says that y of n here, which is the output of the channel,
+is the sum of two terms.
+It's the sum of the old output to the channel multiplied by a.
+And so what I can say is, well, if I take the current channel output
+and I delay it by one sample, then in the output of the delay
+here will just be y of n minus one.
+Then I can multiply that by a, and I get the term, that's this one over here,
+and what I need to do then is add that to another term that
+depends on the input to the channel.
+And the input, what I do is I first multiply the input by k,
+and then multiply it by one minus a, and then I
+get these two things adding together to give me the output of the channel.
+And so these parameters then are closely related or exactly, exactly
+related to the parameters of the step response.
+So remember, the step response depended on some parameter,
+k, which gives us the final value, that's this one over here,
+and then the parameter a then controls how quickly the channel changes.
+So remember the parameter a varied between zero and one,
+and for values of zero what it meant was the response to the channel changes
+very, very quickly.
+And when a was very close to one, it changed relatively slowly.
+And so we'll come back and visit that and see how those kinds of things
+happen in the recursive channel model. Especially we'll
+look at the effect of the channel a of the parameter a over here.
+And so this kind of thing, or this system
+here, is not only known as a recursive system,
+but also sometimes it's known as a feedback system,
+because what happens with this system is that there's this pathway here
+where the output goes back and actually influences the next output.
+So the previous output comes back through this path
+over here and then influences what happens in the future.
+And so that's the idea of feedback.
+So let's take a look at an example of this equation in action
+and see how it works, and is it giving us responses like the ones
+that we would expect from the channel that we've been working with?
+So here we have an example of a particular input, x of n.
+So this input here, x of n, is zero for the first two samples,
+then it's one for three values, two, three, and four, and then it goes back down to zero.
+And so what we'd like to be able to do is
+predict what the output of the channel is
+using this recursive equation over here.
+Now we know from our previous understanding of the step response
+that if we break this down into the sum and differences
+of a bunch of step responses, what we'll get
+is, at this point in time over here we'll get an increase.
+So we should expect to see some kind of increasing response over here.
+And then once the channel input drops down,
+then we'll get a decreasing response over here.
+And so we'd like to see, well, does that thing
+happen with the recursive model as well?
+So let's put in some particular values of a and k just
+to make this example concrete.
+So we assume that a is somewhere between zero and one,
+or let's just choose halfway in between, or 1/2.
+And to make things simple, let's set k is equal to one.
+And so if we make these two substitutions into here, what we get
+is that y of n is equal to 1/2 y of n minus one, and then one minus 1/2 of course
+is 1/2, times one is 1/2 times x of n.
+So this is the equation that we have.
+And then what we'd like to be able to do is
+we need to predict the output of the channel,
+and we're going to assume that initially the output of the channel is zero.
+And then we'd like to figure out, well, what's
+the next output, the next output, the next output, and so on.
+And so what the recursive rule tells us is
+that we're going to take half of the previous output, which
+is this thing over here, and half of the current input,
+x of n, which is the value over here.
+So I'm going to take these two values, multiply them by 1/2,
+and then combine them additively by summing them.
+So here I get zero times 1/2 plus zero times 1/2, or zero plus zero.
+So I get zero over here. I do the same thing,
+repeated application of the same rule.
+I get a zero over here, and I get a 1/2 times one, so if I add those two
+together I get a 1/2.
+And I just keep going.
+So I take 1/2 times this, I'll get 1/4.
+And then I'll get 1/2 times one, or that's the same thing as 2/4,
+and so in this case here I'll get 3/4.
+Then I do the same thing when I multiply this by 1/2.
+I get 3/8.
+If I add that to 1/2 over here, 1/2 is the same as 4/8, so I get 3/8 plus 4/8.
+I'll get 7/8.
+And then the input changes at this point here, so I get a zero coming in over here.
+And so all that's going to happen at this point here
+is I'm going to take this and multiply it by 1/2.
+So now I get 7/8 and multiply it by 1/2.
+I get 7/16.
+I do the same thing again.
+The 16 becomes 32, seven over 32, and then finally, at the end, seven divided by 64.
+And so this is exactly the kind of response
+that we would expect from our previous model.
+What we can see is that initially it starts out at zero.
+Once the input changes to one it starts increasing, so I go 1/2,
+then it gets bigger with 3/4, then it gets even bigger 7/8.
+And then once the input changes back down to zero,
+it starts dropping back down towards zero.
+So 7/16, 7/32, 7/64, you can see it's getting smaller and smaller.
+So at least qualitatively, the response that we're
+predicting from the recursive model looks like the same kind of response
+that we would expect from the step response model,
+and we're going to take a look at this and make sure
+that that's actually true in general as we move forward in the future parts.
+But now what I'd like to do then is just conclude
+by taking a look at the equation that we've derived here
+and trying to understand well, what is it about this parameter a?
+How does the parameter a affect the actual behavior of the channel,
+or the behavior of the channel model?
+And so in some sense, what we can imagine
+is that this parameter a is really looking at, or defining, the memory
+in the channel.
+How much does the channel look backwards into the past?
+And so to understand that, we can look at the two limiting cases.
+Remember, the value of a is between zero and one.
+So we can look at the value at a is equal to zero
+and the value at a is equal to one and see what kind of equation that we get,
+and see whether those really reflect this idea of memory of the past.
+And so let's take the first example, when a is equal to zero.
+So when a is equal to zero in this case here,
+it's kind of like we have no memory of the past.
+How can we see that?
+Well, if we stick in a is equal to zero in this equation over here, what we get
+is zero.
+And here, one minus zero will be one, and so all I'll get is k times x of n.
+So what this equation then says is that the output of the channel
+is just equal to the input of the channel.
+Whatever the input is, I'll just follow that, except maybe I'll
+multiply it by some value, k.
+And so in this case here, it really doesn't
+matter what the value of the output was before.
+Whatever the input is, the output just follows that.
+So in this case here, there's no memory of the past.
+On the other hand, let's suppose we set a is equal to one.
+If we set a is equal to one, then what we have is,
+we have in fact what's called infinite memory of the past,
+because now what we're going to do is we're
+going to completely ignore the input.
+And so if we set a is equal to one, then what we get here
+is that y of n minus one, and over here one minus one, will give us zero.
+That would just wipe out the input, and so y of n is equal to y of n minus one.
+In fact, this is exactly the same model of the constant that we had.
+So whatever the past value of y was, it would just hold that value forever.
+It doesn't matter what the current input is.
+It just holds on to whatever was in the past forever.
+And so now then a is somewhere between zero and one.
+And so when it's between zero and one, you can
+imagine you're going to get a case somewhere in between this one
+and this one.
+And so intuitively, perhaps you can think
+of a as being some kind of attraction — maybe attraction to where I am now.
+And so this equation then says, well, if I think about y of n,
+let's say, as being position, let's say the position of my hand — remember,
+maybe we're trying to communicate using my hand moving up and down.
+How do this equation a, or this parameter a,
+describe the motion of my hand?
+Well, suppose I'm transmitting a zero and then I want to transmit a one.
+So suddenly, what will happen is that the input will change to x of n
+will be one.
+So I'll want to move my hand up to here.
+But at every time the actual position of my hand or the height of my hand
+is given by y of n, it's a mixture of two things.
+It's a mixture of my previous height, plus where I want to go,
+x of n, which is this high value over here.
+And so depending on the value of a, if a is equal to one,
+then I just stay where I am.
+I just look at where I am.
+If a is equal to zero, then I immediately go up to this value here.
+And if a is somewhere between there, let's say a is equal to 0.9,
+then 90% I stay close to where I am, but about 10% I move up.
+So that would mean I'd move up a little bit.
+But if a was equal to 0.1, then really I'd
+only weight where I was before by 10%, and I'd weight where I'm going by 90%,
+and so in that case I would move up very, very high, if a was 0.1.
+So the smaller the value of a, then the less
+attracted I am to what I was doing in the past,
+and that means the faster I'll go.
+So again the same idea that we saw before, a
+determines the speed of the response to the channel in the recursive channel
+as well as in the exponential channel.
+And so moving forward what we'll look at is: Can we actually prove
+that these two models, the exponential step response model
+and this recursive model that I've talked about, are really equivalent?

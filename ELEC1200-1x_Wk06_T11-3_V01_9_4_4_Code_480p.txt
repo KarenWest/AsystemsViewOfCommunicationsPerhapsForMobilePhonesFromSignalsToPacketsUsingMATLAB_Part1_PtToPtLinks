@@ -1,0 +1,188 @@
+ 
+[MUSIC PLAYING]
+ 
+So we've seen that we can perform error correction or error
+detection by adding redundant information to our bitstream.
+Let's solidify these ideas by examining how
+can take the 8, 4, 3 code we studied last time
+and extending it to a 9, 4, 4 code.
+Let's start by reviewing the 8, 4, 3 code.
+As you may recall, the 8, 4, 3 code again takes a 4-bit message block
+and adds 4 additional bits, which are computed from that message block,
+to create an 8-bit code word.
+The code word then is transmitted, and the code words
+are differed from each other by a minimum Hamming distance of 3, which
+allowed us to perform 1-bit error correction, or 1- or 2-bit error
+detection.
+Remember that the 4 additional bits were parity bits that
+were computed by looking at each row and column of the rearranged code word,
+and then making sure that each of those had even parity.
+Now, to take this and extend it to the 9, 4,
+4 code, which is going to increase the Hamming distance by 1, what we're
+going to do is add 1 additional parity bit, P5.
+ 
+All of the other 4 parity bits, P1 through P4,
+are going to be computed in exactly the same way.
+What we're going to do is compute so that each of these rows or columns
+have an even parity, and the only difference then
+is that we're going to add this final parity bit,
+P5, that's going to check all of the other parity bits, D1 through D4 and P1
+through P4, to make sure that the whole thing, when I include this final code
+word, has even parity.
+And by doing that, we increase the minimum Hamming distance
+between [INAUDIBLE] code words to 4.
+And that will allow us to do either correcting of 1-bit errors
+and detection of 2-bit errors or detection of 1-, 2-, and 3-bit errors.
+Now, let's take a look at an example of this calculation.
+So suppose we have this 4-bit message block that we want to send.
+What we're going to do is we're going to rearrange that message block into the 2
+by 2 square that we looked at last time.
+And then, again, I'm going to proceed by computing those parity
+bits to make sure that each row and column has even parity.
+So this one already has even parity, so that's going to be a 0 there.
+This one has odd parity, so we're going to add a 1, and so on for the columns
+here.
+Now, to add the final parity bit, what we're going to do is we're going
+to check this, count the number of 1's-- 1, 2, 3, 4, 5--
+and we note that there's an odd number of 1's.
+So to make the whole final code word have even parity,
+we're going to add a parity bit of 1 here so that the whole thing now has
+six 1's, or an even number of 1's.
+Once we've computed all the parity bits, we're
+going to rearrange the whole thing into a single 9-bit code word
+now, where we just added this final parity bit here
+to the end of the code word.
+We're going to then transmit that over our communication channel,
+and there might be bit errors.
+So what we need to do then is check whether or not
+there's any bit errors that occur and see
+if we can correct them if we want to.
+And so in order to do that, we're going to then,
+again, have to compute these things called syndrome bits that
+are going to check each of the parity conditions.
+So again, because the 4 parity bits that we added for the first part
+were exactly the same as the 8, 4, 3 code,
+the syndrome bit checks are going to be exactly the same.
+And we're just going to add 1 additional syndrome bit check to make sure
+that the final parity bit, P5, that condition is satisfied.
+So again, we have three possible code words
+that we might have sent over the channel and received.
+And we're going to then compute the first 2 parity
+bits by checking each of the rows.
+And you can see most of them are 0, except for this one
+here, where we have an odd number of 1's here and an odd number of 1's here.
+We're going to then check along the columns.
+You can see most of them are 0 except for this one
+here, where we have a single 1 here so we need to check that with the parity,
+the syndrome bit as shown down there.
+And then finally, what we're going to do is
+we're going to check this entire 9-bit code
+word to make sure that that has even parity.
+So in this case, here we have 6.
+But here you can see that there's not an even number.
+You can see 1, 2, 3, 4, 5, and here 1, 2, 3, 4, 5, 6, 7.
+So these last 2 have odd numbers of bits received.
+And so this 1 will have 0, and these 2 here
+will have 1 as the final syndrome bit check.
+So now that we've computed the syndrome bits, what we can do then
+is either detect or correct errors.
+So let's look at the process of error correction.
+So for error correction, what we need to do
+is we need to check the syndrome bits and see
+whether any of those syndrome bits are 1.
+Now, if we find out that none of the syndrome bits
+are 1, for example in this case over here,
+then we assume that no errors have occurred during transmission.
+And therefore, the data that we send must be the same as the data that we
+see in this upper block here, 0111.
+In these last two code words here, what we see
+is that some of the syndrome bits are 1.
+And so then that implies that there's some error.
+And in some cases, we can correct them.
+In particular, if we have a 1-bit error, we can correct it.
+And so if this syndrome hit here, S5, is equal to 1,
+then we know that the received code word has odd parity.
+And so if we assume that only 1- or 2-bit errors occur,
+then because the received code word has odd parity when
+it should have had even parity, then we know that a 1-bit error has occurred.
+And in that case then, what we do is we check the remaining syndrome bits
+and perform the error correction just like we did for the 8, 4, 3 code.
+So for example, when we have these two here in this row and this column,
+then we know for a single bit error to account for that,
+it must be this data point here.
+And so therefore, when we correct the data, we'll get a 011,
+and this one was wrong, so this will become a 1 in the corrected data.
+If we only see 1 syndrome bit, for example this 1 here,
+then we know that the error must have occurred in the parity bit.
+And so the corrected data actually does not need to be corrected,
+or the final data doesn't need to be corrected.
+Now, when we've added this additional parity bit,
+then we've increased the Hamming distance to 4.
+And so that allows us then to detect but not correct 2-bit errors.
+How are we going to know then if a 2-bit error occurs?
+Well, if we don't have a situation where this is 1,
+but we still have syndrome bits that are 1 outside of this 1,
+then we know that a 2-bit error has occurred.
+And then we cannot correct a 2-bit error.
+We can really only detect it.
+And so here I show you an example of a case
+where we have some of the syndrome bits being 1,
+but this one here is 0, indicating that an even number of bit errors
+has occurred.
+And so because we can only detect that, what that means
+is that there must be 2 valid code words that go through 2-bit errors
+and give me this received code word.
+And that's why I cannot correct, because I'm kind of equidistant from 2 value
+code words.
+And so for this particular case, what would those two code words be?
+Well, if we look at this, we can see that the syndrome
+bits occur here and here.
+So that suggests then that there must be some error in this region of the code
+word that we can see.
+And so let's take a look at one possible valid code
+word that would have given a received code word
+that looks like this after undergoing 2-bit errors.
+And so you can see here that we have errors
+indicated by these syndrome bits over here.
+And so one possibility is that the corresponding parity
+bits underwent errors.
+So for example, if this one here was originally a 0,
+and this one here was originally a 0, and these two underwent errors,
+then I would get 2 1's over here.
+So that's a 2-bit error.
+But this is a valid code word.
+This original thing that I claim might have been sent is a valid code word.
+And the way you can check that is you can simply look.
+Every row here, every column here, has an even number of 1's.
+And if I look at the total thing here, 1, 2, 3, 4, 5, 6,
+there's an even number of 1's there.
+So we've seen that there's 1 2-bit error that
+could have been introduced from this code word that
+results in this received code word.
+There must be another code word as well which is the reason that we cannot do
+correction.
+And in fact, if we go back and we think about,
+well, when we are doing correction with the 8, 4, 3 code,
+remember that we said, well, when I see 2 syndrome bits here, 1 here
+and here, that suggests there might be an error here.
+And so that does indeed lead us to the other valid code word.
+There might have been an error here.
+But since there must be a 2-bit error, then we
+have to change another bit as well.
+And it turns out that the error must occur, in that case,
+in this one here, which would then give us a 2-bit error.
+And then we can go again and look at this one and say, well,
+this one here is indeed a valid code word because of the fact that if I look
+across each row and each column and the whole thing,
+I have an even number of 1's.
+And so what we've seen then is that we can
+take the original idea of the 8, 4, 3 code where the minimum Hamming
+distance was 3, allowing us to correct 1-bit errors,
+and we can increase its distance to a Hamming distance of 4
+by adding an additional parity bit.
+And that allows us to not only correct 1-bit errors,
+but also detect 1-bit errors.
+Alternatively, we could have detected 1-, 2-, or 3-bit errors.
+And the way we would have done that is just simply check the syndrome bits.
+If any of the syndrome bits are 1, then we know that an error has occurred.
+ 

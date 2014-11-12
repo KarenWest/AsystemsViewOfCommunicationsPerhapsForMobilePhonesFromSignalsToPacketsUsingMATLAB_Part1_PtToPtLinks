@@ -1,0 +1,183 @@
+So in our analysis up to now, what we've seen
+is that we can use pictures to understand
+what is the effect of the changes in the power in the signal,
+the power in the noise, and the threshold.
+And of course, pictures are great for driving
+our intuition and our understanding.
+But as engineers, what we'd like to be able to do
+is to actually assign numbers.
+What exactly do you expect the bit error rate to be?
+What percentage of errors do you expect to see?
+And so in order to do this, using the analysis that we've had,
+we have to compute now areas under that Gaussian curve.
+Unfortunately, if I just try to integrate the Gaussian curve in order
+to compute the area, it turns out that there's
+no closed form solution for that integral.
+And so what we've done as engineers is we've
+defined a function which is just the area under the Gaussian.
+That function is called the Q-function.
+The Q-function is defined for a very particular Gaussian.
+In particular, it's designed for a Gaussian that has zero mean,
+so it's centered here at zero, and it has a spread of one.
+So if I drop down by 60% here and look at that width, that width would be 1.
+Now, when we compute the area, we have to define
+what area we're interested in.
+And so for the Q-function what it does is it
+looks at a particular value of T, which I show over here,
+and it looks for the area under the curve for all v bigger than T.
+In probability, what that would give us is the probability
+that v is bigger than T. The area, then, we're going to call Q of T.
+And that area, of course, will change depending on what the value of T is.
+So if I look at the value of T like this,
+it's going to be relatively small.
+But if I move T over in this direction, what's going to happen
+is that that blue area is going to expand.
+And it's going to get bigger.
+And eventually if I move it far enough over here, all the way
+to minus infinity, I'm going to get the total area of one.
+So I'm going to start out here at minus infinity at a value of one,
+and as I go further and further over here, what's going to happen
+is that blue area is going to decrease down to zero.
+Now, as I said, there's no closed form solution for the Q-function.
+And so what we have to do is we actually have to do this numerically.
+And so there's several ways you can do this.
+For example, there are tables that you can
+look at that will give you the value of the Q-function at particular values.
+And then what you might be able to do is use something like interpolation
+to find the values of the Q-function at other values
+that you might be interested in.
+But now that we have computers and things like that, of course,
+you can use programs.
+For example, MATLAB has a specific function
+which is called qfunc of T which will give you the value of the Q-function at T.
+And so this allows us then to calculate the probability of the Gaussian
+for all values v bigger than T. But there are other things
+that we might also want to calculate as well.
+So for example, we might want to calculate the probability
+that v is less than or equal to T. What that is then
+is the area under the curve for all v less than T
+or this green area over here.
+Now, it turns out that when we're interested in that thing,
+we don't have to compute anything new because we
+know that the total area under that curve is 1.
+And so, therefore, if the area under the blue area is Q of T,
+then the area of the green part must be one minus Q of T.
+And so then that probability then is going to have an opposite behavior than
+Q of T. It's going to start out at zero for minus infinity
+and then go up to one eventually when I get to plus infinity.
+Another particular value of the Q-function
+that you might be interested in is the value of the Q-function at zero.
+When the Q-function is evaluated at zero, we're
+interested when T is exactly here in the center.
+And when we're looking at the value above that thing, what we would get
+is half the value because the other half is over here.
+And so since the total area is one, the value of the Q-function
+there would be 1/2.
+And we can see that right here.
+At T is equal to zero, I get 1/2.
+And of course, the green area would also have area 1/2.
+So when I add those two things together, what I would get is one.
+Now, what we've done then is define the Q-function,
+but the Q-function then makes the specific assumption
+about the mean and the variance of the Gaussian.
+Right?
+It has to have mean zero and variance one.
+But you know for example from our analysis
+before that sometimes we're dealing with means different than zero.
+Because for example, when we're looking at the received signal,
+sometimes it's going to be centered around r_min,
+sometimes it's going to be centered around r_max.
+That corresponds to changes in the mean.
+And the value of the noise or the variance of the noise,
+the power in the noise, might change in different situations.
+And so one might not be a good assumption for that.
+And so what we'd like to be able to do is say, well, that's great,
+but can we extend this to Gaussians with other kinds of distributions
+than just mean zero and standard deviation one?
+And it turns out that fortunately we can do that.
+And so let's take a look at what happens when we change the mean of a Gaussian.
+Well, when we change the mean of a Gaussian,
+remember what happens, suppose we start out here with something that has mean 0
+and variance 1.
+If we change the mean, let's say to a larger value in this case here 2,
+all that happens is we shift the distribution function, the probability
+density function, over by two units.
+Now, it turns out that when I calculate the area then,
+all that's going to happen is that the Q-function here
+is just going to similarly shift over by two units.
+It's easiest to see that, for example, if we look at the value
+here at two, at the value here at two what we've done
+is we've split the probability density function into two equal halves
+so the value at two should be 1/2.
+And if I go down here look at the value two,
+indeed I get 1/2 for this curve over here.
+So changes in the mean then are just going
+to cause changes in the Q-function that
+shift it to the left and the right by the mean.
+What about changes in the variance?
+Here I show you two curves, same mean, in this case here, both have mean 0.
+This has variance one, the blue curve, which
+will give us the original Q-function.
+And if I change the variance, remember what's happening
+is I'm taking that hill and I'm spreading it out.
+Right?
+So remember, the total area here still has to be one.
+And so if I look at zero, what's going to happen
+is I'm going to still get half of the stuff above zero.
+So for this curve here, the area under that curve for y greater than 0
+is still going to be 1/2, which is given by this.
+But if I move to larger values here, you can see clearly
+that the area for this value here under the green curve
+is going to be larger than for the blue curve.
+And so that corresponds to something that looks like this.
+So that's going to push this blue curve up.
+And similarly, it's going to push the blue curve down
+to meet the green curve like this.
+And so I can take that into account by dividing by sigma.
+So if I divide by sigma, I divide this thing by 2 for example in this case
+here, that's going to put a smaller value inside here
+corresponding to a larger value of the Q-function.
+That's going to cause this thing to shift like this.
+So that tells us then that given that one Q-function, even
+if I have a Gaussian with a different mean
+or a Gaussian with a different standard deviation
+or variance, I can still use that exact same Q-function,
+and either shift it or scale it in order to get the probability.
+And of course, if I have a more general case where
+I have something where I shift both the mean and change the variance,
+it turns out that I can combine those two effects
+by combining the equation by both shifting by the mean by subtracting m_y
+and then adjusting for the various by dividing by sigma_y.
+So what this means then is that given the Q-function
+I can compute the probability for any Gaussian.
+Now, let's take that idea and apply that to the bit error rate calculations
+that we had before.
+So remember, we had to split the analysis into two cases,
+one when the input was equal to zero, in that case
+we're looking for P_e0 and the other case when the input is one.
+And so when the input is 0, there's an error if the output is 1.
+And that occurs when the noise pushes the signal above T.
+And so now because this thing is a Gaussian, right,
+with a particular mean, r_min, and a variance, sigma,
+it turns out that we can calculate this value of the area under the curve
+bigger than T just by using the Q-function where
+I've shifted or accounted for the shift in the mean by subtracting r_min.
+And I've accounted for the change in the variance by dividing by sigma.
+Now, on the other hand, if IN is equal to 1,
+there's an error if I push the received signal below T. Right?
+So now, in this case, we're not interested in when y is bigger than T,
+but when y is smaller than T. But remember,
+we can handle this thing just by taking 1 minus the Q-function.
+So if I take 1 minus the Q-function, accounting
+for the shift in the mean to r_max and the change in the standard deviation,
+I get this expression down here.
+And so this then using something like MATLAB or tables
+allows us, given particular values of r_min and r_max and power in the noise,
+to calculate the values of P_e0 and P_e1.
+And then finally, what we can do is we can combine those two quantities
+into an expression for the final bit error rate.
+And so remember, if the input bits are equally likely to be 0 and 1,
+it's simply the average between P_e0 and P_e1.
+And by combining those two expressions that I just derived in that equation
+here, we get an expression that we can use to actually compute or predict
+numerically what the bit error rate is going to be.

@@ -1,0 +1,17 @@
+﻿tx_msg = 'Hi';  % message to transmit
+SPB = 10;       % bit time in samples per bit
+
+% transmitter %
+tx_bs = text2bitseq(tx_msg);           % change text message to bit sequence
+tx_wave = bitseq2waveform(tx_bs,SPB);  % change bit sequence to waveform
+
+% channel %
+rx_wave = txrx_lab01(tx_wave,SPB);     % transmit waveform through channel
+
+% receiver %
+rx_bs = waveform2bitseq(rx_wave,SPB);  % change waveform to bit sequence 
+rx_msg = bitseq2text(rx_bs);           % change bit sequence to text message
+
+diagram_lab01(tx_bs,tx_wave,rx_wave,rx_bs,SPB);  % generate plots
+display_lab01(tx_msg,rx_msg);                    % display text messages   
+      

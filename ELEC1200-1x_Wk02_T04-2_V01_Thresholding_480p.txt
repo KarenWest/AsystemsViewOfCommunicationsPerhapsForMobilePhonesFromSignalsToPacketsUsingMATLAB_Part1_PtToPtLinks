@@ -1,0 +1,235 @@
+ 
+Let's talk about one of the important operations
+that we're going to use in doing the decoding process.
+Here, I show you an example of received waveform, which
+is transitioning from a low value c, when we're transmitting zero,
+up to a high value c plus k, when we're transmitting a one.
+And this suggests a very simple way of trying to recover the original bits.
+We're simply going to compare the received samples with a threshold, T,
+which I show in this red line over here.
+And so if I do that comparison, I can create a new waveform,
+b of n, which is going to be one if the received signal shown in black
+is higher than the threshold, and it's going
+to be zero if it's lower than the threshold.
+And so if I look at this b waveform, this
+looks very similar to what we were transmitting,
+except it's going to be slightly different because you remember
+when we were transmitting the signal, the original transmitted signal was a one
+in this region here.
+But now, for b of n, it's equal to zero.
+So it's not quite the same, but it looks pretty close,
+so it seems like a good idea.
+And so then the question is, well, how should we
+choose the value of this threshold when we do the comparison?
+And it seems like an intuitively good idea
+if we choose it somewhere halfway between this value of c
+and the high value of c plus k, and that would
+imply that we would choose the value of threshold
+here to be c plus k divided by two.
+But then that implies that in order for us to choose that threshold,
+we need to know the values of c and k.
+Now, unfortunately, these may change over time.
+So for example, what are the physical analogs of c and k?
+Well, let's just think about the communication system that I talked
+about, where I'm using my hand to transmit information-- zeros and ones.
+And so in that case, the value of c and c plus k are the levels of my hand
+when I'm down here transmitting a zero and transmitting a one.
+And if I got closer or farther from the screen
+and I'm keeping the same distance, then what you can see
+is that as I do that, the difference between my hand position on the screen
+actually changes.
+And in fact, that's going to happen in a real wireless communication system.
+As you're closer to the transmitter, the difference between c and c plus k
+may get bigger.
+And as you're farther from the transmitter,
+that thing will get smaller.
+And there may be changes in the actual value of c as well.
+And so those things are going to change over time,
+and we need some way, then, to automatically identify those.
+And this, then, introduces one aspect of the protocol,
+which is the training sequence.
+The training sequence is something that we as the transmitter and receiver
+agree that the transmitter will regularly
+send this training sequence, which is going to help the receiver
+to figure out what the values of c and k are.
+So the choice of the training sequence is completely up to us.
+We can choose it to be whatever we want that's going
+to make our job of identifying c and k easier.
+And so, in this class, we're going to look at a very, very simple training
+sequence that captures the main ideas.
+Now, modern wireless communications use much more complex training sequences,
+but the basic idea of the training sequence is going to be the same.
+So what are we going to use?
+Well, what we're going to use is something that looks like this waveform
+down here, the blue waveform.
+And that simply consists of 500 microseconds of zero,
+followed by 500 microseconds of one, followed by 500 microseconds of zero
+again.
+And if we assume that our sample frequency is one megahertz,
+then that training sequence consists of 500 samples here, 500 examples here,
+and 500 samples over here.
+And so we've chosen this thing so that we get this nice response over here
+where you got a long period that's very close to c, and a long period
+here that's very close to c plus k.
+And that suggests, then, that if we are sending that training sequence,
+we can just look for the lowest value of the waveform
+and the highest value of the waveform, and that
+gives us good estimates of c, and c plus k.
+And then we can just estimate k by the difference between these two.
+So then the question is, well, why did we choose 500 microseconds over here?
+Why didn't we choose something shorter or something longer?
+And that brings up a trade-off in the choice of that actual length
+or width of the training sequence.
+And so, in this case here, the trade-off is
+going to be between choosing something short or choosing something long.
+Now, both of those are going to be good.
+So why would a shorter pulse width be good?
+Well, remember, when we're sending the training sequence,
+we're not transmitting any new information.
+This is just something we already agree that we're just
+going to regularly send to help
+you identify the channel.
+So there's no new information being sent.
+So to some extent, from the point of view of information transmission,
+this is kind of a waste of time.
+And so we'd like to waste as little time as possible,
+and so we don't want to spend too much time sending this,
+so we'd like this thing to be as short as possible.
+But what would happen if this is actually too short?
+Or why would we want to make this thing a little bit longer?
+Well, if you make this thing too short, what's going to happen
+is that the channel is not going to have enough time
+to reach either the maximum value or the minimum value over there.
+And so that's going to mean that, well, if we actually
+look at the maximum and the minimum, which is a very easy way
+to try to estimate those parameters, then it's
+not going to give us a very, very good estimate.
+And so that suggests that we want to make
+these things at least long enough.
+We don't want to make it too long because we don't want to waste time,
+but we want to make it long enough so that we
+get good estimates of the maximum and the minimum value.
+And so how can we use our understanding of the channel
+to actually make a good selection of the length of the training sequence?
+Well, remember, what do we know about the channel?
+Well, the information that we assumed about the channel
+was that it was linear and time invariant,
+and it had this particular stop response, s of n,
+which had this exponential characteristic over here that
+depends on this parameter, a.
+And remember, a was this thing that determined how quickly the channel was
+able to transition from the low value up to the high value.
+Now, that value of a can change, but typically, it's
+not going to change as quickly as the values of c and k will.
+For example, let's go back to that idea of my transmission
+where I'm using my hand at this level here to transmit a zero,
+and this level here to transmit a one, and I'm
+moving back and forth between those two.
+Then you remember the values of c and k, or the difference between these two,
+or the difference between those two values as you see them on the screen,
+and we talked about before-- is that as I
+move closer or farther from the screen, the actual distance between what
+you see on the screen between my hand is going to change.
+On the other hand, what's going to determine the value of a?
+Well, a, remember, is determining how quickly
+I can move this thing up and down, and that's
+going to depend on things like the way my brain is sending
+signals to my muscles and the actual parameters in my muscles,
+and that's not really going to change over the same time scale
+as the values of c and k would, assuming that I'm walking around this room.
+So the same kind of idea is going to be true in a wireless communication
+system.
+If you're walking around with your mobile phone,
+you're getting closer and farther from the transmitter.
+And so, in that case, what's going to happen
+is that the values of c and k you have are going to be bigger,
+or at least the differences between those values of c and c plus k
+are going to be bigger or smaller, depending
+on whether you're closer or farther from the transmitter.
+So if you're closer to the transmitter, those values are going to be larger.
+And if you're farther from the transmitter,
+then those values are going to be-- the difference between those two values
+is going to be smaller.
+So those things will change quickly, but a won't change that quickly.
+And so we can assume that we have a pretty good estimate of what a is,
+or it won't change by that much.
+And so then the question is, well, if I have a good guess of a,
+how should I choose the pulse width?
+In particular, if I have a large value of a,
+should I choose the pulse width longer, or should I choose it to be shorter?
+And so remember, a is determining how quickly this moves up.
+And I told you before that the larger the value of a is,
+the slower this thing goes up.
+And so that kind of suggests then that larger values of a
+should require slower or longer pulse widths over here.
+So to make that more concrete and see how we can use the mathematics
+to actually obtain a concrete estimate of the pulse width,
+let's take a look at a numerical example.
+So suppose we're in this situation.
+Our input is something like this, which is, in this picture here,
+shown as a step input.
+But this is kind of-- you can think of as the first part of that pulse
+that we're going to send.
+And what we'd like to have is to  choose that our pulse width is long
+enough such that this response from the channel
+has enough time to reach somewhere close to the final value of c plus k.
+You can see the final values here, and it's going to take a while.
+And in fact, it will take an infinite amount of time
+for it to actually reach that exact value.
+But within some finite amount of time, it gets pretty close.
+So we need to define what we mean by close.
+And so in this case here, what we're going
+to say is, well, it's going to be close, or close enough,
+if this value-- the black value-- is higher than, let's say,
+90% of the difference, or it exceeds c plus 0.9 times k.
+And if it's there, then we say that's good enough.
+It's close enough to c plus k, and so we're just
+going to use that value instead of the actual value.
+And so then, the question is, well, how do I know that it's there?
+And so that means that the pulse width, then,
+has to be somewhere beyond this point over here.
+The pulse width has to come back down somewhere after this point
+here so that we can actually get the high value over here.
+So how can we come up with a mathematical expression, or a rule,
+that allows us to explicitly say how big W has to be?
+Well, let's take a look at our mathematical formulas
+and see if it can give us an answer to that.
+So let's assume that the pulse width is W samples.
+Then say, well, if that's true, then we know
+that the pulse will look like something like this
+and then after a while will come down.
+And the maximum value of the response to the pulse
+will occur, actually, at the end, right before it makes the transition down.
+So we know the maximum value has this expression over here,
+and we want that maximum value to be bigger than this threshold value of c
+plus 0.9k.
+And so if we simply substitute that maximum value over there
+into this expression over here, we get this one
+over here, which I've replicated at this point here.
+And then we can go through some fairly simple mathematical derivations shown
+in order to get a final expression that tells us how we can choose W.
+Perhaps the only tricky part of this mathematical derivation
+was that we have this switch in the direction of the inequality shown over
+here, from greater than to less than.
+And that's really because we divided through by log of a.
+Because a is between zero and one, log of a is less than zero.
+And so when I divide through by a negative number,
+I need to switch the direction of that inequality.
+In any event, we get this final expression here
+that gives us a lower bound on W.
+In other words, W has to be big enough, or bigger than this value
+here, where this value here, then, as we expected, depends on a.
+And so, let's just check this one by looking
+at a simple numerical example where we set values of c and k
+and see whether or not we get the right answer.
+So in this case, I set c, the low value, to be 0.15, k to be 0.75.
+So the high value c plus k, or 0.9.
+That threshold value is 0.825.
+And if I just look at the graph, and this is the response
+that I would predict from this thing, you can see that the value of W
+should be somewhere where the black points are bigger than the red points--
+so somewhere out here, which seems to be occurring somewhere around 20 samples.
+And so if we actually go back and stick those numbers-- in particular,
+we only really need the value of a inside there, a is equal to 0.9
+into this expression here, we indeed get a value of 20.85
+as what we would expect from the diagram.

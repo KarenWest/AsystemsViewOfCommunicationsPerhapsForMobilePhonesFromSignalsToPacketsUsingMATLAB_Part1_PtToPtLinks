@@ -1,0 +1,278 @@
+ 
+What we'd like to do now then is understand
+in more detail the phenomenon that we saw
+in the last part, where we saw that as the bit time starts decreasing,
+what we see is that we see some cases in which the bit does not
+have enough time either to go above or below the threshold
+when the input bit is actually a one or zero.
+And so now what we'd like to be able to do is to understand
+what are the cases in which that actually might happen?
+And what determines those?
+And so let's take a look at, for example,
+the case where we're interested in trying to decode a zero bit.
+And so in this case here I show you the response of the channel to a zero bit.
+And the key difference between all of these plots going from top to bottom
+is that what happens in the bit stream before the zero bit is different.
+So you see here, the input is shown in blue.
+And you can see in this case here, the input is all zero here,
+so the bit sequence that was transmitted is 0000.
+Here it was 0010.
+So you can see 0, 0, 1, 0, and so on.
+And what I show you then is the response of the channel in black.
+And then the part of the response of the channel that's due to this zero bit
+here, the last zero bit here, is shown in green over here.
+And so then the question then is, well, these
+are all kinds of possible past histories of that zero bit, at least
+looking back three bits.
+And what we'd like to know then is, how many different kinds of responses
+do we see to that zero bit?
+And so let's just look through each of these and try to call them, let's say,
+response zero, one, two, three or something like that.
+Give it a name every time we see a different kind of response.
+So let's take a look at this one here.
+And look at the green segment over here, and we
+see that it's quite flat down at zero.
+So let's just call that response to the zero bit Response 0.
+Now let's go down here and take a look at this.
+So this is also a response to a zero bit,
+but you can see here the channel response shown in green is different.
+It starts over here and starts coming back down like that.
+And so this is obviously different than this one over here.
+And so let's give that a different name then.
+We'll call that Response 1.
+Now let's take a look at this one here.
+And we can see that well, this one pretty much stays flat at zero.
+And if I compare this one and this one, there's a slight difference.
+But they look pretty much the same.
+And so let's call this one Response 0 again.
+Now this one over here, what we can see is
+that this one looks quite similar to this one.
+So let's call that one Response 1.
+And then this one here, quite similar to the first one.
+So Response 0.
+This one Response 1.
+Response 0, and then Response 1.
+So you can see in this case here, even though this is the same zero bit,
+we see two different types of responses to that zero bit.
+Now what happens as we decrease the bit time?
+So let's look over here on this side.
+And what we've done is we see exactly the same bit sequences.
+Now what happened is the bit time which used
+to be this long is now shortened to be something like this long over here.
+But the responses of the channel change,
+but the inputs are exactly the same.
+So you can see here I get 0010.
+Here also, I get 0010.
+It's just shorter.
+So again, what I've done is I've shown you
+the response of the channel in black.
+And then the response to the zero bit in green, as you can see over there.
+And so now let's do the same kind of exercise,
+and let's count how many different responses that we see.
+So if I took a look at this one here.
+We can say well, that's the first response.
+And I'll call it Response 0.
+And what I'm going to do here is I'm going
+to use binary notation to indicate zero, one, two, and three.
+And we'll see what the reason for that a little bit later on.
+So this is Response 0,
+or 0 0.
+This one over here, you can see is this kind
+of decaying thing looks somewhat similar to what we saw over there.
+Not quite the same, but we're going to call that Response 1, or in binary,
+0 1.
+And now let's take a look at this response over here.
+And what we can see with this response over here
+is that this one here is quite flat, but it's actually not as flat
+as this one over here was.
+Right?
+You can see that there's a little bit of increase over here away from zero,
+before it starts decaying.
+So let's call that a new response then.
+We'll call that Response 2, which in binary is then 1 0.
+How about this one over here?
+This one here looks somewhat similar to this one over here.
+But you can see that this one here kind of started
+somewhere around, let's say, 80% or something like that.
+But here this one is actually much higher than that.
+Maybe somewhere close to 90% or something like that.
+And you can see then that this response and this response,
+even though they're close, are still somewhat different.
+And so those we'll say are different enough that we'll call it a new thing.
+So we'll call that Response 3, which in binary is 1 1.
+Now let's take a look at this response over here,
+and we can see that this one here is quite flat.
+Very much similar to this one over here, so let's call this one again then
+Response 0 0.
+This response over here, if I compare it to this one here,
+or this one here, which it is the most similar to,
+you can see it's not quite as high as this one over here.
+The height is more similar to this one over here.
+So let's call it the same response as that one, which was Response 1.
+This one over here, quite similar to either this one here this one here.
+But we can see that perhaps the height here is a little bit higher
+than the one, for example, that we see here and here.
+And so let's call that one then Response 2, which in binary is 1 0.
+And finally this one over here, if we take a look at this one
+here and compare it.
+This one here quite high, especially in comparison
+to these two over here, which we called Response 1.
+And so let's say well, it's more similar to this one here, Response 3,
+which is 1 1.
+Now you can see that what happens as we decrease the bit time,
+so we have exactly the same bit sequences,
+the only difference now is that we've decreased the bit time from something
+like this to something shorter like this,
+we see more different types of responses.
+In this case here, we saw two different responses, let's say zero and one.
+In this case over here, we saw four different responses.
+zero, one, two, and three.
+So what determines what kind of response that we see?
+Well it turns out in fact, what determines
+the response is what happened in the past.
+So if I look at all of these response zeros over here, one, two, three, four.
+All of these response zeros over here, what
+you can see is that immediately preceding this Response 0 is another zero.
+And for Response 1, you can see that the bit immediately preceding Response 1
+was in fact a one.
+ 
+And so what we can see there is that the bit immediately preceding
+the current bit now is somehow affecting the response that we see.
+And then what happened as we shortened the bit time?
+As we shortened the bit time, we saw that there
+was a wider variety of different kinds of responses.
+Now in this case, four different responses.
+And what happens now is not just the immediately past bit
+is affecting the response now, but in fact the past two bits
+are responsible for affecting the response of the channel.
+And so now we can see here, for in this case
+here, when we have  Response 0 0, in this case here
+and this case here, you can see that the immediate two proceeding
+bits were in fact 0 0.
+In fact, that's why we use binary notation for that.
+And so if we look here for Response 1 for these two cases here,
+we can see that the immediate two bits preceding that would be 0 1,
+and 0 1 over here.
+And similarly for  Response 1 0 or Response 2,
+we can see that this preceding that would be 1 0 over here,
+and 1 0 over here.
+And for Response 3, 1 1, and 1 1 over here.
+And you can imagine that as we keep on further decreasing the bit time, what
+imagine you'd see is that you'd see more and more different
+type of responses.
+And that's because of the fact that more and more previous bits then,
+are somehow influencing the channel.
+And so this type of phenomenon then we give a special name.
+It's known as intersymbol interference.
+And so the idea then is that the response to a zero
+bit as we saw before, or you can do a similar analysis for one bits,
+looks very similar, so we won't show it here.
+The response to a zero or one bit depends on the bits that were transmitted before that.
+And really the reason for that is that the amount
+of time it takes for the channel to respond to a change in the channel.
+And that's really determined by the step response of the channel.
+And so because of that time that it takes to respond, different amounts of bit's
+will influence the current bits response.
+And the shorter the bit time, the more bits I
+can fit in a particular amount of time, then
+the more bits are going to influence that.
+And so we call this an intersymbol interference, where the idea then
+is that a bit is then some kind of a symbol.
+A symbol usually corresponds to some kind of a discrete entity,
+like a zero or one.
+So then what we saw then is that the smaller the bit
+time measured in terms of samples per bit, in comparison with the time
+it takes for the channel to respond to the transition, the more the ISI.
+In other words, the more differences in the variety of responses that we see.
+So then what we'd like to know then is well,
+how many bits then influence the current bit?
+And that then, as I said, depends on how long it takes the channel to respond.
+And so we can measure the amount of time it takes to respond for a channel
+by a number which is known as the settling time.
+So the settling time measures how long it takes the channel
+to reach 90% of its final value.
+So remember for the exponential step response that we were talking about,
+the final value is called k, and in fact it
+takes an infinite amount of time for the channel to reach that final value of k,
+because of that exponential response.
+So we can never talk about the settling time
+as being the time it takes for the channel to actually reach
+its final value, but only to become close enough to its final value.
+And so when we say close enough, the convention that we normally use
+is it has to reach within 90% of its final value.
+And we're going to call that time at which it reaches
+90% of its final value as the settling time, ns.
+And so then to calculate that using the equations that we've
+talked about before, we simply say well, the step response at time ns
+should equal 90% of its final value, k.
+We substitute in the expression for the step response that we saw before,
+and this is the unit step, which is one for all positive values.
+And we know that ns should be a positive value.
+So this is then one.
+So we can eliminate that.
+Divide both sides by k to get this expression over here.
+And then do some straightforward algebraic manipulations in order
+to get this final value over here, that tells us
+how the settling time depends on the final value,
+or the value of the channel a.
+And so in fact what happens is that the larger the value of a
+is, then the larger the value of ns is.
+And so we can see here, two cases here, one where a is equal to 0.75.
+And another case here where a is equal to 0.85.
+A larger value of a.
+And you can see that the settling time, the time
+it takes to reach 90% of its value, has moved out from this location over here,
+down to this location over here.
+In particular from seven to somewhere around 13.2, as calculated by the equation
+that we saw down there.
+And so the settling time then gives us an idea of how many samples
+it takes for the channel to reach pretty much its final value.
+And so that tells us how long it takes a channel to respond.
+And depending on how many bits fall inside that settling time,
+the greater the amount of the ISI.
+So this settling time is fixed by the channel then,
+and then the bit time then can change depending
+on how quickly you're transmitting bits.
+And so the smaller the bit time then, the more bits
+fit inside this settling time, and the more the ISI that we get.
+And so of course, what we'd like to be able to do
+is minimize ISI, so that we get as little interference
+between adjacent symbols as possible.
+That makes the channel response more predictable.
+It becomes basically either something very close to zero,
+or something very close to k, or when we had the offset between c and c plus k.
+In any event, how can we actually minimize that intersymbol interference?
+Well there's really two ways that we can try to do that.
+One is that we can try to make that settling
+time that we talked about shorter.
+Now that's generally going to be difficult because of the fact
+that that really depends on the physical characteristics of the channel.
+For example, when I was talking about the channel
+where I'm moving my hand up and down, remember
+that the amount of time it takes for my hand to move up and down
+depends on things like my muscles, my brain's pathways going
+to drive my muscles, and those things are generally hard to change.
+In wireless communication systems, that corresponds to electronics,
+if I'm talking about acoustic communication
+for example, if I'm in a lecture hall, then the response
+of the lecture hall to my voice then depends
+on things like the room acoustics.
+That's why for example, in a small room, my voice might sound differently
+than my voice when I'm in a large room.
+And so this kind of thing is generally difficult to change,
+but if we can do it for example, we build a new chip
+to put inside our mobile phone, we can try
+to minimize the ISI by this kind of pathway.
+So really, if this is fixed, right?
+Because we have an existing channel.
+Really then the only way that we can do this, so far that we can think of,
+is to make the bit time longer.
+In other words, increase the SPB.
+And so what that means is that as the bit time gets longer,
+then if we have a fixed settling time, if the bit time is long enough,
+then only a few or maybe just only one of the bits
+will actually influence the current response of the channel
+to the current bit.
+And so what we'd like to be able to do then is come up with a way
+then of visualizing the effect of the ISI.
+And that's what we're going to talk about next.

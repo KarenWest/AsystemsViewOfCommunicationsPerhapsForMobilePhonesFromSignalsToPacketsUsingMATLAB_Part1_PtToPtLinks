@@ -1,0 +1,175 @@
+ 
+So now that we've derived the equation for the equalizer,
+let's take a look at its effect on the channel output.
+So let's review our communication sequence, including the protocol,
+and see where the equalizer fits in.
+So we take our input bit sequence, we take that bit sequence and chunk it
+into a bunch of frames.
+For each frame, we add start and stop bits to the beginning and the end.
+We then take the sequence of frames that we have
+and then encode them into a waveform by holding
+our physical value constant for each bit for a certain amount of time, which
+we express in terms of samples per bit, or SPB.
+We then add the training sequence and then send that whole thing
+through the channel.
+The receiver receives that and then looks at the received training sequence
+and figures out what the threshold should be.
+It then finds the start bit and then does the decoding process
+by comparing the level of the channel output
+with a particular threshold to get a final bitstream.
+And so if it does that, then it's going to be
+looking at a channel whose output has this eye diagram.
+And so if I take the level of the output and compare that with a threshold,
+then you can see that that's going to be a little bit
+difficult, because the eye is closed.
+Instead, what we can do is we can take the output,
+here, pass it through the channel equalizer,
+that will then open that eye, giving us an eye diagram like this.
+And if we take this channel output, and we
+can see, if we compare that with the threshold,
+we'll have a much easier time distinguishing
+between a one-bit and a zero-bit.
+And so now let's take a look at what's the effect of the equalizer
+by comparing the eye diagram without equalization,
+as shown here, with the eye diagram with the equalization, shown down here,
+for a variety of different cases.
+And so one of the things that we're going to be concerned with
+is what if our assumption about the channel, which we show here,
+is not exactly correct.
+In other words, what might happen is that even though I think
+the channel has this value of a, or in other words,
+it's changing with a certain speed, in fact, that's not the case.
+So, ideally, we'd like to say that the value for a that
+we use in the equalizer should be exactly the same as that we
+use in the channel, but that might not be the case.
+For example, we might have identified that value of a incorrectly,
+or the value of a might have changed since the last time we estimated it,
+and so the assumption is not going to be valid.
+An equivalent thing might happen for k as well.
+So we assume a particular value of k, here, and we use that in the equalizer,
+but those two things might be different as well.
+Now, it turns out that the effect of k is not really that significant.
+All k is really going to do is it's going to affect the scaling,
+and so that's just going to take this eye diagram, here, not really change
+its shape that much, just opening, close a little bit more,
+but the general transitions and the shape
+that we see here is going to basically be the same.
+So the key difference, then, is going to be
+if we incorrectly estimate the value of a.
+And so we'll take a look at the effect of that,
+as well as the effect of adding noise during channel transmission
+and what that will do to the equalizer.
+But let's start out by assuming that we've done our job ideally.
+In other words, we've estimated the a used by the channel
+exactly so that we can use that in the equalizer.
+And in that case, if there's also no noise, then what we have is
+we have a perfect situation.
+And so for different values of the samples per bit, or the bit
+time, what's going to happen is that without equalization for very, very
+long bit times, we're going to have a relatively open eye,
+and then as the bit time gets shorter and shorter, as shown over here,
+that eye is then going to start to close.
+But then if we actually apply the equalizer,
+we can undo the effect of the channel.
+And now you can see for all of these different bit times, what we have is
+we have a nice wide open eye.
+And so if we compare with the threshold here,
+here, or here, we'll be able to get very, very nice, clean decodings.
+But you can see in this case, here, the eye is completely closed.
+If we compare with the threshold, here, we're going to get a lot of bit errors.
+Now that's an ideal situation where we've
+assumed that we've been able to precisely identify the a of the channel
+and use that in our equalizer.
+We might not be able to do that, and so in some cases they could be different.
+And so we can look at two different cases.
+The first one we'll look at is the case where
+the a that we assume in the equalizer is larger than the a used by the channel.
+Physically, what does that mean?
+Well, if the a used by the channel is smaller
+than what we assume in the equalizer, then
+it means that our assumption is that the channel is actually moving slower
+than the actual channel, because, remember, the larger the value of a is,
+the slower the channel moves.
+So if we assume this value of a is bigger than the actual value,
+then we're assuming the channel is moving slower.
+And so remember, when the channel is moving slow, the level of the channel
+is not as reliable, and we're really going
+to look at the changes in the channel.
+And now if we assume that it's moving slower than it actually is, then
+what's going to happen is we're going to overemphasize those changes.
+And so let's see whether or not that's reflected in the actual eye diagrams.
+So these are showing the eye diagrams of the channel without equalization.
+And these are the same as what we've seen before,
+but now we're going to assume that we've misidentified the channel.
+We were using a larger value of the equalization shown over here,
+and what we can see, then, is that the eye is still open.
+But we can see that it's not quite the same as the input.
+It doesn't look like the same nice square patterns over here,
+but we have a slightly bigger value over here.
+Now why is that?
+That's because of the fact that we're overemphasizing those changes.
+And so we're looking at the changes, here, and amplifying those.
+And that's going to cause a bigger change, especially
+at these initial starting points over here.
+And that's reflected in all of these things over here.
+We can also examine the converse situation,
+where we assume that the a that we use in the equalizer is smaller than the a
+that we used in the channel.
+In other words, we're assuming that the channel
+is moving faster than it actually is.
+And so in that case, we're kind of not going to rely on the changes
+as much as we should.
+And so what's going to happen is that the effect without equalization,
+again, is going to be the same, because we
+were assuming same channel parameters.
+But when we apply the equalizer, we're not
+going to apply enough dependency or enough weighting on the changes.
+And so what that's going to do is it's going to open the eye,
+but it's not going to open the eye by as much as it did before.
+You can see that especially clearly in this case down here, where
+we see that the eye was completely closed.
+Over here, we can see that the eye is a little bit opened but not as much as we
+saw in the previous slide.
+Finally, let's assume that we identified the a of the channel correctly,
+and we used that in our equalizer, but there's
+some noise present in the channel.
+What happens in that case?
+Well, when we have noise in the channel, what we'll observe without equalization
+is something like this.
+It looks like the previous eye diagrams that we had before,
+but you can see that these individual curves, here,
+look a little bit blurrier or a little bit noisier, that's
+because of the fact that there's noise in the channel.
+So that's going to widen these traces over here.
+Now if we apply the equalizer to this, we
+get an eye diagram that looks like this.
+ 
+We see very, very clean or sharp transitions over here,
+but at the same time, this line that looks like this, over here,
+is now much wider.
+And so, in fact, this, I would claim, is a bad situation,
+because what we originally had was an eye that
+had this nice height that we see over here.
+But now, if we look over here, the height of the eye
+is actually shrunk, down here.
+And so I claim, then, that in this case here, we actually have a smaller eye.
+And so in that case, we actually have a situation
+where the decoding would actually be worse by applying the equalizer
+than it was without the equalizer.
+So in summary, then, what we've done is we've
+used the model of the relationship between the channel
+input and the channel output to develop the equalizer that
+undoes the effect of the channel.
+We've seen that in some cases this will take an eye, which is originally closed,
+and then open it.
+The equalizer works even if we don't correctly
+identify the a in the channel, which is determining
+how quickly the channel changes.
+It doesn't work as well if we don't identify it correctly,
+but it still, to some extent, opens the eye.
+However, in the presence of noise, this equalizer
+can cause some trouble, because it can magnify the effect of the noise,
+as we saw in the previous slide.
+And so that means that we have to be a little bit careful when
+applying the equalizer, but a detailed analysis
+of that we'll leave to more advanced classes in the ECE curriculum.

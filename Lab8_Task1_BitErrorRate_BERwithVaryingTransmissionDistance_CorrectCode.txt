@@ -1,0 +1,49 @@
+﻿SPB = 50;                           % bit time in samples
+tx_bs = rand(1,1280)>0.5;           % generate a random bit sequence
+tx_wave = format_bitseq(tx_bs,SPB); % create waveform following protocol
+
+distance_list = [8:2:50];           % list of transmission distances
+num_dist = length(distance_list);
+empirical_BER = zeros(1,num_dist);  % initialize storage arrays
+predicted_BER = zeros(1,num_dist);
+SNR = zeros(1,num_dist);
+
+% loop over transmission at different distances
+for i = 1:num_dist,
+    distance = distance_list(i);
+    % transmit and receive over noisy channel
+    [rx_wave, start_ind, rx_min, rx_max, sigma] = txrx_lab07(tx_wave,distance);
+    thresh = 0.5*(rx_max+rx_min);                % set the optimal threshold
+    sample_ind = start_ind+2*SPB-1+SPB*[0:1279]; % set subsampling points
+    decoded_bs = rx_wave(sample_ind) > thresh;   % decode bit stream
+    empirical_BER(i) = compute_BER(tx_bs,decoded_bs);  % compute BER
+
+    % Add your code below to
+    % 1. Compute the values of predicted_BER 
+    % 2. Compute the values of SNR 
+    % from the values of rx_min, rx_max and sigma returned by txrx_lab07
+    probError_INzero = qfunc((thresh - rx_min)/sigma);
+    probError_INone = 1 - qfunc((thresh - rx_max)/sigma);
+    predicted_BER(i) = (probError_INzero + probError_INone)/2; %1&0 bits equally likely so *.5
+    SNR(i) = 10 * log10( ((rx_max - rx_min)^2)/(4*(sigma^2)) )
+
+end
+
+% display the results
+subplot(2,1,1)
+plot(distance_list,predicted_BER,'r','LineWidth',2);
+hold on;
+plot(distance_list,empirical_BER,'bx','LineWidth',2);
+hold off;
+axis([0 50 0 0.5]);
+legend('predicted BER','empirical BER','Location','southeast');
+title('BER as a function of distance');
+ylabel('BER');
+grid;
+subplot(2,1,2)
+plot(distance_list,SNR,'r','LineWidth',2)
+title('SNR as a function of distance');
+ylabel('SNR (dB)');
+xlabel('distance');
+axis([0 50 -20 20]);
+grid;

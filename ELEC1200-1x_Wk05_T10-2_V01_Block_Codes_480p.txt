@@ -1,0 +1,163 @@
+Let's talk about block codes, which, again,
+are one way of doing error correcting coding or channel coding.
+When we talk about a block code, normally we
+use three numbers to describe the block code, n, k, and d.
+The middle number, k, describes the number of bits inside the message.
+Normally, the kinds of messages we'll be sending are much, much longer than k.
+And so what we're going to be doing is we're
+going to be breaking our long message into smaller k-bit blocks,
+much like we did when we were doing the data framing.
+What I'm going to do to the k-bit block, then, is I'm going to add extra bits.
+In fact, I'm going to add n minus k extra bits
+so that the total thing I send, which is called the codeword,
+has n bits in total.
+So k is always going to be smaller than n in this code up here.
+And the extra bits that I'm going to be sending
+are really carrying no new information.
+In fact, I'm going to be computing these extra bits from the message bits.
+So knowing the message bits, I can compute the extra bits.
+And so, in fact, what I could have done in order
+to send the same amount of information is just to send the message bits.
+But the idea is that, hopefully, what will
+happen is that even though there might be errors introduced
+into this stream over here, because I have these extra bits,
+I'll be able to figure out whether or not an error has occurred.
+And perhaps, we can also try to correct those kinds of errors.
+The third number here, d, is the minimum Hamming distance.
+And we're going to talk about what the minimum Hamming
+distance means in a little bit.
+Sometimes what we do is we drop that final d,
+and we only talk about an (n, k) code.
+One of the key ideas in sending information
+is the idea of the code rate.
+The code rate is the fraction of the total number
+of bits that are sent that actually correspond to useful bits, ie.
+The message.
+So for sending n bits in total, only k of them
+contain actual useful information.
+The rest of them are redundant.
+And so, in this case, the code rate is k divided by n.
+And so, remember, that's always going to be a number smaller than one,
+because k is always less than n.
+Related terms to this idea of the code rate
+are two terms, number one, the gross bit rate.
+The gross bit rate is really the rate at which we're sending bits.
+Whether the bits are useful bits, the message bits,
+they might be the extra bits.
+All the bits that were sending, we're sending that at the gross bit rate.
+And so, remember, what we're doing in our communication system
+is we are sending bits by holding the physical variable
+constant for a certain number of samples, SPB, Samples Per Bit.
+And so, given a certain sampling frequency,
+then the bit rate is just a sampling frequency,
+let's say one megahertz, divided by the total number of samples per bit.
+So, for example, if it was 10 samples per bit,
+we would be transmitting at a gross bit rate of 100,000 bits per second.
+Now, associated with that, then, is how quickly
+are we transmitting useful information.
+That number is given by the net bit rate.
+So the net bit rate is, then, the code rate times the gross bit rate.
+So, for example, if our code rate was 1/2, only half the number of bits
+that we were sending were actually "useful."
+Then, in that case, the net bit rate would be 50,000.
+Half of 100,000 would be 50,000 bits per second.
+OK.
+So now let's talk about the idea of the Hamming distance.
+So the Hamming distance is a measure of distance between the words
+that we're sending.
+So, remember, we're going to take our message,
+and we're going to split it up into these message blocks,
+these k-bit message blocks.
+And then we're going to add some bits, and we're going to get a codeword.
+And the codewords that we are going to send
+are going to have a certain distance between them, measured by the Hamming
+distance.
+And so the Hamming distance is just for two codewords.
+It's the total number of bit positions where the two codewords are different.
+So, for example, if I had two codewords, let's say 0 0 and 1 0,
+then the difference between those only occurs in the first position, or 1 position.
+And so the Hamming distance, in that case, would be one.
+If I had these two code words, what you can see
+is that there are, in fact, six positions, the first four
+and the last two, where they're different.
+And so the Hamming distance is six.
+So the Hamming distance, then, gives us an idea of how many bit errors
+it takes to transform one code word to another codeword.
+So, for example, if I just had a simple system where
+I was sending no codes, using no coding, in that case,
+each bit might be represented by either a 0 or 1.
+And in that case, I have two codewords, and they're one Hamming distance apart.
+And so what that means is that all I have to do is change one bit,
+and I go from this one, to this one.
+So if I want to do any kind of redundancy coding, what I want to do
+is try to separate the codewords that you expect to see by as much
+as possible.
+Let's go back to this idea of when I was trying to tell you my telephone number.
+If I look at this word, "gree," which seems to be close to three,
+if I compare that with all the other words, like one, two, four, five, six,
+seven, eight, nine, it's quite different from all of those,
+but it's very, very close to three.
+So, in some sense, the distance between gree and three is small, intuitively.
+When I talked about nive, that's kind of equally distanced from nine and five.
+So there's some idea, but it's very, very far from,
+let's say, something like one.
+So when we're doing coding, or redundancy coding,
+what we're trying to do is take the codewords
+and make them as different as possible so that if I see anything different,
+I'll know that there's something wrong.
+I can detect that there's an error.
+So this idea of distance between code words is very similar to the idea,
+when we were doing single bit transmission,
+before, of the idea between the difference between the low sending
+level and the high sending level.
+The higher or the larger that difference is, the more resilient I am to errors.
+And in a similar sense, when I'm talking about codewords, which are really
+discrete things, when I talk about Hamming distance,
+the farther they are apart, the more resilient the system is to errors.
+And so, in fact, that Hamming distance determines how powerful
+the error correction or error detection capabilities of the code are.
+And one of the key ideas that I want to introduce here,
+is that we really have a choice between error correction or error detection.
+So when we talk about error detection, what we're saying
+is that we can figure out something's wrong, but we don't know how to fix it.
+So, for example, that might be the case of when I said nive.
+I can figure out, well, that doesn't really sound like a word or a number,
+but I don't really know what he was talking about.
+On the other hand, with error correction, we can detect errors
+and then, in some cases, we can also correct them.
+So, for example, when I said gree, you could probably correct that to three
+if you know I was only talking about numbers.
+So for a given code, then, the receiver really
+has to choose whether or not they want to detect errors only or detect
+and correct them.
+The Hamming distance determines the maximum number of bit errors
+that a particular code can detect or correct.
+And the larger that hamming distance is, the more bit
+errors we can detect or correct.
+So let's think back to that example when we
+were talking about transmitting single bits using
+two states of a physical variable, let's say r_min and r_max.
+And what we saw is that the larger the difference between r_min and r_max,
+the more resilient we were to errors.
+In a very similar way, if we have a code and they
+have a very, very large Hamming distance between codewords, the more resilient
+that code is to bit errors.
+So, in particular, if we look at the minimum Hamming distance
+and say that's d, then we can detect but not
+correct errors in, at most, d minus one bits.
+If we want to additionally correct, then what we have to do
+is we have to have a slightly more stringent constraint.
+We can only detect and correct about half of that, so d minus one
+divided by two.
+So, for example, if d is equal to three, then we
+can either detect and not correct d minus one,
+or two bit errors, or one or two bit errors, because we can detect up to d minus one.
+Or we can correct d minus one divided by two, or three minus one
+divided by two or one bit errors in the codeword.
+And, of course, it might happen that there's actually
+a two-bit error that occurs during transmission.
+But what would happen, in that case, is that it's likely
+that that two-bit error would be corrected,
+but it would be corrected to the wrong codeword.
+And so we'll be seeing examples of this in the next two examples of block codes
+that we talked about, the repetition code and the parity bit code.

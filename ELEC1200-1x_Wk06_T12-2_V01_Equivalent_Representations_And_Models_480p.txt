@@ -1,0 +1,176 @@
+ 
+So in understanding the trade-offs that we've
+observed, for example between bit rate and bit error rate,
+we've seen that we need to understand the communication system and model it.
+And we've seen that there are different ways of constructing models
+to reflect our understanding, and that these different models have
+different uses.
+So this brings up the idea of an equivalent representation
+and equivalent models and their uses in engineering.
+So let's think about our communication system
+from the source, the destination.
+And we saw that some of the key limitations occur in this part
+here, where we're taking the waveform that we've created from the bitstream
+and sending it over the channel, and the properties of that channel
+modify the wave form so that what we send
+is not this same as what we received.
+And if we can understand what causes that, why that occurs,
+and the nature of that change, perhaps we
+can do something about it in order to improve our communication.
+And so the model of the channel that we've used looks like this.
+We have our sender here creating a physical wave form representing bits.
+That goes through part of a channel, which
+is modeled by a linear time invariant system.
+And then the environment also adds additional effects
+so that the received signal, y, at this point
+here is a combination of input effects from the sender
+as well as external effects from the environment.
+Now, when remodeling this part in particular, what we saw
+is that we need to first describe the input to the channel.
+We need to describe this wave form over here.
+And we saw that there are many, many different ways of describing that.
+So in particular, in this course we've adopted a discrete time representation
+where we assume that the signal is held constant,
+but we're interested in its value at particular samples.
+That allowed us to write certain equations down
+for the input and deal with everything in discrete time.
+And so our idea was that we were going to take our signal and map each bit
+to one of two different states of a physical variable,
+and hold that physical variable constant for a certain amount of time,
+in this case, 4 samples per bit, in order
+to create the wave form that we eventually send.
+Now, in describing this wave form, we saw
+that there are many, many different ways that we can describe that wave form,
+and these are all equivalent in the sense
+that they all describe the same waveform.
+And therefore, they don't really carry any different information.
+They just carry the same information in different forms.
+And the ways that we've seen that we can encode that information
+are these, for example, a verbal.
+We can code the bit sequence, 1010001, at 4 samples per bit.
+That's equivalent to this thing over here,
+which is a pictorial representation of the same information
+here, where we have 10000010 encoded at 1, 2, 3, 4 samples per bit.
+Now, this is very, very good for human communication
+if I want to tell you something about what I'm sending,
+or if I want to show you so you can understand it.
+But for computers, this is not necessarily the easiest for them
+to understand.
+So for example, in our online exercises using MatLab, what we usually use
+is something like this, a list of values.
+Each value corresponded to the value at a different point in time.
+And we saw that we could manipulate these using MatLab
+and then send them over our communication channel.
+When we actually want to do any kind of mathematical analysis,
+these three things here don't really serve that purpose.
+So what we saw is that we can actually write
+a formula for this waveform over here in terms of the sum
+and differences of a bunch of unit steps.
+And this allowed us to do mathematical predictions
+about what the output of the channel would be for a particular input.
+So what we see then is that if I know any one of these,
+I can create any of the other ones, so I don't have any new information.
+But each of these things has a different application in a different scenario.
+And so which one you choose depends really on what you want to do with it.
+Now, just in the same way that I can represent information
+in equivalent ways, I can also model the channel in different equivalent ways.
+And so in particular, I'll be talking about the effect of the channel
+ion the input wave form, as shown in this slide here.
+And again, here we have the idea that we can have different equivalent models.
+And so for the channel, we saw that even though the input comes in and makes
+these very, very abrupt transitions from 0 to 1
+and back down, when it goes to the channel,
+actually those abrupt transitions are not preserved.
+And the transitions become slower due to the physical limitations
+of the channel.
+We saw that there were really two ways that we can model this process.
+In the first model, we said that we're going
+to model it by assuming that this channel here
+has two properties, that it's linear time invariant.
+And that allowed us to predict the output to any input
+if we knew the response to one particular input,
+and that particular input that we were interested in was the step input.
+And that allowed us to predict the response
+of the channel relatively easy.
+But we saw that when we wanted to reverse that process,
+that model was not as suitable for that application.
+And so we introduced this other model, model two,
+which was the recursive model, that said that the input
+and output of the channel, x and y, are related by this recursive equation.
+So those two things were equivalent in the sense
+that if I knew a particular input, x, I could use either of these
+to predict what the output was.
+And the prediction that I would get from both of these two models
+would be exactly the same.
+So just to review, model one looks something like this.
+We have an input here, x of n, and we want to compute the output, y of n.
+So in this case, the input would be shown with this blue line down here,
+and the output is shown by the black dots over here.
+So we can see we have an instantaneous change here, but it changes slowly.
+The output changes slowly in time.
+We want to be able to predict this, but what we know
+is the response to only one type of input,
+which is a step input, as shown over here.
+So the step input is 0, and then goes up to 1 and stays at 1 for all time.
+And we know the output to this 1 input.
+But because of the fact that the channel is linear and time invariant,
+we can express the input as the sum of 2 unit steps, one going up
+at time 0 and the other one going down at time 16.
+For each one of these individual inputs, by the time invariant property,
+I can predict the response to this input and to this input.
+And then by the linearity assumption, I can combine these two predicted outputs
+together to get the output of the channel to x,
+Now, this may seem like a little bit of an involved process
+to go over here, down here, and over here.
+But the idea that we have is that we'd like to go from input to output.
+This seems a little bit longer, but the idea
+is that each one of these individual steps, taking the input
+and expressing it as the sum of unit steps, taking these steps
+and mapping them to the step response, and then combining it,
+each one of those is individually a lot easier.
+We also saw that we could model the channel using this recursive model.
+In the recursive model, we said that the input is given by x of n.
+The output is given by y of n.
+And the output y of n depends on the current input as well as
+the past output.
+This is what gave us that recursive property.
+We're given the past output.
+We can then predict the next output, and then so on like this,
+as long as we know what the input is.
+Now, this is an equivalent model.
+The key idea behind this one was that this one was relatively easy to invert.
+So we were able to then use this model, and given knowledge of the output y,
+go back and predict what the input was.
+And we use this knowledge about the properties of the channel
+in order to improve the performance of our communication system.
+So we can see here now that as engineers, what we do
+is we use models on the one hand to understand the system,
+what the limitations are.
+And then on the other hand, we also try to use them
+so that we can improve performance of the system.
+And the way we did that was that we introduced this idea of equalization.
+So with the knowledge that we had, we said, well,
+given this input which is changing quickly,
+when it goes to the channel, that's modified so that the transitions don't
+occur as quickly.
+And we saw that we could visualize that using this idea of the eye diagram.
+And what we'd like to have is this eye be as open as possible,
+but you can see due to the effects of the channel
+and the rate at which we're transmitting information, that eye is closed.
+However, given the knowledge of how x is transformed into y by the channel,
+we said we can design the channel equalizer to go backwards.
+Taking y, can we go backwards and predict what x is?
+And what that does then is it allows us to open that eye because now we
+get these nice, clean, and fast transitions at the output over here.
+And we did that by inverting that recursive channel
+model to get this thing.
+And we saw that that was able to take our bit error rate, which
+was very, very high, and lower it for a very, very high bit
+rate of communication.
+And so what we've seen then is that we can
+use, as engineers, different ways of describing our inputs
+and different ways of describing the transformation from input to output
+to not only understand the effects of the channel,
+but also use that understanding to improve
+the performance of our communication system.
+ 

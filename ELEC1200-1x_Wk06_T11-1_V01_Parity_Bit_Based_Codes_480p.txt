@@ -1,0 +1,308 @@
+Let's talk about parity bit codes now, which
+are another type of error correcting code.
+What is a parity bit?
+Well, let's look at a very simple example.
+Iin this case, we're talking about a (k+1, k, 2) bit block code.
+Now, what we do is we send a k-bit message.
+And so, for example, down here, if we're talking about an (8, 7, 2) code,
+we would be sending a seven-bit message.
+And what we're going to do is send an eight-bit codeword.
+So we are going to add one extra bit to each codeword.
+And how are we going to choose that one single bit, then?
+We're going to choose that single bit so that the entire code
+word that we're going to send has even parity.
+In other words, we have an even number of 1s.
+So for example, if we had this message block
+that we are sending, inside those seven bits, there are three 1s.
+So if we want the whole codeword to have an even number of 1s,
+what we have to do is add a 1 in the parity bit
+so that this whole thing now has four 1s.
+Of course, if I have a message block here
+that already has four things that are 1, there's already an even number of 1s,
+then I don't have to do anything.
+I just add a 0 as the parity bit.
+So the parity bit then is either something
+you can say is going to make the whole codeword have even parity
+or it's just going to look at the message.
+And if the message has an odd number of 1 bits, it's going to be 1.
+If it has an even number of 1 bits, is going to be 0.
+Now in this case, the code rate would be seven divided by eight
+because I'm sending seven bits of message inside the entire eight-bit codeword.
+And here, it turns out that the Hamming distance of this is two.
+Intuitively, you can think about that every codeword
+has an even number of 1 bits.
+So if I want to transfer from one codeword to another codeword,
+I always have to change two bits in order to maintain that evenness.
+If I only change one bit, then what would happen
+is I would change the total number of 1s here to an odd number.
+And that would not be a valid codeword.
+Now, because of the fact that this is only
+a code that has a Hamming distance of two, it
+turns out that I can only detect d minus one or two minus one or single-bit errors.
+Now, when we receive the codeword, what we'll do
+is we'll check to see whether or not it has an even number of 1s.
+Remember, that's what we expect because that's the way we chose the parity bit.
+So if there's an even number of 1s, then we'll
+assume that everything's fine, there's no bit error.
+Otherwise, if there's an odd number of 1s,
+then we'll assume that a single one-bit error has occurred.
+So for example, in the (8, 7, 2) code, if we sent this message block, then what
+we would do is make the whole message have an even number of bits
+by adding a 1 in the parity bit over here.
+And then we would transmit it.
+And during transmission bit errors might occur anywhere inside here.
+Here, we've assumed that perhaps there's a single-bit error in this position
+here, the fifth position.
+Now, when we receive that, if we look at this, and we count the number of 1s,
+we can see that there are five 1s, that's an odd number of 1s.
+And so we say, OK, in that case a single bit error has occurred.
+However, we cannot detect, a two-bit error.
+For example, if you look at here, and we assume
+that there's an error in the fifth and the fourth position,
+and we receive this, and we just check the total number of 1s here,
+we see that there's still an even number of 1s.
+And so then we cannot determine whether an error has occurred or not
+because that looks like a valid codeword from the point of view
+of the single parity bit code.
+And so now, if we want to actually do correction, what we have to do
+is we need to try to increase, again, the Hamming
+distance between codewords.
+And the way we're going to do that is we're going to add more parity bits.
+And in order to add more parity bits in a meaningful way, what
+we're going to have to do, is to start assigning parity bits
+to subsets of the message.
+And so an example of that is this (8, 4, 3) code.
+So remember now, the middle number here, k is equal to four,
+tells us that we're sending four-bit messages.
+So let's assume that we have a four-bit message block.
+the message bits are labeled by D₁ through D₄.
+And then what we're going to do is we're going
+rearrange that message block into a two by two square.
+And once we've arranged it in this two by two square,
+we're going to add parity bits that are going to make sure
+that each row and each column have an even number of bits.
+So in the first row, we're going to add one parity bit here.
+And we're going to choose this one so that if I look across all three bits
+here, we have an even number of 1s.
+So if there's an odd number here, we're going to add a 1.
+If there's an even number already we're going to add a 0.
+We're going to the same thing for the second row.
+And then for the first column and the second column.
+Now, what we've done then is we've taken these four bits
+and we've computed from that an additional four bits.
+And so the total codeword that we're going to send is eight.
+Finally, what we're going to do is we're going
+to send the codeword by rearranging this thing by re-listing out the bits
+D₁ through D₄ and then just appending the parity bits
+P₁ through P₄ in this order here.
+So let's take a look at one numerical example of that,
+where the particular codeword that we have is 0 1 1 1.
+So again, what we're going to do is we're going to rearrange this into a
+two by two square.
+So we have 0 1 and then 1 1 at the bottom.
+And we're going to add the parity bits so that each column and row has
+an even parity.
+So now, if you see, here we have an odd number here.
+So we're going to add a parity bit 1.
+So that the whole thing, these three bits here,
+all have an even number of 1s.
+In the second row, we already had an even number of 1s, so we add 0.
+Here, we need to add a 1 to make it even.
+It's already even here, so we add a 0.
+And then finally, what we do is we re-list the whole thing out 0 1 1 1 1 0 1 0.
+So now that we know how to construct the codewords that we're going to send,
+what do we do when we receive a codeword that possibly has errors.
+We need to somehow do something to that codeword to detect or correct errors.
+And in order to do that, we have to compute what are called syndrome bits.
+So assume that now we've sent the codeword.
+And now we received the codeword over here.
+And this might be different than what we sent originally.
+What we're going to do is kind of reverse the process that we just did.
+So we're going to rearrange this a codeword into the same format
+that we had before.
+So we're going to take our four message bits and rearrange them into the
+two by two square.
+And we're going to add the parity bits that we've now received.
+We're not computing these anymore.
+We received them.
+The way that we constructed this codeword is so
+that each of the parity bits ensures that each of these rows or columns
+has an even number of bits.
+Now, if there are bit errors that are introduced during transmission,
+what you might expect is that, well, that's
+going to disrupt the parity of some of these rows or these columns.
+So what we'd like to be able to do then is check,
+to make sure that what we expect for each of these rows and columns,
+as enforced by the parity bits, is actually true.
+And that's what the syndrome bits do.
+The syndrome bits then check for every parity bit,
+whether their corresponding condition is correct.
+So for example, we had, then, four syndrome bits, S₁ through S₄.
+And Sᵢ, let's say S₁, is going to check the parity condition for P₁.
+Let's take a look at some examples of syndrome bit calculations.
+So here I show you three different codewords that we might have received.
+And I've already rearranged them into that block format that we talked about.
+What we'd like to do, then, is compute the four syndrome bits then,
+corresponding to the four cases of the two rows and the two columns.
+So let's go through that one by one for each one of these codewords.
+So let's look at the calculation of the first syndrome bit.
+In that case, we look at the first row, D₁, D₂, and P₁.
+And then we check whether there's an even number of 1 bits
+and if there is, then we assign it to 0.
+Otherwise, we assign it to 1.
+So if we look across here, here, and here, we see that all of those things
+already have an even number of 1 bits.
+So we put a 0 over here.
+So equivalently, we could be thinking about adding the syndrome
+bit so that the total thing, the total row here, consisting of four bits,
+has an even number of 1 bits.
+For the next syndrome bit, S₂, then, what we do
+is we check across this row, D₃, D₄, and P₂.
+And we can see that even, uh oh, odd, so we have to add a 1 here.
+And then, this one is odd as well, so we have to add a 1 here.
+We continue on for the columns.
+And we look down here.
+And we say, this is even, even even.
+So it's all 0s.
+And then, we finally complete it by looking at this final column here.
+And we see that this is even.
+This is even.
+But this one was odd, so we add a 1 down here.
+So we've now seen that we can check all of these parity bit conditions
+with the syndrome bit calculations.
+And that what we're going to do is we're going
+to use the results of those syndrome bit calculations
+in order to either detect or correct errors.
+Let's consider the problem of error correction first.
+So we have computed our  syndrome bit errors.
+And now, since we know that the Hamming distance here is three, then what we can do
+is we can detect and correct all the way up to three minus one or two
+divided by two or one-bit errors.
+And in order to correct those one-bit errors, what we're going to do
+is we're going to check the syndrome bits.
+And so we can check the syndrome bits.
+And if all the syndrome bits are 0, for example as in this case over here,
+then all of the parity bit conditions checked out.
+So in that case, we assume that there were no bit errors that occurred.
+And so we can reconstruct our original message
+bits just by taking the message bits straight from this codeword
+and listing them out 0 1 1 1.
+Now, suppose that instead we observe this,
+we see that one of the syndrome bits is equal to 1.
+Now, in that case, what we will assume is
+that there was an error in this parity bit.
+Because if we change this parity bit to 0,
+then this thing would be a valid codeword.
+And nothing else would change over here.
+Now, in this case here, if there's only one of these guys is 1,
+and the parity bit had an error, then really there
+was no difference in the data bits.
+And so what we would decode from this for the message
+would be exactly the same.
+We'd simply look at the data bits over here and then list them out like that.
+However, if we have two syndrome bits that are 1, in particular
+if we have one of them being in the row and another one being in
+the column as seen over here, then since we assume there's only a single bit
+error, we can't assume that  these two parity bits were wrong.
+We must look for a single-bit error that would somehow cause this check
+to be violated and this check to be violated.
+In order to find that single bit then, we just
+look at the intersection of these two conditions, which
+would be this one here.
+So if I change this one to be a 1, then I
+would have an even number of bits that are 1 over here
+and an even number of 1 bits over here.
+And that would cause these two things to change to 0.
+And that would be a valid codeword.
+So then we assume then, if there's only a single-bit error that occurred,
+then the error must have occurred over here.
+And then we correct that.
+And so the actual data that we decode then would 0 1 1.
+And then we would change this one to a 1.
+And we will get that one over there.
+So that's how we do the correction.
+What about the detection?
+Well again, because the Hamming distance is three,
+we can detect up to D minus one or two-bit errors.
+So we either detect one-bit errors or two-bit errors.
+Both of those things we can detect.
+Now, suppose we receive this one.
+This is the case where we have that single syndrome bit, which was a 1.
+Now, if we see the 1 there, then we know that an error has occurred.
+If all the syndrome bits are 0, then we assume no bit error has occurred.
+And so if any one of these guys is 1, one or two of them
+are any number of them is 1, then we assume that some kind of error
+has occurred.
+But we assume that we cannot correct it.
+And so therefore, what that means then, is
+that, while there must been either a one-bit error
+from a valid codeword that gave us this received codeword or a two-bit error.
+And we already saw the one-bit error case.
+We know that, well, if this thing here was a 0 when it was sent,
+that would've been a valid codeword.
+And if I check across here, I would have gotten a 0 here.
+And so this is a valid code word that undergoes a single-bit
+error to give me this received codeword over here.
+And I detected that when I was doing correction
+by just correcting the single parity bit.
+But now, if I assume that it is possible that two-bit errors occurred,
+then there must be a codeword that has two bit changes that
+will give me this kind of codeword over here.
+And it turns out that, in fact, there is one.
+And it's this one over here.
+So if I take this received codeword and I say,
+well, I could have sent this codeword over here.
+If I sent this codeword over here, and I had two bit errors, one here and one
+here, then I would receive this one over here.
+And I claim that this is a valid codeword.
+And I can check that simply by checking the syndrome bits.
+So if I look across this row, I have an even number, even number, even number,
+and even number.
+So that is a valid codeword.
+So this is a valid codeword that undergoes a two-bit error to give me this.
+This is a one bit error.
+And if I assume that both of those are possible,
+then I cannot do the correction because either one of these is a possible
+correction.
+So then, let's summarize the total idea of this (8, 4, 3) parity bit code.
+The idea is that we're going to take the input message stream.
+Again, it might be much longer than four bits.
+And so what we're going to do is we're going
+to take this, let's say 12-bit message stream,
+and break it into 3 four-bit blocks.
+And then, what we're going to do is we're
+going to encode each of these four-bit blocks
+by adding an additional four bits, the four parity
+bits that are computed from those ones.
+So these are just, again, extra bits that we're going to add,
+that are computed from this one, purely for the purpose of error correction
+or error detection.
+Once we do this, then we can transmit these codewords.
+And then during transmission, there might be some errors introduced.
+So for example here, there might be an error in the fifth position
+or here in the fourth position and these ones.
+But if there's only single-bit errors that
+are introduced during transmission, then what I can do
+is I can actually correct these and recover the original bit stream.
+And so if you compare this bit stream down here with the original
+sent message bit stream, you can see that those are identical,
+even though I've introduced errors during transmission.
+So then in summarizing this particular topic, what we've seen
+is that from previous lectures we know that noise is always
+present in communication systems.
+And there's really no way we can eliminate the effects of noise
+completely.
+So there's always going to be some errors in our communication system.
+But we know from Shannon that every noisy channel has a certain capacity.
+And we can always transmit information at any rate
+below that capacity with an arbitrarily small probability of error.
+And so the only question, then, is how do we encode that?
+And I told you there are many ways that we encode it.
+But what we've covered in this topic is the idea of the block code.
+We can add extra redundant bits that don't carry any new information.
+But once we receive the codewords  with possible errors in them,
+we can use that redundancy in the information
+in order to do the error correction.
+And the power of the code, then, depends on this idea of minimum Hamming distance.
+So if I have codewords that are farther separated apart,
+then they become more resilient to changes in the transmission due to bit error.

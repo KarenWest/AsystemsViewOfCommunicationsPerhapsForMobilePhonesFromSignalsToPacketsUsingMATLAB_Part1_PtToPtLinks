@@ -1,0 +1,275 @@
+ 
+I'd like to talk about how we can use the 843 code or the 944 code
+that we've discussed and handle the situation in which we have
+what are called burst errors.
+When we're transmitting information wirelessly,
+we might have a situation where we have a source of interference that
+lasts for a limited period of time.
+And during that period of time, what we might expect
+is that we would have many, many, many bit
+errors that recur one after the other.
+We call that situation burst errors because the errors are
+occurring not isolated, but in bursts.
+What would that do to our code?
+Well, in our 843 or 944 code, what we've assumed
+is that within a single code word of 8 or 9 bits,
+we're only going to get a limited number of errors.
+Let's say 1 or 2.
+And then in that case, we can detect and correct those errors.
+Now, suppose that we are going to transmit our code words
+one after the other, for example, the situation illustrated here.
+We have our message bits and our parity bits that we've computed,
+and we're just going to read them out one after the other.
+In that case, if we have a burst of errors
+that occur over a period of time, those errors
+are all going occur within 1 code word.
+And that's going to violate our assumption
+that we have only 1 or 2 bit errors per codeword.
+So how can we deal with that?
+Well, one way to deal with that is to take the code words
+that we're transmitting and arrange them into a block of B code words.
+And then instead of reading them out row by row, as illustrated here,
+I read them out column by column.
+So what I would do is transmit the first bit of all the code words,
+then the second bit and third bit, and so on like that.
+What's going to happen if I have a burst of errors
+now is that those errors are now going to be distributed across different code
+words.
+And the size of this block of code words, the number here B,
+will determine how long the burst can be before some of those code words
+start getting more than one bit error due to that burst.
+So the longer B is, or the larger B is, the longer the bursts I can tolerate.
+Now, the disadvantage though of choosing a larger value of B
+is that I have to arrange the things into this block of B code words,
+and I have to see the entire block before I start the decoding
+process because I have to get everything before I can get 1 complete code word.
+And so then the problem then is if I'm transmitting information
+in these blocks, how do I know when that block of code words actually starts?
+Well, there's a couple different ways this might happen.
+If I'm using a disk drive or something like that
+where I'm physically connected to the communication device,
+then I might have something like a control signal
+that would allow me to indicate when the start of a particular data block
+occurs.
+But if I'm in the wireless communication scenario
+where typically the kinds of communications are asynchronous,
+I need something like the start bit.
+I need some way of saying, hey, I'm starting
+to transmit a new block of data.
+And so what we do then in that case is not insert just a single start bit,
+but we actually introduce a sync sequence.
+And so the sync sequence then is a unique bit pattern
+that's placed to mark the start of 1 block of interleaved code words.
+So for example, we might take a sync sequence like this, which has 5 1's
+framed by 2 0's around it, and then we would
+put that at the beginning of our block and then transmit the block.
+And then before the next block, what we would do
+is put the sync sequence again, and then put the data block after that.
+And so for example, if we came in in the middle of a transmission, what
+we could do is then just search for the sync sequence.
+And then once we found the sync sequence, then we know,
+OK, there's a data block coming.
+And I know exactly how many code words are
+in the data block-- that would be B-- because that's
+part of my communication protocol.
+That's something I would agree between the transmitter and the receiver
+how many blocks are going to be sent, and I would also of course
+know the length of each particular code word.
+So I would know how many bits to look for before I
+would expect to see the next sync sequence.
+Now, there's one kind of issue though that we
+have to be careful of when we're actually
+doing this kind of sync sequence.
+And that issue is the idea that, well, I decided to use this particular sync
+sequence, for example, 5 1's surrounded by 2 0's on either side.
+But it might happen that within my data block,
+the sync sequence would also occur.
+And so in that case, because I really can't control the data block
+and what's inside it, that certainly might happen.
+And so then if I'm searching for the sync sequence,
+and suppose I came in at this point here and I started looking for the sync
+sequence, I would find a sync sequence here, and I would think, oh, OK.
+The next block then of data is going to be my data block.
+But I'm going to be looking at the wrong part to try to find that data block.
+So what I need to do then is I need to somehow avoid this situation.
+And the way that I avoid that situation is using a technique
+called bit stuffing.
+So let's introduce the idea of bit stuffing by maintaining this idea that
+perhaps our sync sequence is this one here, 5 1's surrounded by 2 0's.
+Now, of course that is totally up to us.
+We can choose the sync sequence in any way that we want.
+But we're just going to use that one to make the discussion concrete.
+Well, one way to make sure that we don't see this kind of sync sequence
+within the data is to try to look at what makes this thing kind of unique
+and try to disrupt that.
+So in particular, if I look at this one here,
+it says that this sync sequence here has 5 1's in a row.
+So that's kind of different.
+And so if I make sure then that within my data, I never see 5 1's in a row,
+then I'll be sure that this sync sequence will never
+occur within my data block.
+And so the way I'm going to do that is doing
+something which is called bit stuffing.
+What I'm going to do is I'm going to scan through the data block,
+and I'm going to count the number of 1's that I get in a row.
+And every time I find 4 consecutive 1's in a row, not necessarily 5,
+but 4 consecutive 1's in row, I'm going to put in a 0-bit there.
+Once I do that, then I'm going to be guaranteed that there's never
+going to be 5 1's in a row.
+Because once I have 4, I'm going to add a 0,
+and that's going to disrupt it, whether or not there's actually a 1
+after those 4 or not.
+So one of the key ideas here is that the 0-bit that I'm going to insert
+is always going to be inserted, whether or not the next bit is a 1.
+And that's going to be important because I
+have to then undo the effect of the bit stuffing.
+So while adding the 0 here in this case if the next bit is a 0
+doesn't really prevent the sync sequence from occurring because it wouldn't have
+occurred anyways, it's going to be important
+when I try to undo the process, which is called unstuffing.
+So the idea of unstuffing then is I'm just simply going
+to go through the receive bitstream, check
+whenever I get 4 1's, and because I've inserted the 0 every single time,
+I know that I can always just remove the next 0.
+And in fact, I'll note that the next bit will always be a 0.
+So let's take a look at one particular example of bit stuffing.
+So suppose this was my input stream.
+This is my data block that I've constructed
+after doing the error correcting coding and adding and doing
+the interleaving of the B blocks.
+So I get this bitstream here.
+And what I'm going to go do is I'm going to go through this bitstream,
+and I'm going to count the number of 1's that I get in a row.
+And every time I see 4 1's in a row, I'm going to add a 0.
+So I'm going to go through here.
+I'm going to go 1, 2.
+Oh, there's a 0.
+So I'm going to reset my counter, and then I'm going to start counting again.
+1, 2, 3, 4.
+I have 4 1's in a row here.
+So what I'm going to do then is going to add a 0 into the bitstream.
+That's going to prevent me from seeing 5 bits.
+So note here that actually this was really not a problem.
+There's not 5 1-bits in a row here.
+There's 1, 2, 3, 4, 5, 6.
+But I'm going to do it anyways just to make sure
+that I can do the unstuffing later on.
+So I'm going to keep on going through.
+So once I've seen this one here, I've stuffed the bit in here,
+I'm going to start counting again.
+So 1, 2, and then there's 0, so I can reset the counter.
+1, 2, 3, 4, I'm going to add a 0-bit here.
+And notice that here, the next bit was a 0 already,
+but I'm just going to add that anyways.
+And go through here.
+I get 4 in a row here, so I add a 0.
+And then after that, I see another 4 in a row here, so I add a 0, and so on.
+So now I've stuffed the bitstream, so I've added these extra 0's.
+When I actually receive the bitstream then,
+I have to undo that process or unstuff those 0's.
+And the way I'm going to do that is I'm just going to go through the stream
+that I see over here.
+Every time I see 4 1's, what I'm going to know
+is that the next bit should be a 0.
+So I'm just going to remove that bit.
+So 4, and then I'm going to remove, remove, and remove,
+and I'm going to get this bitstream here,
+which you can identify as being identical to the original input
+bitstream.
+So that then gives us a way of making sure
+that the sync sequence, which had 5 1's in a row,
+never occurs inside the input bit sequence that
+corresponds to the data block.
+So then let's finalize by looking at the complete flow of both channel coding
+and channel decoding with error correction.
+Here's the process of channel coding.
+I'll have an input message that I want to send with error correcting coding.
+Here I'm going to assume that I'm going to use
+the 843 code that we talked about.
+So I'm going to break this message here, which
+has 12 bits, into 3 4-bit messages.
+Now, for each of these 4-bit messages, what I'm going to do is
+I'm going to add 4 parity bits.
+That's going to allow me to do error correction later on.
+That's going to give me these 24 bits over here.
+And what I'm going to do then is going to take these three code words
+and read them out with interleaving.
+So I'm going to now, instead of reading it out in this order here,
+I'm going to read it out in the column first order here.
+So I'm going to get 01111111.
+So I have 7 1's in a row here.
+So 1, 2, 3, 4, 5, 6, 7 1's in the row because I'm reading it out
+in column order.
+Once I have this then, I'm going to have to go through and make sure
+that the sync sequence never occurs inside there.
+So I'm going to use the same sync sequence of 5 1's surrounded by 2 0's.
+So I'm going to do the same bit stuffing.
+I'm going to count through here.
+And every time I see 4 1's in a row, I'm going to insert a 0-bit.
+So I'm going to insert a 0-bit here, insert another 0-bit over here
+through the bit-stuffing process.
+And then I'm going to take this now bit stuff stream
+and then go through and add the sync sequence to that.
+Now, once I've done that, then I've got my bitstream that I can send.
+So this is exactly the same bitstream that we saw from the previous page
+at the bottom.
+And I'm going to send that through my channel.
+And so because of the fact that a burst error might occur,
+I might get a sequence of bits where the bit errors are actually introduced.
+So here, this 011 became a 100 because of the bit errors that were introduced
+in a burst.
+So because I've introduced a interleaving of 3 code words, then
+the maximum number of bursts, the maximum
+size I can tolerate while guaranteeing that there will be 1-bit per code word
+will be 3.
+So that's what I've done here.
+So what we want to make sure then is that while this doesn't disrupt
+anything, I can still correct this, even though I got 3 bit errors in a row.
+So the first thing I'm going to do is I'm going to go through.
+I'm going to search through this, and I'm going to find my sync sequence.
+So I found the synx sequence here, and I'm going to remove that.
+Now, one of the things you have to be careful about though
+is that actually the sync sequence here is not protected by error correction.
+So in fact, I might actually lose the sync sequence because of bit errors.
+For example, if I got a bit error here, then I would see a 0 here,
+and then I would miss this as a sync sequence.
+And so that might occasionally happen during the data streams.
+But there's nothing we can do about that using this particular technique
+that we've talked about so far.
+ 
+Once I've found the sync sequence, assuming that there's no bit errors,
+I can remove that, and I get the receive stream
+that I know this corresponds to the data block.
+I'm going to then destuff the frame by removing the 0's that occur after every
+4 consecutive 1's-- so remove this one and this one-- to get my original,
+at least something that has the original data length of 24 bits.
+And then I'm going to deinterleave.
+So remember that I read it out in column order.
+So when I deinterleave, I'm going to have to preserve that.
+So this one here will be the first bit of the first code word.
+This will be the first bit of the second code
+word, the first bit of the third code word, and then so on.
+This will be the second bit of the first code word.
+And I reread it out doing the deinterleaving
+so that I get my 3 code words, as you see over here.
+And now, because I've done the interleaving,
+you can see that this burst of three errors that I got now
+is spread out over the 3 code words with 1 bit error per code word.
+And so now, because there's only one bit error per code word,
+and I'm using the 843 code, I know that I can correct 1-bit errors.
+So I can go through the same process, rearranging it, as shown over here.
+And then I can go through and compute the syndrome bits
+and then do the correction as we've discussed.
+And then I can correct the bit errors to receive the original bit
+sequence that I got in the previous slide.
+So if I compare this with the original bit sequence in the previous slide,
+you can see that it's identical, even though I
+introduce 3 bit errors in a row.
+And again, what could happen is that the bit errors
+might have occurred inside the parity bits or within the data bits.
+And so only in the cases where they occur in the data bits
+do I actually have to do any kind of correction.
+And so that then summarizes the entire process
+from beginning to end of doing error correcting
+coding when there's the possibility of burst errors.
+ 

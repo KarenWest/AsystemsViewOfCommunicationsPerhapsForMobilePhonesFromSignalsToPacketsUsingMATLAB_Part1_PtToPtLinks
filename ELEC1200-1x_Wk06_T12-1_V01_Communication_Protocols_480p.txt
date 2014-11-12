@@ -1,0 +1,148 @@
+ 
+In this final topic, I'd like to discuss and review the key concepts
+that we've talked about over this first part of the course.
+In this part, I'd like to talk about the importance of the communication
+protocol and the ways in which we measure
+the performance of our communication system.
+So in this first part of the course, what we've discussed
+is how we can send information from a single source to a single destination.
+What we've seen is that the source encodes information
+that it wants to send as bits.
+It sends the bits through this stream that we've discussed.
+And the destination received some bits and tries to decode the information.
+And ideally in our communication system, the
+sent bits are exactly the same as the received bits.
+Now in order for this to happen, the source and the destination
+must agree on certain things.
+And those agreements are called the communication protocol.
+And, in fact, communication protocols or agreements
+are required in any kind of communication system.
+So, for example, this online course is a form of communication.
+I have a certain amount of information that I want to send to you.
+In order to make sure that that communication is effective,
+we have certain protocols-- for example, what language I'll
+use in the lectures, where or what website
+you'll be able to access the lectures, and the approximate timing in which
+new information is going to be released.
+In a very similar way, the data communication system
+that we've talked about also relies upon agreements
+between the sender and the receiver.
+These cover all aspects of the communication system.
+For example, one of the things we need to agree on
+is how we actually represent symbols.
+And so here we talked about the idea of sending a text message which
+consists of letters and numbers and punctuation, marks
+and things like that, and we need to represent
+all of those using bit sequences.
+There are different ways of doing that.
+The one we talked about was Ascii, but, for example, in the world wide web now,
+the Unicode standard is quite common.
+We can use either one as long as the sender and the receiver agree.
+When we're sending binary data, we might decide
+to send the least significant bit first or the most significant bit first.
+And, again, as long as the agreement is in place, communication can occur.
+Another aspect that you need to agree on is the length of the frame.
+The analogy I gave you here was that if I'm giving you a semester long course,
+usually I take that information and I break it up into smaller chunks,
+which we call lectures.
+But in our analogy here with the data communication,
+those would be the frames.
+And so the lectures are usually a fixed duration of time
+so you know how long you need to listen for.
+And in our data communication system, the frames
+are usually a fixed number of bits long so
+that the receiver knows how long to listen for.
+When we're sending information in a wireless communication system,
+the transmission is typically not scheduled.
+For example, when I'm using my mobile phone,
+I might initiate a call at any time.
+And so most the time the receiver might be idle,
+but it needs to know when the transmitter is sending information.
+The analogy here I gave you was that perhaps we're
+walking down the street many, many people are walking past us.
+Most of them don't want to communicate with us,
+but, for example, somebody might have a question, they're lost or something,
+and so they want to initiate communication.
+And so they'll usually do something before they actually ask our question.
+For example, they might try to attract our attention
+by saying hello or making eye contact.
+And so that's kind of like what we talked about as the start bit.
+Most of the time in our data communications system, the line is idle
+or nothing's happening.
+But when we want to send information, we would
+send a single one bit that would indicate
+to the receiver the transmitter now has some information to send.
+Another aspect we discussed was the idea that individual bits
+must be represented in some way.
+We talked about representing bits as states of a physical variable.
+For example, my hand being low or high or the light being on and off.
+And one of the things we have to agree on is how long for one bit
+I'm going to hold my hand low or hold my hand high.
+Obviously, the shorter that is, the faster I can send information.
+But we need to agree on how long that's going to be.
+Finally, we also talked about the idea of the training sequence.
+The training sequence, remember, is an agreement
+between the transmitter and the receiver.
+The transmitter agrees that it will occasionally
+transmit this training sequence, a known sequence which is known by the receiver
+so really no information is being transferred.
+But the receiver can use this training sequence
+in order to identify information about the channel.
+For example, we used it in our communication system
+to set this decision threshold where we are
+going to decide whether a bit was a zero or a one.
+Now when we're transmitting information in a communication system,
+we want to have some idea of how well the communication system is working.
+And for that, we need some way of measuring
+the performance of the communication system.
+And so those measurements that we use were
+what we talked about as being communication system metrics.
+One of the key metrics that we talked about here was the bit rate.
+We want the bit rate to be as high as possible
+because that's really the rate at which we're transmitting information.
+In order to transmit information very quickly, what we want
+is the bit time, the time that we hold the physical variable constant
+for to be as short as possible.
+So the bit rate is inversely proportional to the bit time
+which we measured in samples per bit.
+The bit error rate is another measure of performance.
+In this case, we want the bit error rate to be as small as possible
+because the bit error rate tells us what fraction of bits
+that we receive are received in error.
+And obviously, we want to make as few errors as possible.
+Now, it turns out that a very important concept in this course
+was the idea of a trade-off.
+You can't get anything for free.
+And so although we'd like our bit rate to be as high as possible,
+unfortunately, there's a trade-off with bit error rate.
+The higher the bit rate, the higher the bit error rate.
+That's reflected in this bottom curve down here.
+And so, remember, we'd like to bit rate to be high,
+but we'd like to bit error rate to be low.
+And so the higher we push the bit rate, the higher the bit error rate.
+And so that's going to put a limitation on how quickly we
+can transmit information.
+We saw that the exact shape of this curve
+depends on the properties of the channel.
+In particular, it depends on the amount of noise
+in the channel and the signal power.
+The less noisy the channel is, the more quickly we can send information.
+That's shown down here.
+The less noise that we have, we put down here,
+the lower the amount of bit error rate we have.
+And, therefore, from this curve, the faster
+we can hopefully send information.
+The other thing that we saw was that if we're in a noisy channel,
+we know that, for example, in a party if I'm in a noisy party,
+what do I have to do?
+I have to speak louder in order to make sure
+that my information is received correctly.
+That idea of speaking louder we captured in the idea of signal power.
+We saw that in a noisy environment, we need
+to increase the signal power in order to decrease the number of errors.
+Of course, there's a trade up there as well because if we're speaking louder,
+we're going to get tired.
+And the same way with our mobile phone.
+If we're using more power to transmit, our battery is going to die faster.
+And that's something that we don't want.
+ 

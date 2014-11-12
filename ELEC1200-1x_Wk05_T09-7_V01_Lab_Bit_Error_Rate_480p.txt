@@ -1,0 +1,64 @@
+Hello, everybody.
+Welcome to the lab demo.
+In the previous lab, we have observed how the additive noise will
+change the distribution of the received signal.
+In this lab, we are going to see how the additive noise will affect
+the performance of our communication system.
+To do that, let's first review how the receivers make decisions.
+Basically, the receiver will set a threshold
+and compare the received signal with the threshold
+If the received signal is less than the threshold the receiver will say,
+I received bit 0.
+And if the received signal is greater than the threshold
+the receiver will say, I received bit 1.
+Without additive noise, the two signal components
+we used to represent bit 0 and bit 1 are clearly separated.
+So if we put the threshold in the middle, between the two signal levels,
+we are not going to get any error.
+However, with the additive noise, the distribution
+of the received signal for bit 0 and bit 1
+are no longer fixed, but two Gaussian distribution.
+That means what?
+That means even if we transmit bit 0, after adding the additive noise,
+the received signal can be greater than a threshold.
+And then we are going to have an error.
+The same situation happens for the case when we transmit bit 1.
+So now, let's see how the additive noise will affect our communication system
+by checking the bit error rate performance.
+For that purpose, I first define the bit duration to be 50 microseconds.
+Then we run the code to check to bit error rate performance.
+First, we can observe that after transmitting the frame signals,
+the received signals follow two Gaussian distribution
+for the case of transmitting bit 0 and bit 1
+because there is almost no overlap.
+So we do not expect any error.
+Now let's check what is the bit error performance.
+Indeed, the measured bit error performance is 0.
+Now, we want to investigate the effect of the transmission distance
+on the performance of our communication system.
+For that purpose, I'm going to simply increase
+the transmission distance between the transmitter and the board
+and run the same code again.
+We can observe that the two distributions corresponding
+to the transmission of bit 0 and bit 1 now have a big overlap.
+So we are now expecting a worse performance.
+Let's check.
+Yes, indeed.
+They measured bit error rate now is 0.11953.
+What does this mean?
+This means on average, we're going to obtain 12 errors out
+of a transmission of 100 bits.
+This makes sense, because when we increase the transmission distance,
+we're going to get a lower signal power and then a worse performance.
+Do we have similar examples in our daily life?
+Let's try this one.
+Imagine that I want to say hello to you.
+So for the first time, I use a low voice, by saying, hello.
+Can you hear me clearly?
+Normally not.
+Now let's try it again.
+And this time, I increase my voice by saying, hello.
+Did you get a better message for the second time?
+Yes.
+Why?
+Because in the second time, you have a higher signal to noise ratio.

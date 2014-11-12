@@ -1,0 +1,68 @@
+﻿% generate a 18-bit long random sequence
+% do not modify the value of bs
+bs = rand(1,18)>0.5;   
+
+% Modify the code below so that framed_bs contains the bit stream after
+% framing following the communication protocol described above.
+%framed_bs = bs;
+%len_bs = length(bs);
+%num_blocks = round(len_bs / 4);
+
+%if (mod(len_bs,4))
+    %num_blocks = round(num_blocks + 1);
+%end
+
+%numBitsPerFrame = 6; %4 bits per block plus 1 start and 1 stop bit
+%totalBits = numBitsPerFrame * num_blocks;
+framed_bs = zeros(1,30);
+
+framed_bs(1) = 1; %start bit this frame block 1
+rangeFrame = 2:5;
+rangeBs = 1:4;
+framed_bs( rangeFrame ) = bs( rangeBs );
+framed_bs(6) = 0; %stop bit this frame block 1
+%disp(bs);
+%disp(framed_bs);
+framed_bs(7) = 1; %start bit this frame block 2
+rangeFrame = 8:11;
+rangeBs = 5:8;
+framed_bs( rangeFrame ) = bs( rangeBs );
+framed_bs(12) = 0; %stop bit this frame block 2   
+%disp(bs);
+%disp(framed_bs);
+framed_bs(13) = 1; %start bit this frame block 3
+rangeFrame = 14:17;
+rangeBs = 9:12;
+framed_bs( rangeFrame ) = bs( rangeBs );
+framed_bs(18) = 0; %stop bit this frame block 3   
+%disp(bs);
+%disp(framed_bs);
+framed_bs(19) = 1; %start bit this frame block 4
+rangeFrame = 20:23;
+rangeBs = 13:16;
+framed_bs( rangeFrame ) = bs( rangeBs );
+framed_bs(24) = 0; %stop bit this frame block 4   
+%disp(bs);
+%disp(framed_bs);
+framed_bs(25) = 1; %start bit this frame block 5
+rangeFrame = 26:29;
+rangeBs = 17:18;
+framed_bs( rangeFrame ) = [bs( rangeBs ),0,0]; %pad 2 zeros to block 5
+framed_bs(30) = 0; %stop bit this frame block 5   
+%disp(bs);
+%disp(framed_bs);
+% do not modify code below
+subplot(211);
+stem(bs);
+axis([0 20 -0.1 1.1]);title('bs');
+set(gca,'XTick',[0:4:20]);
+set(gca,'YTick',[0:1]);
+grid;
+subplot(212);
+stem(framed_bs);   
+axis([0 30 -0.1 1.1]);title('framed\_bs');
+set(gca,'XTick',[0:6:30]);
+set(gca,'YTick',[0:1]);
+grid;
+xlabel('Bit Index');
+      

@@ -1,0 +1,49 @@
+﻿% Copy your code from Task 3 below
+SPB = 50;               % bit time in samples
+distance = 14;           % transmission distance
+tx_bs = [1:1280] > 640; % generate bit sequence of 640 0's and 640 1's
+tx_wave = format_bitseq(tx_bs,SPB);   % create waveform following protocol
+
+% transmit and receive over noisy channel
+[rx_wave,start_ind,rx_min,rx_max,sigma] = txrx_lab07(tx_wave,distance);
+sample_ind = start_ind + 2*SPB-1 + SPB*[0:1279];  % choose subsampling points
+signal_samples = rx_wave(sample_ind);             % extract samples
+
+xhist = 0.1:0.01:0.7;   % centers of histogram bins
+% Do not modify code above this line
+
+subplot(2,1,1)
+% Place your code below that plots the empirical histogram of the 
+% received signal samples when IN=0
+nsamp = 640;   % number of samples to use for histogram
+signal_samples_firstNSAMPbits = signal_samples(1:nsamp);
+[counts_zeros] = hist(signal_samples_firstNSAMPbits,xhist); 
+percents_zeros = counts_zeros ./ nsamp;
+bar(xhist,percents_zeros);
+
+% Do not modify next six lines
+hold on;                        % all plots on the same figure
+plot_ghist(xhist,rx_min,sigma); % plot histogram predicted by Gaussian
+title(['Histogram of received signals when IN=0']);  % add title
+xlabel('Received signal');
+ylabel('Frequency (%)');
+hold off;        
+
+subplot(2,1,2)
+% Place your code below that 
+% 1. Plots the empirical histogram of the received signal samples when IN=1
+% 2. Plots the theoretically predicted histogram
+% Plot the empirical and theoretically predicted histogram versus xhist defined above.
+signal_samples_lastNSAMPbits = signal_samples((nsamp + 1):1280);
+[counts_ones] = hist(signal_samples_lastNSAMPbits,xhist); 
+percents_ones = counts_ones ./ nsamp;
+bar(xhist,percents_ones);
+hold on;                        % all plots on the same figure
+plot_ghist(xhist,rx_max,sigma); % plot histogram predicted by Gaussian
+
+% do not modify code below this line
+title(['Histogram of received signals when IN=1']);  % add title
+xlabel('Received signal');
+ylabel('Frequency (%)');
+        
+        

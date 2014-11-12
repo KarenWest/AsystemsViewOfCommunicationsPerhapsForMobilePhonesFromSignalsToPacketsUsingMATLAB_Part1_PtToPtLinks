@@ -1,0 +1,94 @@
+﻿% Generate a random 10 bit sequence and a random SPB
+% Do not change the values of bs and SPB in your code
+[bs,SPB] = bit_seq_gen_final;  
+%disp(bs);
+%disp(SPB);
+n = 0:(length(bs)*SPB-1);      % sample index     
+y = zeros(1,length(bs)*SPB);   % Vector to store the channel response 
+
+% Modify the code below to predict the channel response
+%based on observations of initial waveform output:
+%c= 0;
+%d = 0.2;
+%k = 0.65;
+%a = 0.90
+%Generate y PREDICTED CHANNEL RESPONSE (in red in graph)
+%for n = 1:(length(bs)*SPB)
+for n = 1:(length(bs))
+    %ySample = c + k*(1-a^(n-d));
+    %if ((n >= 1) && (n <= 30)) || ((n >= 61) && (n <= 90)) || ((n >= 136) && (n <= 150))
+        %disp(n);
+        %disp(SPB);
+        %if (n >= 2)
+        %include SPB? loop?
+            %y(n) = y(n -1) + step_response_final(n)-step_response_final(n-SPB);
+            %y(n) = y(n-1) + ySample;
+            %y(n) = ySample;
+        %else
+            y(n) = step_response_final(n)-step_response_final(n-SPB);
+            %y(n) = step_response_final(n);
+            %y(n) = ySample;
+        %end
+    %else
+        %disp(n);
+        %y(n) = y(n-1) - step_response_final(n);
+        %y(n) = y(n-1) - ySample;
+        %y(n) = -1 * ySample;
+    %end
+    %y = y + step_response_final(n)-step_response_final(n-SPB); INITIAL GIVEN-NO!
+    %y = y + step_response_final(n); NO!
+    %y(n) = c + k*(1-a^(n-d)); %for n >= d and 0 otherwise.
+end
+% Do not modify the code below
+compare(y,bs,SPB);  % Compare the predicted and actual responses
+      
+% Generate a random 10 bit sequence and a random SPB
+% Do not change the values of bs and SPB in your code
+[bs,SPB] = bit_seq_gen_final;  
+%disp(bs);
+%disp(SPB);
+n = 0:(length(bs)*SPB-1);      % sample index     
+y = zeros(1,length(bs)*SPB);   % Vector to store the channel response 
+
+% Modify the code below to predict the channel response
+%based on observations of initial waveform output:
+%c= 0;
+%d = 0.2;
+%k = 0.65;
+%a = 0.90
+%Generate y PREDICTED CHANNEL RESPONSE (in red in graph)
+%for n = 1:(length(bs)*SPB)
+for n = 1:(length(bs))
+    %ySample = c + k*(1-a^(n-d));
+    %if ((n >= 1) && (n <= 30)) || ((n >= 61) && (n <= 90)) || ((n >= 136) && (n <= 150))
+        %disp(n);
+        %disp(SPB);
+        %if (n >= 2)
+        %include SPB? loop?
+            %y(n) = y(n -1) + step_response_final(n)-step_response_final(n-SPB);
+            %y(n) = y(n-1) + ySample;
+            %y(n) = ySample;
+        %else
+        val_n = step_response_final(n);
+        val_20 = step_response_final(n-20);
+        val_29 = step_response_final(n-29);
+        val_40 = step_response_final(n-40);
+        val_59 = step_response_final(n-59);
+        val_90 = step_response_final(n-90);
+        y(n) = val_n - val_20 + val_29 - val_40 + val_59 - val_90;
+%y(n) = step_response_final(n);
+            %y(n) = ySample;
+        %end
+    %else
+        %disp(n);
+        %y(n) = y(n-1) - step_response_final(n);
+        %y(n) = y(n-1) - ySample;
+        %y(n) = -1 * ySample;
+    %end
+    %y = y + step_response_final(n)-step_response_final(n-SPB); INITIAL GIVEN-NO!
+    %y = y + step_response_final(n); NO!
+    %y(n) = c + k*(1-a^(n-d)); %for n >= d and 0 otherwise.
+end
+% Do not modify the code below
+compare(y,bs,SPB);  % Compare the predicted and actual responses
+      

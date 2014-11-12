@@ -1,0 +1,143 @@
+So let's start talking about the effect of noise
+in our specific communication channel.
+So here's the model that we're going to use.
+Again, we have the input bit waveform coming in, going through the channel,
+being modified slightly.
+And ideally, what we'd like to do is compare
+that received signal to a threshold.
+Unfortunately, what happens is that this signal does not appear at the receiver.
+But we get the signal that we want plus the additional noise that's
+coming in from other places in the environment.
+So the final signal that we get is constructed
+according to what we call an additive noise model.
+We take this signal, and we add it to this signal.
+And so what that means then, is that this original blue signal then,
+the points on that signal are then moved either up or down by the noise.
+So you can see here, for example, that I had
+the first one, a very small transition here.
+And that small downward transition gets added over here.
+You can see, let's say, this big one over here
+moves this one down here.
+This big one moves it up and things like that.
+So what happens then is that the noise then takes these values
+and perturbs them either up or down in a random way.
+Now, the problem then occurs because of the fact
+that, sometimes, the noise actually helps us.
+And sometimes the noise hurts us.
+So remember how we're going to do the decoding.
+The way we're going to do the decoding is what we're going to do
+is we're going to take the signal that we receive
+and then compare it with that red threshold.
+And so in this case here, we had a big noise, which you might think, well,
+a big noise must be bad.
+But in this case, actually, it wasn't bad
+because it moved us actually farther away from the threshold.
+So this thing which actually corresponds to a one
+is actually farther above the threshold than it was before.
+And so actually now, in some sense, you can
+think of as being more sure that it's a one.
+And so where it hurts us is actually when
+it moves us in the opposite direction.
+So you can see here this noise here is actually smaller.
+But because it's moving us in the wrong direction,
+it actually causes this signal value here to drop below the threshold.
+And so we would think that perhaps that sample corresponds to a zero, when,
+in fact, originally it corresponded to a one.
+So if the large noise is large enough and in the correct direction,
+then the output actually will change when we do the decoding.
+And so when we want to do this analysis, we
+have to do some simplifying assumptions just
+to make the thing a little bit easier to understand.
+And so I'd like to talk about some of those simplifying assumptions
+that we're going to make for the analysis of the BER or the bit error
+rate.
+So the first assumption that we're going to use
+is the idea that we have perfect synchronization.
+And so this is the idea that we know exactly where we're
+going to look in the signal to decode each bit.
+All right, so remember we're going to use
+many, many samples to encode each bit.
+So we're going to have a large amount of time
+where we know that a bit is constant.
+But we're going to only look at one particular point.
+And we know exactly where we're going to look.
+And so that's the second assumption then,
+that we're only going to look at one particular point in the signal.
+The other thing we're going to assume is that the effect
+of the intersymbol interference has been eliminated.
+So we can either do that, for example, by choosing a very long bit time
+or, perhaps, doing some equalization, although, as we pointed out previously,
+the effect of noise is somewhat problematic with equalization.
+But in any event, we are going to make the assumption
+that there's no intersymbol interference.
+And what that means is that the received signal depends only
+on the current bit that's being transmitted
+and not on any of the past bits that were transmitted before.
+And the final assumption that we're going to make
+is this assumption about additive white Gaussian noise.
+So we already talked about additive.
+Additive just means that the noise comes in and adds to the received signal
+that we get.
+And then the two remaining terms then are this idea of white and Gaussian.
+So Gaussian I'll actually discuss next time.
+And the idea of white is somewhat similar to the idea of no ISI.
+The idea of white simply says that the value
+of the noise that I'm going to look at on the sample
+is unrelated to any of the past noise values.
+So just like ISI, no ISI says that the value of the received signal that I
+got the desired received signal depends only on the current bit
+and not on any of the past bits, we're going
+to kind of make the same assumption about the noise.
+The value of the noise that we observe is independent
+or doesn't depend on what happened to the noise previously.
+And so with those kind of simplifying assumptions,
+we get this final simplified model where we assume that the input comes in,
+and it's either a zero or one.
+And since we're going to do single sample decoding,
+that's going to result in a single value over here.
+And that value is going to either be a low value, if the input was zero,
+so we're going to call that low value r_min, or a large value,
+which we'll call r_max if IN was equal to one.
+And then on top of that or added to that, what we're going to get
+is a noise value.
+So you can imagine now what's going to happen if, for example, I'm
+transmitting information with my hand where this corresponds
+to zero and this corresponds to one, the noise would then
+perturb my value or the height of my hand
+away from this nominal value of r_max up or down.
+So you can imagine I'm trying to transmit information.
+And instead of having my hand either make these nice clean transitions up
+and down like this, it's kind of moving up and down
+and moving up and down, like this.
+But whatever we're going to get, we're going to take the value
+and compare that to the threshold.
+And if it's above the threshold, we're going to say that the output is a one.
+That's our decoded output.
+And if it's below the threshold, we're going to say that the output is a zero.
+And so the question then is, well, how can
+we actually predict the bit error rate, given this model?
+And so let's take a look at the kind of pictures
+that we're going to get from this kind of model.
+And so here is a sequence of bits that I'm showing you.
+And so here is the first bit, the second bit, and so on.
+And so it's 1, 0, 0, 0, and so on.
+And then from that, what I'm going to get
+is I'm going to get a received signal that's either
+going to be r_max or r_min, depending on whether the input is high or low.
+And here I'm showing you where there's essentially no noise.
+And if I compare this with a threshold, then you
+can see that when I do that comparison, I'm
+actually going to get a very nice recovery of the original input bit
+sequence.
+So the output is going to be exactly the same as the input.
+But then when I add noise to this system, what happens
+is that these values, then get moved away
+from the nominal values of r_min and r_max.
+And in some cases, when I'm moving it in the incorrect direction
+by a large enough amount, what will happen
+is that I'll actually cross to the wrong side of the threshold.
+And that will cause a bit error, where the output that's decoded
+is going to be different than the input that is being sent.
+And so now moving forward, what we're going to do
+is look at how we can take this and actually get
+numerical calculations of what the actual bit error rate is.

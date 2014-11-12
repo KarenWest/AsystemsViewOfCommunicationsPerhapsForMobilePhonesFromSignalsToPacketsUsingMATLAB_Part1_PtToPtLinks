@@ -1,0 +1,134 @@
+ 
+In this topic, what I'd like to do is talk about equalization.
+And to start off that discussion, what I like to be able to do
+is review where we are and see in the communication chain
+where do we need this process of equalization and why.
+So let's review our basic communication scheme
+through the communication protocol.
+And so remember what happens is we have a sender who wants to send a data block
+and then, in order to understand where the start and the stop of that data
+block occur, we add these framing bits.
+And so in our protocol, we talked about the start bit and then the stop bit,
+and the stop bit isn't really used to define the end but really
+just give the process or the receiver some time to process the data.
+Then what happens is that we need to send some information to help
+the receiver understand the properties of the channel.
+And so that's what we use the training sequence for.
+We put all those things together and we send that over the channel
+through the transmitter.
+Once the receiver receives that, it reverses those operations
+it first looks at the training sequence, tries
+to understand what happens in the channel,
+whether the offset and the amplitude through the channel is large or small,
+in order to set that threshold.
+And once it finds the threshold, then it looks for the start bit
+and then begins decoding the data block based on the known length.
+And then eventually it will be able to decode the bit
+and get the final data block that was sent.
+And so we looked at that in the online labs, and what we did then
+was we actually looked at pushing the bit time down.
+And of course, what we'd like to do when we push the bit time down is,
+that's a good thing because the bit rate will go up.
+And so remember, the bit rate is the rate
+at which we're sending information, and of course we'd
+like to send information as quickly as possible.
+So you remember there's this inverse relationship between the bit
+time and the bit rate, so this blue curve is really fixed mathematically.
+There's nothing we can really do about that blue curve.
+But what we saw in the online lab was that, as you decrease the bit time,
+of course the bit rate goes up as dictated mathematically,
+but also the bit error rate goes up, and that's a bad thing
+because what that means is that we're making more and more mistakes.
+And so typically what we do as engineers is we say,
+OK, there's a certain level of bit errors.
+I can never fully get rid of the bit errors,
+so there's a certain maximum bit error rate that I'm willing to tolerate.
+So maybe we can set that limit here, shown by the green line.
+And what that would imply then is that, well,
+if I want to have my bit error rate lower than that,
+then I have to choose a bit time beyond this point over here.
+And that then sets a maximum bit rate that I can transmit at, and I cannot
+push the bit time any further beyond this, because what happens is that,
+if I do that, then the bit rate will go up, of course,
+but then the problem is that the bit error rate will go up beyond
+our maximum value.
+So that will set a limit.
+And so then the question we have is, well, we
+can't do anything about this blue curve because that's set mathematically.
+Can we do anything about this red curve?
+In particular, could we somehow take this red curve
+and push it back in this direction.
+And if we pushed it back in this direction,
+then even for the maximum bit error rate, what we'd be able to do
+is, we would be able to then have a much higher bit
+rate if we could push this red curve back.
+And so then the idea behind equalization is one way
+of trying to take this red curve and push it back in this direction.
+And so in order to understand the way equalization works,
+we have to understand, well, why is it that we are getting this red curve.
+Why are we getting this increase in the bit error rate
+as the bit time goes down?
+And last time what we saw is that we can understand that
+through the idea of the eye diagram.
+So remember, the eye diagram is a way of plotting the response to two bits,
+and what we're doing is we're overlaying the responses
+of many, many, many two-bit input combinations,
+and that gives us the eye diagram.
+And then what we are able to do is look at the shape of that eye diagram
+and see how that eye diagram changes as we decrease the bit time in order
+to send more information.
+And so what we see here is that the samples per bit, then, or the bit time
+is decreasing as I go from this point here down to this point over here.
+And remember what do we want about the eye diagram?
+We want the eyes to be nice and big or wide open.
+And so what we can see is, in the eye diagram here, we have a nice big eye,
+and then as we start decreasing the bit time, the eye starts to close
+and starts to get smaller, both in terms of the height and in terms of the width
+as well.
+And so finally at this point, we have a very, very small eye,
+and at these points here, we actually have no eye at all.
+And once that happens, what we're seeing then
+is that we're seeing that the channel doesn't have enough time
+to respond to a bit, and sometimes the response to a one-bit
+doesn't have enough time to go up above over that threshold,
+and so this situation here is when we're going to get those kinds of bit errors
+and this is the kind of situation that we'd like to avoid.
+And so then the question then is, well, what can we do about that.
+That brings up the idea or motivation for equalization.
+So remember, what we have in our system is
+we have some kind of input bit sequence that's coming in.
+We're going to convert that into a waveform
+where we're holding a physical variable constant over,
+let's say, a high value and a low value corresponding to one and zero.
+If we actually look at the eye diagram at this point, what we get
+is a nice, big, wide open eye diagram as we see over here.
+But then what happens is that, when we go through the channel,
+because of the fact that the channel is doing this blurring of the transitions
+where we have the very, very sharp zero to, say, one transition over here
+kind of becoming much smoother like this.
+And so this is the reason that it takes some time for the channel
+to go up and down.
+And so then what happens is that when we draw the eye diagram for this,
+we get something that doesn't look quite as nice as this one,
+and we see this kind of eye diagram over here.
+But what we know, though, is, through our modeling
+we know that, given this kind of diagram here,
+we can predict this diagram over here.
+And so what that implies, then, is because this eye diagram is
+based on this, given this eye diagram, we
+can actually predict this eye diagram over here.
+And so if we can do that kind of prediction going in this way,
+is it possible to go in the reverse direction?
+Can we go in the opposite direction and given this,
+go back and get something that looks like this?
+Because if we had something like this, we'd have a nice, open eye diagram.
+And so that's the whole idea behind the equalizer.
+The idea behind the equalizer is, we take
+something that looks at this signal here and tries
+to undo the effect of the channel, go backwards through the channel so
+that we can recover a waveform over here that
+looks very similar to the waveform up here,
+and that would then imply that the eye diagram looks like the eye diagram
+that we have at the beginning.
+And so that's the idea behind equalization.
+Then the question is, well, how can we actually do that.

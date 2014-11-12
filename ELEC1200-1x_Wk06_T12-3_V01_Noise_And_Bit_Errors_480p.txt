@@ -1,0 +1,149 @@
+ 
+Finally, I'd like to discuss the effect of noise.
+Noise is the fundamental limiting factor in our communication system.
+In fact, without noise, even in the presence of that non-ideal step
+response, we would be able to transmit information perfectly.
+Unfortunately, noise will introduce inevitable bit errors.
+ 
+Where is noise introduced in our communication system?
+The source creates information that encodes as bits.
+Those bits are converted into a waveform which is sent over the channel
+and noise enters into the system here during the transmission
+process over the channel.
+It could be introduced by the environment,
+for example, other users in the environment who
+are using the same channel or by the actual physical devices that
+are used to either create this sent waveform or to receive it.
+Whatever its source, that noise leads to bit errors,
+and we model that using this additive noise model.
+The idea is that the input comes into the channel,
+it results in a signal that is either high or low,
+and we compare that high or low signal with a threshold.
+If there was no noise, the input here would
+be always high when the input bit was a one and always low
+when the input bit was a zero.
+Unfortunately, noise can perturb the value of the received signal
+away from that high or low value.
+And if the signal should be high but the noise pushes it in the wrong direction,
+it could eventually push it below the threshold resulting
+in a wrongly decoded zero or above the threshold resulting
+in a wrongly decoded one.
+When we understood the effective noise or tried
+to understand the effective noise, we use this binary channel model
+where we split the analysis into two steps.
+The first one, we looked at binary channel model
+in order to understand what the key factors are
+in determining what the bit error rate is.
+And then we looked at inside the binary channel model,
+what determines the values of those key parameters?
+And so the binary channel model, then, showed us
+that the key parameters that are determining the bit error rate
+are the probabilities of these two paths, Pe0 and Pe1.
+So when we're in the binary channel model,
+the input comes in as either a 0, 1.
+And ideally, we'd like it to come out as the same value either 0 or 1,
+so follow these black paths.
+But errors are introduced when you come in as a 0 and exit as a 1
+or enter as a 1 and come out as a 0.
+And so we'd like these two things, Pe0 and Pe1,
+which determine the probability of taking
+these paths to be as small as possible.
+In fact, the bit error rate is a mixture between Pe0 and Pe1,
+where the mixing is determined by these two probabilities, P and is equal to 0
+and P is equal to 1, but that's determined by the transmitter.
+So if we'd like to transmit information as reliably as possible,
+what we'd like to be able to do is make Pe0 and Pe1 as small as possible.
+Now, what determines what the value of Pe0 and Pe1 are?
+In order to determine that, we need to look now inside the binary channel
+model and look at the details of what happens there.
+We split our analysis into two cases, one
+was when the input was 0 and the other case when the input was 1.
+And I illustrate here only the case when the input is 0.
+And what we saw was that when the input was 0, ideally
+the channel gives me an output of r min, but because of noise,
+the value is perturbed.
+And we saw that we could understand this perturbation
+in a statistical sense using the concept of probability, which
+takes the value at r min and says that we observe actually a spread around
+there.
+And some of these are OK if they're still below the threshold,
+but we're going to get bit errors when that random noise pushes us
+above the threshold.
+And this graphical analysis gave us an idea
+of how large that probability is going to be as the area under this curve
+beyond T.
+And we saw that we can control or change size of that in two ways.
+One is by reducing the size of the noise which would reduce that area.
+And the other one was by increasing signal power which
+separated the peak corresponding to input equal to 0 and input equal to 1
+by more and more which made that area smaller.
+So we are able to then use our understanding about the way
+the channel works to predict what the values of Pe0 and Pe1 were.
+Unfortunately, what that left us with, though,
+was the idea that noise is really an inevitable part of communication.
+And it's really impossible to completely avoid errors due to noise.
+And so then we concluded this first part by looking
+at what are the possible ways that we might
+be able to ameliorate the effect of noise or reduce the effect of noise.
+ 
+And so we introduced the idea of error correcting coding.
+And here the key idea was adding redundancy.
+For example, just like in this online course in this final topic
+I'm reviewing the concepts that we discussed in this first part.
+And the review in some sense is not really giving you any new information,
+but I'm repeating the same thing just to try to make sure that you got it right.
+And if you see there's a mismatch between this
+and what you think you understand, maybe you
+can go back and study those in more detail
+because perhaps an error has occurred.
+It's given you a way of detecting errors.
+And so we did the same thing in our communication system
+where we have a certain amount of information that we're going to send,
+but we actually send it using more bits.
+And these are really redundant bits.
+They're not adding any new information, but they're just
+giving us a mechanism by which we can correct or detect errors.
+The way these extra bits were introduced was that we took our message
+and we broke it up into these smaller chunks of k.
+And then we added these extra bits where these extra bits
+were dependent on the message bits.
+So no new information was being sent.
+But we use this extra information to detect errors.
+What we've ended up with was this system that we show over here.
+We took the input message bitstream that we wanted to send,
+broke it up into these k bit blocks where here k is equal to 4,
+added the extra information.
+And then when information was sent, inevitably there's
+going to be bit errors.
+If the bit errors are relatively isolated, then what you can do
+is you can correct those bit errors using the redundant information
+that you're sending.
+And so by correcting those bit errors, you
+can result in a decoded stream here that is identical to the input message
+stream that was originally sent.
+And so in summary then, in this part of the course,
+we've discussed all aspects of the communication from a single source
+to a single destination over a communication channel.
+What we've seen is that in order to understand
+the performance of this system, we need to model the channel.
+And in order to model the channel, we use mathematics.
+And we saw that there are many, many different ways of using mathematics
+to describe the effect of the channel and describe the input of the channel.
+Each of these different representations or models that we use
+had different applications.
+And part of our job as engineers is to figure out which of those to use.
+Intuitively, you can kind of think about these different kinds
+of representations as being different tools in our toolbox.
+And for certain jobs, we need to be able to choose the right tool for that job
+to make our job as easy as possible.
+So we looked at then how to understand the effect of the channel
+and how noise influences the channel.
+And then we saw that because of noise we're
+going to have inevitable bit errors.
+And we looked at ways for dealing with that.
+And so now, after this first part of the class,
+you really have a complete idea of what it takes to transmit information
+from a source to receiver, what some of the metrics
+we use for understanding the performance of that,
+and how we as engineers analyze and improve the system.
+ 

@@ -1,0 +1,29 @@
+﻿tx_bs=rand(1,1280)>0.5; % generate sequence of 1280 random bits
+
+SPBlist = 1:15;             % list of bit times to test
+num_SPB = length(SPBlist);  % number of bit times to test
+BER = zeros(1,num_SPB);     % initialize bit error rate array
+
+for i = 1:num_SPB,         %generate the SPB list
+    SPB = SPBlist(i);
+    tx_wave = format_bitseq(tx_bs,SPB);  % create waveform following protocol
+    rx_wave = txrx_lab03(tx_wave);       % simulate channel    
+    rx_bs = waveform2bitseq_lab04(rx_wave,SPB);  % decode received waveform
+    BER(i) = compute_BER(tx_bs,rx_bs);  % compute the BER
+end
+
+figure(1);
+% Place your code below that
+%   1. computes bit rate in Mbps for each bit time in SPBList assuming Fs =
+%   500kHz
+%   2. plots BER in red and bit rate in blue versus bit time in samples 
+%   on the same graph
+
+        
+        
+% code to label plots -- do not modify code beyond this point
+title('Bit Error Rate and Bit Rate');
+xlabel('Bit Time (samples)')
+ylabel('BER or Bit Rate (Mbps)');
+legend('bit error rate','bit rate');   
+      

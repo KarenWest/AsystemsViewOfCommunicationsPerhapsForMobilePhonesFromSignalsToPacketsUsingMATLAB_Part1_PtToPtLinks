@@ -1,0 +1,164 @@
+So now, let's take a look at the basic parts that make up the communication
+system that we'll be talking about in this class.
+So just to review, in this class we're going
+to be talking about a general communication
+chain from a single source to a single receiver, in this part.
+And so the single source will encode some information,
+as what we called bits, and send that through this chain
+to the destination, which is going to receive the bits.
+And hopefully, these are going to be the same.
+What we're going to be doing in this first part of the class
+is really focusing in, not worrying about this part
+here, but looking at these blocks over here.
+So let's take a closer look at what we see over inside this part here.
+What we see is that this consists of three different parts.
+Something which we called the transmitter, the channel, and the receiver.
+So remember, the source has some kind of information
+that we're going to represent with something which we call bits.
+And then, those bits then are going to be converted into a physical waveform
+by the transmitter.
+That physical signal, be it light, voltage
+or any other kind of physical signal, is going
+to be then carried over what's called the channel to this block down
+here, which is the receiver.
+And the idea is that this receiver is going to look at the signal
+that it receives and then try to decode what the bits were.
+And so now what we're going to do is take a look
+at each one of these different parts, starting
+from the bits and then all the way through this chain.
+So let's take a look at this thing.
+What are these bits that we're talking about?
+And the bit is really the basic unit of information
+that's used in modern communication systems.
+It's some kind of variable that can assume one of two possible values.
+Normally we'll call those two values zero or one, but that's really arbitrary.
+Intuitively, what you can think of a bit as being,
+is as the answer to a yes or no question.
+So more complicated information can be then sent not using this one bit,
+but multiple bits which we're going to send as sequences of waveforms.
+And so, if we can think about just a single bit now,
+we can think about, well, what are the different ways that we could represent
+that using the transmitter as a physical signal that could then
+be sent over some kind of communication medium?
+And so this is the board that we use in the physical version of the lab,
+and you'll be using some kind of online analog of this board.
+In this board here, what we use is we use light to transmit information.
+But that's only one possible example.
+So for example, we could use-- if we are transmitting information
+over a wire-- we could use something like voltage or current.
+And we could use two different values of the voltage, for example high or low,
+to represent the two values of one and zero.
+In this board here what we're looking at is we're using light.
+And down here is the transmitter.
+And so the transmitter actually consists of these,
+what we call light-emitting diodes, you can think of them
+kind of being like light bulbs.
+And what we're going to do is if we want to send a one,
+then we would turn the light on.
+And if you want to send a zero, we would turn the light off.
+Now there are many, many other ways that we could send information.
+For example, any kind of physical kind of variable could send ones and zeros.
+And so for example, one thing I could do is
+use my hand and the position of my hand to send information.
+So for example if I wanted to send a zero-bit, what I could do
+is I could hold my hand down here low.
+And then when I wanted to send a one-bit, I
+could then raise the position of my hand.
+And this would then indicate a one.
+And so this is often what we do, for example, in class.
+Most of the time, the students are sitting in the class.
+They don't have any questions, so their hands are usually down.
+But when they have a question, what they might do is to raise their hands.
+And that would indicate to me that there's a question in the classroom.
+And that's kind of, again, the answer to a yes or no question--
+that students are constantly answering the question,
+do you have a question or not, by holding their hands down,
+indicating no.
+But when they do have a question, they would raise their hands, indicating yes.
+Now when we send more complicated information, what we do
+is we usually use sequences of bits.
+And we'll talk about that a little bit later.
+But we need to send that information using a time-based representation,
+where what we do is we hold the physical variable
+constant for a certain amount of time.
+And if we want to send a bit sequence.
+For example, 1 0 1 0 and so on, what we would do
+is we would change the value of the physical variable over time.
+And so if we were looking at the example of my hand, what we would do
+is I would start out with my hand high, indicating a one.
+I would hold it constant for a certain amount of time, called the bit time,
+and then I would change it after that time to encode the next bit.
+And so in this case here, what I would do is I would start my hand out high.
+And I would go high, low, high, low, high and then low.
+And over that amount of time, I've just transmitted this bit sequence, 1, 0, 1,
+0, 0 and so on.
+Of course, what we'd like to be able to do,
+is we'd like to be able to send information as quickly as possible.
+And so in order to do that, what we try to do then
+is take this bit time that we're using to send one bit,
+and try to make that as short as possible.
+So we take this bit time and try to make it shorter.
+And in this case, what I've done is I've cut that bit time in half.
+And what that then allows me to do is send twice as much information
+in the same amount of time.
+And so you can see, in this case here, what I have
+is this exact same bit sequence as you see up here.
+But now, it's taken half the amount of time.
+So I can send additional information.
+And that's going to put some kind of strain on the communication system,
+because you can imagine if I was using my hand,
+I would start it out here as being high.
+And if I wanted to use the same time encoding,
+I would have to move my hand faster.
+So high, low, high, low, high, low, high, low, high, low, high.
+So that was a little bit more difficult for me to do.
+And just like it's difficult for me to communicate information more quickly,
+it's difficult for electronic communication systems
+to communicate information more quickly.
+And so in this class, what we'd like to be able to do
+is really understand what those limitations are
+and how we can deal with those limitations,
+so that we can really get the fastest information transmission as possible.
+So what are the limitations, then, that are introduced
+in trying to transmit those that kind of information as quickly as possible.
+Those kind of limitations are really introduced by what we called the channel.
+So you remember what the transmitter does is it takes that bit sequence,
+and it kind of represents it as state changes over time
+in a physical variable.
+Now what's going to happen then is that those kind of state changes
+are going to then have to be transmitted from some location
+to a remote location over what's called the channel.
+And the process of this physical variable being transformed over
+that channel is going to cause a distortion,
+so that what's received at the other end is not
+going to be quite the same as what was sent over here.
+And so for example, if we think about the physical example
+that I talked about before, with using my hand,
+we can kind of think about the transmitter perhaps as being my brain.
+And I want to encode this bit sequence.
+And so I'm going to try to send signals to my hand to move.
+But of course, what happens is my hand cannot instantly move from this high
+value down to the low value, as suggested by this time waveform over
+here.
+In fact, it's going to take some time for my hand to go from the high value
+down to the low value.
+So the trajectory is not going to be this kind of instantaneous
+up here and then instantaneous down here, but it's going to take some time.
+And so the actual trajectory in my hand is
+going to look something like this, going up and down more smoothly.
+And so because of that, what's actually received at the other end
+by the receiver is not going to be quite the same.
+And we're going to then have a waveform, or a system, that looks like this.
+Where we have set bit sequences that are encoded,
+ideally as a waveform like this.
+But actually, when it gets received by the receiver looks slightly different.
+And because of the fact that those two things look slightly different,
+the receiver is going to have to try to figure out
+from that what the actual sent bits were.
+But because the two waveforms aren't exactly the same,
+it's not going to be able to always do a exact job of doing that.
+And there may be errors, indicated here by the fact
+that I used b tilde instead of b0.
+But of course, what we'd like, and we'll be studying in
+this class is, how to make those differences between b0 and
+b0 tilde, what's received, as small as possible.

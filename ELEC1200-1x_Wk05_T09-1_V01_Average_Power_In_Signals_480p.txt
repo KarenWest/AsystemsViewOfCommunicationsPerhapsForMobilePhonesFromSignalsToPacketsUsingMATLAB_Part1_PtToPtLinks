@@ -1,0 +1,244 @@
+[MUSIC PLAYING]
+So what we've done up till now is study the concept of the bit error rate
+using the binary channel model.
+And what the binary channel model has allowed us to do
+is identify the key parameters that determine the bit error rate.
+What we're going to do now is look at, what in the channel
+determines the values of those parameters?
+So let's review by looking at the binary channel model
+that we talked about before.
+So, again, the binary channel model assumes that the input and the output
+have two possible values, 0 or 1.
+And remember that ideally what we'd like is when a 0 comes in,
+it comes out as a 0, or when a 1 comes in, it comes out as a 1.
+But occasionally what happens is that zeros come in as zeros
+but then come out as ones or something comes in as a one
+and comes out as a zero.
+So that's dictated by those red paths that we see there.
+And we'd like to make sure that those paths are
+taken as infrequently as possible.
+In other words, we'd like these values of P_e0 and P_e1
+to be as small as possible.
+Now the actual value of the bit error rate
+depends on, not only the probabilities of these paths,
+but also on the probabilities of the input being 0 and the input being 1.
+Now, typically, those are determined by the transmitter.
+And so the transmitter usually tries to choose the probabilities
+so that these two things are equally likely as that's
+when it's transmitting the most information.
+And so what's going to determine the bit error rate most
+the time then is the probabilities of these two paths, P_e0 and P_e1.
+And it turns out that that's going to depend on several factors.
+Number one, the size of the transmit levels or, in fact,
+the difference between the transmit levels, r_min and r_max,
+the power in the noise, and also the threshold.
+So to get a better understanding of that,
+let's now go inside to the binary channel model
+and look at where those factors come into play.
+So now I've taken the binary channel model
+and I've opened it up so we can see what's happening inside.
+And so now, remember, what happens is that the input comes in
+as either 0 or 1, and then the channel generates an internal representation
+here to the binary channel model which is either
+going to be a low value r_min if the input is equal to 0 or a high value r_max
+if the input is equal to 1.
+Now, for the purposes of this discussion,
+we can think about this in terms of my hand moving from r_min to r_max.
+And then what happens is that the channel adds noise.
+And so that's dictated by this parameter v.
+And intuitively, what you can think of is my elbow here
+is going to determine whether the input is r_min or r_max,
+but then my hand could introduce some additional noise on top of that.
+And the idea then was to be that you're trying
+to figure out the value of the signal or the value of the input bit
+depending on where the tip of my hand is.
+Right?
+And so you can imagine if I'm moving from r_min to r_max,
+then if r_min and r_max are very different, then what you can imagine
+is that it's going to be very easy to figure out the difference.
+But if there's a small difference between r_min and r_max,
+and now if you're looking at the tip of my hand,
+I start adding this noise to it, then it's
+going to be difficult for you to actually figure out
+what the difference between the input bit being 0 and the input being 1
+are going to be just by purely looking at the output which
+was the tip of my hand there.
+And so this is what we call the additive channel model because of the idea
+that the noise comes in, kind of adds to the level that we have over here.
+And so then, remember, what we're going to do is we're going to take that value
+and we're going to compare with a threshold.
+So I'm going to move this thing up and down
+and the noise is going to move it up and down.
+And occasionally, what's going to happen is
+that noise is going to push me either above the threshold
+or below the threshold.
+And that's going to cause an error in the bit.
+So we can see that in this diagram here.
+Here we have the input bits coming in, either 0 or 1.
+And nominally what should happen is that at the channel,
+we should have either a value of r_min or r_max depending on
+whether the input bit is 1 or 0.
+But what's going to happen is the noise is going to take to that value
+and move it away from that nominal value.
+And occasionally, what will happen is that the noise will be big enough
+and in the correct direction such that it
+will actually push it below the threshold when
+the input is a 1 or sometimes occasionally
+above the threshold when the input is a 0.
+And that's going to cause a bit error where the input bit and the output bit
+are going to be different.
+Now, when this happens and how often this happens
+is going to depend on the idea that I have a lot of power in the signal.
+That's going to be a good thing.
+Or a lot of power in the noise and that's going to be a bad thing.
+So to think about this, we can go back to this idea of a party.
+And when I'm at a party, there's a lot of noise around me.
+So that's the input noise v. Right?
+And my signal then is going to have to be louder.
+I'm going to have to speak louder in order for you to hear me.
+Conversely, if I'm in a very, very quiet environment,
+like a quiet restaurant or something like that,
+then I don't have to speak as loudly in order for you to hear me.
+So my power that I use is going to be lower.
+And so we need to then start quantifying well, what do we mean by power?
+We have this intuitive idea of power, but quantitatively,
+what does it mean in engineering?
+And so when we talk about power, power is really
+a measure of the amount of energy we use per unit time.
+And so power that is equal to energy divided by time.
+Energy you can think of as being equivalent to work.
+And so if I have a particular job I need to do,
+then the less time it takes me to do that job, the more power I'm using
+or the more power I'm spending.
+Usually we measure power in units of watts.
+And 1 watt is the amount of power it takes to lift an apple up
+by about 1 meter in one second.
+The reason that we're interested in power
+is because the batteries that we use have
+a fixed amount of energy inside them.
+So, for example, our mobile phone battery has a fixed amount of energy.
+And the amount of power that we're using is
+going to determine how much time we can use that battery for.
+So if we take this equation over here and just move power
+to this side and time over to this side, what
+we get is the usable time in our battery is
+really equal to the energy, which is fixed
+by the size of the battery divided by the power consumption.
+So we can increase the usable time by either getting a bigger battery that
+has more energy, but of course, that's going to be more heavy,
+or trying to reduce the power consumption.
+So what you can see here is we'd like to run
+our mobile phone with as low power as possible.
+So let's take a first look at some numbers associated
+with real mobile phone batteries.
+When you open up your phone and you look at it,
+typically you'll see some kind of rating like the one that we see over here.
+Typically, what will happen is that the battery will
+be given a rating at a fixed voltage, let's say in this case 3.7 volts,
+and a charge capacity in milliamp hours.
+And so this case it's 1,000 milliamp hours.
+So if I take those two things and I multiply them together,
+then what I'll get is the total energy stored
+in the battery in milliwatt hours.
+So in this case, the mobile phone battery has 3.7 times
+1,000 or 3,700 milliwatt hours of energy.
+Another way of expressing that would be 3.7 watt hours of energy.
+And so then to determine how long that battery would work,
+we then take that energy and divide by the power consumption.
+And so, for example, for a mobile phone when we're talking or actually
+actively using the mobile phone, it might dissipate something like 1 watt.
+So if we take 3.7 watt hours and divide by 1 watt, what we get
+is about 3.7 hours.
+And so that's the kind of the talk time of the phone.
+Of course, if the phone is just standing by, then it's using a lot less power.
+So the standby time could be much longer.
+But if we're just continuously using the phone,
+then 3.7 hours is about what your typical phone will last for.
+But, of course, we could take that same battery and try to power other things.
+For example, we could try to a power our brain
+if we could hook it up to our brain.
+It turns out our brain dissipates about 10 watts.
+Right?
+So rather than 3.7 hours, what we would get
+is 0.37 hours, which is something around 20 minutes
+or it would be somewhere between 20 and 30 minutes.
+If we actually tried to do something more ambitious like, for example,
+cook an egg with it, it turns out we wouldn't
+be able to do that in our microwave oven because if we took 3.7 watt hours
+and divide by the power consumption will microwave oven,
+let's say about 1,000 watts, then we would get about 3.7
+divided by 1,000 hours.
+And so that's less than a second.
+Right?
+It's about maybe a quarter of a second, something like that.
+So that wouldn't be enough time for us to cook an egg or anything like that
+in our microwave oven with that battery.
+So then you can see then that power consumption then really determines
+how long we can use a battery that has a fixed amount of energy in it.
+And so in order to measure energy or power in the signal, what we need to do
+is to find some kind of measures of power and signals.
+And so usually for communications, we have
+signals that vary around an average value.
+So I told you, for example, when transmitting bits,
+we're going to have a low value and a high value.
+And that's going to vary around some value and so depending on where I was,
+let's say, I could put my hand down here and vary it around here
+or I could put my hand up here and vary it up here.
+What's really going to determine the power consumption is not really
+where my hand is, right, but how much my hand is changing away
+from that average value.
+So what we're really interested in, then,
+is if I assume at some average value that I'm
+going to be at, what's the difference between that average value
+and the actual signal?
+And this thing could be both positive and negative.
+Right?
+It could be positive in this case here and negative in this case down here.
+And so if I actually average the difference
+over many, many samples, what I'll do is I'll get 0.
+And so what we have to do is we have to take this thing that
+can be both positive and negative and convert it into a positive number.
+And the way we do that for power is we just square that signal.
+So if we square a positive or a negative number,
+we'll always get a positive number.
+Then we can average that over a whole bunch of different samples.
+And that will give us the power inside that signal.
+So let's take a look at the actual value of power for a bit signal.
+So remember, for a bit signal, it's going to vary between,
+let's say a high level for input bit 0 r_max and a low value r_min.
+We need to compute the average value.
+Now, remember, I told you that typically the transmitter
+is going to try to transmit ones and zeros equally likely.
+And so in that case, intuitively what you'd expect
+is that the average value should then be somewhere halfway in between r_min
+and r_max as shown over here.
+And then the difference between r_ave and the actual
+sent signal delta r is going to depend on whether the input bit is 0
+or the input bit is 1.
+If the input bit is 0, then the value of the signal
+is r_min and r_min minus r_ave given by this expression over here.
+And what we can do is substitute the expression for r_ave
+that we derived over here into here as shown over here.
+And then what we get is r_min minus 1/2 r_min
+which will give us a 1/2 r_min and then minus 1/2 r_max as shown
+over there.
+When IN is equal to 1, then the value is r_max.
+So r_max minus r_ave in a similar calculation
+will give us 1/2 (r_max minus r_min).
+So actually, these two things are exactly the same.
+It's just that one is the negative of the other one.
+And so when we square that, that difference is going to disappear.
+And so the power in the signal is going to be given by this one here,
+r_max minus r_min quantity squared divided by 4.
+And so what that's telling us then is that the power in the signal
+is going to be the difference between the low value and the high value.
+So if I'm making a very small change up and down,
+that's taking me a very small amount of power.
+If I'm making a big change up and down, that's
+taking me a much larger amount of power.
+And so in order for me to save energy, you
+can imagine that if I was doing this it would be a lot easier than doing this,
+and I would be a lot less tired after a certain amount of time
+or I would have used less energy in doing this than doing that.
+So this expression that we got here, r_min minus r_max squared,
+is intuitive with our understanding of what the power transmission would be.

@@ -1,0 +1,131 @@
+ 
+Hi.
+I'm Professor Bert Shi of the Department of Electronic
+and Computer Engineering at the Hong Kong
+University of Science and Technology.
+I'm sure many of you have one of this - a smartphone.
+And through this one device we can do a myriad of different things.
+We can talk to our friends, we can take pictures, watch videos,
+surf the Internet.
+Through this one device, we can access all kinds of information
+and transmit information no matter where we are or what time of day it is.
+Have you ever wondered how this works?
+What are the limitations in communicating information,
+and what are the types of techniques and tools
+engineers have developed in designing these types of systems
+to work as well as they do?
+Well, over the next few weeks, I'll be discussing these issues with you
+in detail.
+ 
+Let's discuss what this class will be talking about overall.
+Very generally, this course is concerned with the question
+how do we transmit information wirelessly?
+For example, suppose we have three people, and maybe the person
+on the right hand side of the screen wants to talk to the person over here
+on the left hand side of the screen.
+How is that done?
+In fact there may be multiple people, maybe
+the person on the bottom part of the screen,
+that also wants to talk to this person at a different time.
+How can we establish those communication links
+that all operate, really, over wireless communication channels?
+In order to address this question what we've done
+is we've broken this entire class down into three different parts
+that we're going to address this problem and different components
+of that question.
+And so the way that we split the class up is shown in this slide here.
+Where in part one, what we're interested in
+is just what we call a point to point link-- red arrow here--
+which is looking at how we can have what's
+called a point to point communication system.
+So in this case here we have a single user here
+that's trying to communicate with this antenna, which
+is something which we'll call the base station.
+And these two things in our world, for this part one of the class,
+are really going to be the only two things that
+ever want to talk to each other.
+It's from one point to another point.
+Now of course what might happen is that you
+might have several people in the same region
+and they all want to make a telephone call.
+And so this base station is really what's
+maintained by the telecommunication network,
+and many people, then, using their phones in the same area
+might want to talk to the same base station.
+And so in the second part of the talk, what we'll be looking at
+is how can multiple users share one particular channel.
+So in particular if the people are sitting here,
+they're all close to that particular base station,
+they're all going to be in the same general region,
+they're all going to be transmitting their signals over the air,
+so they're sharing that air channel.
+What we want to make sure is that even if two people are talking
+at the same time they're not crossing with each other,
+so that for example whoever's receiving-- perhaps
+this person is receiving-- is not hearing two people at the same time.
+So how can we control the communication system to avoid that from happening.
+And then the final part of the class, we'll be looking at the network.
+And so in this case here we actually have
+multiple what we call base stations that are all connected together.
+So for example, this person might want to call this person over here,
+or he might want to call this person over here.
+And the pathway that he would want to do that communication
+varies depending on who he wants to talk to and it also varies over time.
+For example, this person might move from this location
+over to some location over here, and the network
+has to be able to adapt to that.
+For example, when I'm in my car or I'm in a bus, as the bus is moving
+I can maintain my communication with the users.
+And so this kind of thing has to change dynamically.
+And so what that means then is that if that person over there
+is talking to this base station and he wants to talk to this person,
+the message that he sends has to be sent over connections
+between these different base stations to this base station over here.
+And these base stations are all connected together
+in a kind of redundant way, which means that we can really
+send this information over different pathways.
+And then the question we'll be asking there is, given the fact
+that there are multiple pathways, how can we choose one pathway to go.
+And perhaps some of these pathways are unreliable.
+How will the system still work even in the case where
+we may be dealing with unreliable links in order
+to send information, hopefully, reliably?
+Now in this particular part of the class,
+we'll be focusing in then on just this one red link here, which
+is the point to point link.
+And in that case, remember, what we're doing
+is we're talking about just a single source talking to a single destination.
+Of course it could go both ways, but in our case
+it's easiest to think about just one way communication,
+and the other way is really just the reverse of that.
+So in this case here, what we'll be talking about
+is many, many different kinds of issues in this single source to destination
+communication.
+And we're going to be splitting this thing up
+into a sequence of 11 different subtopics.
+And the first part of the subtopics that we'll be talking about
+are really these ones that are focusing on this link
+over here, where what we're trying to do is take some kind of information
+and send it to a remote location over something which is called the channel.
+So for example, if I'm in the classroom, I
+might be sending information over the air using my voice.
+And in that case, there are several things
+that might happen when I'm doing that.
+For example, if I'm in a classroom situation,
+even though I'm talking to you as the individual student,
+some of your neighboring students might be doing something-- for example,
+playing on their computers-- in which case
+you might hear tapping of the keyboard, or they
+might be talking to their friends, and whatnot.
+And in that case here, you might get additional noise.
+So we'll talk about the effect of noise on this channel
+after we've discussed this initial link.
+And what we'll see then is that the effect of noise
+really is to introduce errors.
+And so then what we'll do in the final part of the course
+is really talk about well, if we have a system that
+is prone to errors, how can we actually correct those errors to make
+our overall communication system from the source
+to the destination more reliable.
+And so that's what we'll be talking about now
+in the first part of the class: Point to point communication.

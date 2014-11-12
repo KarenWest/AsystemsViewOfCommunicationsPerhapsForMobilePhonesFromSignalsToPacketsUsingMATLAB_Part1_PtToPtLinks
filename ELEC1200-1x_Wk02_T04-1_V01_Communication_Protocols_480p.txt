@@ -1,0 +1,80 @@
+ 
+In this topic, I'd like to take what we learned about the communication channel
+that we modeled in the last session and extend that and look
+at how we can communicate information over that channel.
+And so let's just review.
+What we saw was that the communication channel can be modeled in this way.
+We have the sender who creates a bit stream
+and then creates a waveform that goes over this linear time invariant system.
+And then at the receiver, what's received
+is not only that signal, but some external signals also coming
+from the environment.
+And in this case, I'm just going to model that as a constant,
+because we're going to add the effect of time-varying noise later on.
+And once we have those two things combined in an additive matter,
+we'll get this waveform over here.
+And the question then we want to ask is, how can we recover the original bit
+stream from this waveform over here?
+In fact, what we'll have is this graph here,
+and we won't really have the formula.
+But the formula is a way, if we know the input, to get the formula over here.
+But we'll be using this knowledge of how we go from here to here
+in order to develop our communication model.
+So in order to start answering that, what we need to do
+is start looking at, well, what happens when the channel actually responds
+to a particular bit sequence or just one bit.
+And so here we show a bit, goes to zero to one, and then goes back down to zero.
+And we see that the response of the channel-- shown in black over here--
+doesn't look exactly like this, as we said.
+It doesn't go from zero to one but from some level c to c plus k.
+And then it doesn't change instantaneously, but it changes slowly.
+And then the question is, well, how can we take this waveform in black
+and recover the original bit stream?
+And very much entwined with this discussion
+is going to be the idea of what's called the communication protocol.
+So what a protocol is, it's an agreement or a set of rules
+that we follow during a communication.
+And protocols apply to any kind of communication,
+whether it be a wireless communication system like we're talking about
+in this class or human-to-human communication
+or the kind of communication that we have
+when we are dealing with communicating from me to you in this online forum.
+So, for example, if we think about some of the questions of what
+are the protocols that we use for me to communicate with you,
+they might be things like when you turn the video on and you hear me speaking,
+you expect me to be speaking in a particular language--
+in this case, English.
+And if I was speaking in some other language that you didn't understand,
+we wouldn't be able to communicate.
+Another example might be where you find the videos for this course.
+They're on the edX platform, and they're not
+on some other platform, for example, like YouTube.
+So you know where to find it so that I can communicate with you
+and you can receive the message that I'm trying to send to you.
+So when we talk about our particular data communication system,
+then the protocols cover all aspects of the communication system.
+And I've listed several of those here.
+And they include things like how do we represent text characters.
+Last time we talked about the ASCII code.
+But I told you last time, as well, that there
+are more complex codes to deal with the fact
+that we have many, many more characters than were originally
+designed in the ASCII code.
+And so, for example, one of the coding systems that's in use commonly now
+is the Unicode system.
+The other aspect that you might consider would
+be the order in which bit sequences are sent.
+For example, if you're sending binary numbers,
+do you send the least significant bit first or the most significant bit
+first?
+And in terms of the performance of how quickly you can communicate
+information, it doesn't really matter which one you choose.
+But you have to make sure that when you choose one,
+you follow that standard and that your receiver knows
+that so he can understand what the number is that you're sending.
+And so there are many, many other things listed here.
+And in particular, in this particular topic, what I'd like to talk about
+is two things.
+One is the training sequence, and the other one is the synchronization method
+that we need to use and need to agree on in order
+to do any kind of communication.

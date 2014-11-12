@@ -1,0 +1,113 @@
+In this topic, I'd like to talk about the idea of channel coding.
+So what we've seen up to this point is that noise
+is the fundamental limiter in any communication system.
+And so because of noise, what we're going
+to introduce into the communication stream is bit errors.
+And now the question is, well, given that bit errors are inevitable,
+is there anything that we can do to try to reduce the effect of those bit
+errors.
+And fundamental to this idea of reducing the bit
+errors is the idea of redundancy.
+And, in fact, we can see this idea of redundancy
+in almost any kind of communication system.
+For example, in this online course, I'm trying
+to communicate information to you.
+And I use various redundant sources of information
+to try to make sure that my message gets across.
+For example, I present some of the information by speaking it to you,
+and, in parallel, I present information to you graphically using the slides.
+In other courses, you might have a review lecture at the end.
+That review lecture is really just repeating the same information that
+you've heard already, but making sure that you got it right,
+and if you didn't, if there's a mismatch between what you hear
+at the first and what you think you hear in the review,
+then you get an idea that maybe some kind of error occurred,
+and I need to study that a little bit more.
+So whenever we're doing anything like communicating, in order
+to ensure that we communicate effectively, we add redundancy.
+Now how can we add redundancy into our digital communication scheme?
+Well it turns out that a lot of this work
+is due to someone named Claude Shannon.
+He's a very, very famous figure.
+So famous that the Institute for Electronic and Electrical Engineers
+dedicated a statue in his memory because he is really
+seen as the founder of modern information theory, which
+is the foundation of the way that we communicate information
+using digital communication systems.
+And what you can see here is the inscription
+of that statue dedicated to him.
+And next to the statue, you can see Mrs. Shannon.
+So Claude Shannon is so important, in fact,
+that on the physical version of this class,
+we actually have the students working on the labs in a lab
+that we've named after Claude Shannon called the Shannon lab.
+One of Shannon's most important contributions
+was the idea of the noisy channel coding theorem.
+And what this coding theorem says is that any noisy channel, and we've
+seen that all of the channels that we're going to be communicating
+with in practice are noisy. Any noisy channel has a maximum capacity C.
+So this capacity C is the maximum rate at which useful information can
+be transmitted.
+And this quantity C depends on the physical properties
+of the channel: how much noise there is, things like the step
+response to the channel, and things like that.
+And what he proved was that for any data rate R below C, right,
+so as long as you're transmitting useful information at a rate below C,
+then there's a way for us to encode the data such that the probability of error
+is arbitrarily small, so as small as we want it.
+So essentially, we can almost guarantee no errors whatsoever
+as long as we transmit below the channel capacity.
+But we have to find some the way of encoding the data in order to do that.
+Now the problem is that this theorem actually
+doesn't tell us the exact way in order for us to encode the data.
+And it turns out, in fact, there are many, many different ways
+to encode the data to try to reduce the probability of error.
+And so we're going to study one type of this
+called the block code in this topic.
+And you should keep in mind, though, that there
+are many, many other ways that are being used in our communication systems.
+But the block code captures most of the key ideas of the coding theorem.
+And so the key idea, then, is that what we're going to do
+is we're going to introduce redundancy into the data stream.
+So here's our single point-to-point communication system.
+The part over here is what we've studied before.
+And now we're going to add this new part, this part which
+we'll call error correcting coding and error correction, which is really
+the idea of channel coding.
+And the idea here is that we have a certain number of bits
+that we want to send.
+And what we're going to do is we're going
+to add more bits to the data stream.
+And these new bits don't carry any new information.
+In some sense, you can think about it as repeating the information.
+So for example, if I'm at a noisy party, and I'm talking to you, maybe what
+I'll say, I'll repeat it once or twice just
+to make sure that you got the message.
+So, in some sense, we're repeating the information to add these more bits.
+So there's no new information being sent when we have these more bits.
+But when we go over here, what happens is
+that bit errors might be introduced in the process of transmission.
+So we might get some bits with errors.
+But because of that redundancy, what we'll be able to do
+is figure out that there's some errors and maybe even correct them
+so that the destination receives the same information that
+was sent over here.
+Fundamental to this is the idea that we have
+a certain expectation about what we expect to hear.
+So, for example, suppose I was trying to tell you my telephone number.
+And I said, OK.
+My telephone number is two, "gree", five, eight.
+So in that case, I said "gree" instead of what you think is probably three.
+But you could probably correct that.
+Right?
+But what if I said something like "nive."
+Right?
+Well, in that case, you're perhaps a little bit confused.
+"Nive?"
+"Did he mean nine or did he mean five?"
+In some sense, we're kind of equally distant.
+You can detect that there's an error there,
+but you don't really know how to correct it
+because we're kind of equally distant from nine and five.
+And so we're going to see these kinds of ideas,
+then, when we proceed and talk about the details of block codes.

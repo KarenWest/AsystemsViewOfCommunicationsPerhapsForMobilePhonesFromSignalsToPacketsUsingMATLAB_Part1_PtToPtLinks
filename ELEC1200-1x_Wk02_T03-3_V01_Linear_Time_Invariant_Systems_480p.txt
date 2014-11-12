@@ -1,0 +1,303 @@
+ 
+So in order to describe the channel, we're
+going to model it at what's called a linear time invariant system.
+So that's what I'd like to talk to you about now.
+So let's start out with the idea of a linear function.
+This is something that we're all pretty familiar with.
+So a function, remember, is something that
+takes some input number x and gives us some output number y.
+So a linear function is something that has the form of a line.
+And in particular, it has this particular form y
+is equal to a times x.
+Now, some of you may have seen this kind of formulation
+where y is equal to ax plus b is called a linear function.
+But in this case, for this course, we're not
+going to refer to this kind of function as being a linear function unless b
+is equal to zero, in which case we just have y is equal to ax.
+And so for example, a here is the slope.
+And so if we have y is equal to two times x or y is equal to three times
+x, let's take the example of y is equal to three times x,
+then we know that for any input here, we could put in one,
+we're getting an output three.
+We put in five, we're going to get an output of 15, and so on.
+So when we're understanding linear functions,
+of course, one way is well, if we have this very kind of simple formulation
+here, then it's relatively easy to deal with.
+But there's another way of dealing with linear functions that's
+going to be useful when we start trying to apply this kind of idea
+of linearity, or a linear function to a system like the communication channel
+that we're talking about.
+And so that understanding is based on a definition of linearity
+that says a linear function satisfies two properties.
+One of them is called homogeneity, and the other one of them
+is called additivity.
+And what homogeneity says is that if I have a linear function,
+y is equal to a times x, then if I put in an input c times x,
+then what I'm going to get is an output which is c times a times x.
+And I can express that very simply by saying, well,
+since here the output is a times x, the output here would be c times y.
+For additivity, what it means is that if I have two numbers here, x₁ and x₂,
+and if I put in the number x₁ and I get the number y₁,
+and if I put in the number x₂, I get the number y₂,
+then if I put in the number x₁ plus x₂, then what I'll get
+is simply y₁ plus y₂.
+So let's take a look at an example of that using a numerical example.
+So the idea here is that if I know that a function is linear,
+then I know the output for any kind of input that's non-zero,
+then I can compute the output for any other input using homogeneity
+and additivity.
+So for example, suppose that we know that a linear function has the output
+y is equal to four, let's say, for a particular input x is equal to two.
+Now, in this case here, because we're dealing
+with very, very simple functions, you know immediately
+upon looking at that, well, then you know the value of a must be two.
+And so for this kind of question, what if the input x is equal to four?
+Well, I know a is equal to two in this case.
+I know it must be eight in this case here.
+And if x was equal to six, then I would know that two times six would be 12.
+But we're going to do that in a slightly different way
+to illustrate these ideas of additivity and homogeneity.
+And so additivity, you remember, was based on the idea
+that if I have two numbers, x₁ and x₂, and I put them in
+and I get y₁ and y₂, then if I put in the sum of those two numbers,
+I'll just get the sum of those two numbers at the output.
+So in this case here, if I know x is equal to four,
+if I know one particular input here x is equal to two, then I can say,
+well, actually, x is equal to two plus two.
+And I know the output for two.
+I know the output for two is four.
+Because that's what was told to me over here.
+And so now what I can do is I can say, well,
+y-- because x is equal to two plus two-- y must
+be the sum of the outputs to two and two, or four and four.
+And I get eight, which is exactly what I had before.
+Homogeneity on the other hand, says that if I
+take an input x and I get an output y, If I take c times x, I must get
+c times y.
+And so when I do that, what I can do is I can say,
+well, if the input here is six, x is equal to six,
+then since I know that x is equal to three times two, and I know the response to two
+is four, then I know y must be the same scaling factor three times
+four, or 12, which is exactly what I predicted from my idea
+that a was equal to two.
+And so this looks like a very simple example.
+And it looks kind of a little bit mundane to do things like this.
+But it's going to be important when we start
+talking about more complicated systems that
+display the same kinds of properties of linearity.
+And that's when we start talking about systems.
+What is a system?
+A system is something that doesn't take a number in and take and get
+a number out, but it takes a waveform in-- so some kind of x of n--
+and gets a waveform at the output, y of n.
+And so for example, the channel that we have would be an example of a system.
+So for any kind of waveform that you get, for example, a waveform that
+looks like this, or one that looks like this, or one that looks like this,
+you get a different waveform at the output.
+And what we'd like to be able to do is try to predict, well, if I know this,
+can I predict what this thing is going to be over here?
+And so it turns out that we can do that for the channel
+if we assume that the channel is what's called a linear and time invariant
+system.
+And to understand what a linear time invariant system is,
+we're going to break that up into two terms.
+One is the idea of a linear system, and the next one
+is the idea of a time invariant system.
+So let's talk about the idea of a linear system first.
+So let's go back to the idea that we had for linear functions.
+Because that was a very simple idea.
+And for that linear function, we saw that the linear function
+had these two kinds of properties.
+One of them being homogeneity, and the other one being additivity.
+And I'm going to look at these two things
+in more detail with specific examples of each of them.
+So let's take a look at homogeneity.
+So the idea of homogeneity was that if I have an input x
+and I know the output for this particular input x is y,
+then if I have some kind of scaled version of x, let's say c times x,
+then I know the output is c times y.
+So you can see here for this graphical diagram here, I have this input x.
+I know that it leads to this output y, like this.
+And what I've done here is I've scaled it up by c.
+So it looks like in this case here, c is about three.
+So this thing is about three times bigger than this one.
+And it turns out that for this, I know that the output will
+be for the linear system, the output will simply
+be the same as this, just multiplied by three times.
+So instead of the change being like this, it's about three times bigger.
+But otherwise, the waveforms look pretty much the same except for that scaling.
+So that's the idea of homogeneity.
+The next idea is the idea of additivity.
+So the idea of additivity is that if I have two inputs x₁ and x₂,
+and I know their outputs-- for example, if x₁ is this waveform over here
+and it leads to this output over here, and this input is this one over here
+leads to this output over here, then if I
+have the sum of these two -- and by the sum, what
+I mean is that for every value of n, I'm going to add this plus this
+and get the value here.
+So I'm going to get zero plus zero is zero and so on, until I get to this point here.
+I get one plus zero is one.
+So for all these, I'm going to get one.
+Then again, I'm going to get zero plus zero.
+And then I'm going to get zero plus one over here, and so on.
+Then I can predict the output to the sum of these two,
+which is given by this waveform down here.
+And it's simply the sum of the two outputs over here.
+And I'm going to again do that by this pointwise addition,
+adding the zeros here.
+And then I'm going to get zero plus this thing over here.
+And then this thing over here plus this thing over here,
+which is going to give me something slightly
+different than what I have over here.
+Because this is not exactly zero anymore.
+So the summation there is going to give me something slightly different
+than this.
+So it's not just like I'm putting the two things one on top of each other,
+but I'm actually adding them together pointwise.
+So that's the concept of a linear system.
+It combines these two ideas of homogeneity-- in other words,
+if I scale the input, I scale the output-- and additivity--
+in other words, if I take two inputs and I add the two inputs together,
+I get the addition of the two outputs.
+The final piece of the puzzle then in talking about linear time invariant
+systems, is the idea of time invariance.
+And a system is time invariant if when you delay it (the input), you get the same output.
+The only difference is the output is delayed by d.
+So here I show you an input here, which looks like this.
+And it gives you this output over here.
+And if the linear system is time invariant, then what will happen
+is that if I take this input and instead of starting it here
+at this point in time, but I actually move over by d and start it here,
+then the only difference in the response of the system to this versus this
+is this output is going to be almost exactly the same.
+It's just delayed by the same amount d here.
+So that's a property of the system that we're dealing with.
+And so if I combine those two things together,
+then I get the concept what's called a linear time invariant system.
+That's a system that's both linear and time invariant.
+And so the easiest way to understand this system
+is perhaps look at an example.
+And so in this case here, we can look at this channel over here,
+which is the channel that we saw that included the effects of an offset
+by c, a delay by d, and a scaling or attenuation by k.
+So now instead of varying from zero to one, it varies from some baseline level c
+or offset level to c plus k.
+And there's some slight delay.
+Now, the question is, is this channel both linear and time invariant?
+Now, it turns out that this channel is time invariant.
+In particular, if I take this and I delay n,
+let's say the input here, x, by one sample,
+then the only thing that's going to happen
+is that I'm going to get instead of n here, I'm going to get n minus one.
+But that's just going to be the exact same output here, y of n,
+delayed by one sample.
+So this system here is time invariant.
+But it turns out that it's not linear.
+Suppose I take this waveform here and I double it.
+Suppose I doubled this waveform.
+If this system was linear, then it should
+satisfy the property of homogeneity.
+So the output should be doubled.
+But in this case here, if I doubled the input x,
+I would double this point here.
+This part here would be doubled, but this constant
+offset c here would not be doubled.
+So the output here, y, would not be doubled.
+So this system, in fact, is not linear.
+So now that we understand what a linear time invariant
+system is, we can try to figure out, well,
+how can we use this idea that maybe the channel is a linear time invariant
+system to predict the output.
+And remember what we said about linear functions.
+So for a linear function, we know that the output of a linear function
+can be computed if we know that the function is linear
+and we know the output for any non-zero input.
+Now we can say a similar thing for a linear time invariant system.
+For a linear time invariant system, it turns out
+that we can compute the output in response
+to any input given just knowledge about the output in response
+to a single input function.
+It turns out that we have wide flexibility
+in choosing what that input function is.
+And since we have that flexibility, what we'll do
+is choose that input function to be the unit step function, since it's
+something that we've already seen before and something we know how to deal with.
+And so if we choose the unit step as the input,
+then we have to know what the output is.
+And so we'll give the output then a special name,
+which is called the step response.
+And we'll commonly denote it by the term s of n.
+So for example, for this unit step input,
+we might know that for this particular channel,
+the step response looks like this.
+And that step response is going to be a property of the system.
+So for example, if I'm moving my hand and I
+say I want to make a transition from zero to one, I don't do that instantaneously.
+There's going to be some time that it takes for me to do that.
+And that time depends on things like my muscles and things like that.
+So it depends on the physical properties of the system what
+this actual waveform looks like.
+But if we know that response, the step response, to that one input,
+the unit step, then it turns out that I can use that knowledge
+to compute the output to any possible input.
+And we can do that using a simple three-step process.
+That process is illustrated here.
+So what we'd like to do is we'd like to take this input here,
+which is a little bit more complicated than the unit step,
+and figure out, well, what is its output.
+And so we'd like to go directly from here to here,
+but it turns out that it's easier to kind of take a more indirect route.
+Because going from here to here is kind of difficult.
+What we're going to do is go in this indirect route here, which
+is decomposed into three different steps.
+The first step is going to be that we're going to take this waveform here
+and we're going say, well, we can write this as the sum of a set of scaled unit
+step functions where the scaling is either plus one or minus one.
+And we've already seen this in the previous topic.
+So we know that x of n can be written like this.
+The next step would be to use homogeneity and time invariance
+to predict the output to each one of these particular inputs over here.
+And so now, this is just the unit step.
+I know the response to the unit step.
+That's just s of n.
+So that one I know already.
+Here, I have something that is similar to the unit step,
+but not quite the same.
+It's different because it's delayed by five and it's multiplied by minus one.
+But now because of the fact that I know the system is time invariant,
+I know that the output if I delay by five, is just
+going to be the same output delayed by five.
+And if I multiply the input by minus one, I multiply the output by minus one.
+So I'm going to get the output here, which
+is going to be similar to this one, just delayed by five and multiplied by minus one.
+So that's going to allow me to predict the output to each one of these things
+individually.
+Of course, the input is not each one of these individually,
+but it's the linear combination of those two.
+So it turns out that in the final step, I
+can exploit linearity, and in particular, the property of additivity
+to combine these two individual responses
+to get the final response over here.
+And so now what you can see is that I'm going
+to again do this pointwise addition.
+So I get zeros of these two things, giving a zero here.
+And then I get a zero here, plus this, which
+is going to give me this thing over here.
+And eventually, I'm going to be something close to one over here.
+And I'm going to combine this one plus this thing over here, which
+is negative.
+So I'm going to get one minus something, which
+is going to bring me down to here.
+And then I'm going to get this one, or something close to one, minus this.
+And that's going to pull me down to here.
+And so this gradual decrease is the combination
+of this almost constant part over here added with this thing over here,
+which is going to give me this decay down to here.
+And finally when I get over to this region over here,
+I basically have plus one over here canceling with the minus one
+over here, which is giving me the zero over here.
+So in summary then, in order for me to compute the output
+to this more complicated input, I do this three-step process
+where I take the input, break it down as a sum of unit steps,
+predict the output to each one of the unit steps
+individually, and then use additivity to combine the two together.

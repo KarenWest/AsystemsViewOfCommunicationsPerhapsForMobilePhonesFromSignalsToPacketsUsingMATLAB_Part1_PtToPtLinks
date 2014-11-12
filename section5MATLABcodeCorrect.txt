@@ -1,0 +1,39 @@
+﻿bs_raw = rand(1,60)>0.5;   % generate random 60 bit sequence
+%disp(bs_raw);
+% place your code below that 
+% encodes bitstream bs_raw and store the encoded bit in bs_enc  
+%bs_enc = bs_raw;
+codeword = 1:6;     % codewords are 6 bits each
+%codewords= cell(20,1);
+add3bits = [3,3,3,0,0,0]; 
+bsencArr = zeros(20,6); %20 code words of 6 bits each
+bs_enc = 1:120;
+codeIndex = [1,2,3,0,0,0];
+encIndex = [1,2,3,4,5,6];
+add6bits = [6,6,6,6,6,6];
+%disp(bs_enc);
+for i=1:20, % loop over all messages    
+    codeword = [bs_raw(codeIndex(1)), bs_raw(codeIndex(2)), bs_raw(codeIndex(3)),0,0,0];
+    codeIndex = codeIndex + add3bits;
+    % The code below returns the 8 bit codeword corresponding to
+    % the 3 bit message in msg by
+    %  1. calculating the 3 parity bits
+    %  2. concatenating the parity bits to the message bits
+    p1 = xor(codeword(1),codeword(2));
+    p2 = xor(codeword(2),codeword(3));
+    p3 = xor(codeword(3),codeword(1));
+    codeword = [codeword(1) codeword(2) codeword(3) p1 p2 p3 ];
+    %disp(codeword);
+    %codewords{i} = codeword;
+    for j=1:6
+        bs_encArr(i,j) = codeword(j);
+    end
+end
+index = 1;
+for i=1:20
+    for j=1:6
+        bs_enc(index) = bs_encArr(i,j);
+        index = index + 1;
+    end
+end
+%disp(bs_enc);
